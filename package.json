@@ -42,6 +42,7 @@
     "eslint-plugin-markdown": "^2.2.1",
     "eslint-plugin-mdx": "^1.17.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-vue": "^8.6.0",
     "esno": "^0.14.1",
     "globby": "11.0.4",

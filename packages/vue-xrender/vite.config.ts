@@ -33,7 +33,7 @@ const getViteConfig = (minify: boolean): UserConfig => {
 
   const plugins = [vue()]
 
-  return {
+  return <UserConfig>{
     plugins,
     resolve: {
       dedupe: ['vue', 'vue-demi', '@vue/runtime-core'] // use the same version
