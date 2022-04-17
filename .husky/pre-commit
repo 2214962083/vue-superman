@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# lint folder or files name
+pnpm run lint:dir
+
+# lint git stash files
+npx --no-install lint-staged

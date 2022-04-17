@@ -1,0 +1,212 @@
+{
+  // Use PNPM
+  "npm.packageManager": "pnpm",
+  "eslint.packageManager": "pnpm",
+  "npm.validate.enable": false,
+
+  // jest
+  "jest.autoRun": "off",
+
+  // vscode cpu limit
+  "search.followSymlinks": false, // close search
+
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "editor.tabSize": 2,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "stylelint.enable": true,
+  "stylelint.validate": ["css", "less", "postcss", "scss", "vue", "sass"],
+  "path-intellisense.mappings": {
+    "@/": "${workspaceRoot}/src"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "[vue]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true,
+      "source.fixAll.stylelint": true
+    }
+  },
+  "editor.formatOnSave": true,
+  "eslint.options": {
+    "extensions": [".vue", ".js", ".jsx", ".ts", ".tsx", ".md", ".mdx"]
+  },
+  "eslint.validate": ["vue", "javascript", "javascriptreact", "typescript", "typescriptreact", "markdown", "mdx"],
+  // windicss tips
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  // "typescript.inlayHints.variableTypes.enabled": true,
+  // "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  // "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
+  "css.lint.unknownAtRules": "ignore",
+  "cSpell.words": [
+    "alicdn",
+    "alphabetselectmenu",
+    "amondnet",
+    "antd",
+    "Antd",
+    "Antdv",
+    "anticon",
+    "axios",
+    "AXIOS",
+    "basicprops",
+    "browserslist",
+    "Btns",
+    "busi",
+    "butn",
+    "camelize",
+    "casecader",
+    "changesets",
+    "checkboxgroupoption",
+    "clickbody",
+    "clickoutside",
+    "cmsk",
+    "codepen",
+    "codesandbox",
+    "collapseitem",
+    "combinator",
+    "comlist",
+    "commitlint",
+    "comname",
+    "Compat",
+    "compositionend",
+    "copyfiles",
+    "corejs",
+    "csstype",
+    "cust",
+    "danchuang",
+    "daochu",
+    "datetime",
+    "demi",
+    "deps",
+    "disableddate",
+    "DOWNFILE",
+    "ecmaversion",
+    "Editer",
+    "esbuild",
+    "esno",
+    "exclaimination",
+    "globby",
+    "guanbi",
+    "guhuatai",
+    "hqruf",
+    "icegateway",
+    "iconfont",
+    "iife",
+    "inclusivity",
+    "jiahao",
+    "jinggao",
+    "jingshi",
+    "jsdelivr",
+    "jsfiddle",
+    "loglevel",
+    "messageoption",
+    "mockdate",
+    "modaloption",
+    "noresize",
+    "nprogress",
+    "Nums",
+    "oper",
+    "operatirflag",
+    "originjs",
+    "outfile",
+    "persistedstate",
+    "pinzhi",
+    "pnpm",
+    "popconfirm",
+    "Popconfirm",
+    "postbuild",
+    "preinstall",
+    "preversion",
+    "pythonic",
+    "Querys",
+    "Queryt",
+    "rangedayprops",
+    "rangemonthprops",
+    "rangetimeprops",
+    "rangeyearprops",
+    "redrun",
+    "respawn",
+    "scripthost",
+    "segi",
+    "selectdateprops",
+    "selectdayprops",
+    "selectmenu",
+    "selectmonthprops",
+    "selecttimeprops",
+    "selectyearprops",
+    "sels",
+    "sgcomname",
+    "shouqi",
+    "storysource",
+    "styl",
+    "stylelint",
+    "Tmpl",
+    "Toolshown",
+    "Ttype",
+    "typegen",
+    "typeof",
+    "uglifyjs",
+    "uhome",
+    "uhomecp",
+    "unplugin",
+    "userinfo",
+    "userland",
+    "Validable",
+    "vercel",
+    "vetur",
+    "viewerjs",
+    "vite",
+    "vitejs",
+    "vnode",
+    "vsix",
+    "vuepress",
+    "vueuse",
+    "vuex",
+    "wangeditor",
+    "windi",
+    "windicss",
+    "xiao",
+    "xrender",
+    "yangjinming",
+    "zhankai"
+  ],
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#580744",
+    "titleBar.activeBackground": "#7B0A5F",
+    "titleBar.activeForeground": "#FFFBFE"
+  }
+}

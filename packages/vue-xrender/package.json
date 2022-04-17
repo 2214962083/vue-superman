@@ -1,0 +1,73 @@
+{
+  "name": "vue-xrender",
+  "version": "0.0.1",
+  "description": "use jsx in template or use template in jsx, do what you want in vue free render",
+  "keywords": [
+    "vue",
+    "vue-xrender",
+    "vue-superman",
+    "component",
+    "utils"
+  ],
+  "author": "yangjinming <https://github.com/2214962083>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "vue-tsc --noEmit &&esno ./scripts/build.ts",
+    "clean": "rimraf ./dist/**/*",
+    "dev": "vite",
+    "type-check": "tsc --noEmit"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/index.min.umd.js",
+  "jsdelivr": "./dist/index.min.umd.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": "./*"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2214962083/vue-superman.git",
+    "directory": "packages/vue-xrender"
+  },
+  "bugs": {
+    "url": "https://github.com/2214962083/vue-superman/issues"
+  },
+  "homepage": "https://github.com/2214962083/vue-superman#readme",
+  "peerDependencies": {
+    "@vue/composition-api": "^1.1.0",
+    "vue": "^2.6.0 || ^3.2.0"
+  },
+  "peerDependenciesMeta": {
+    "vue": {
+      "optional": true
+    },
+    "@vue/composition-api": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "vue-demi": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.24",
+    "@types/rimraf": "^3.0.2",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "rimraf": "^3.0.2",
+    "typescript": "4.6.3",
+    "vite": "^2.9.5",
+    "vite-plugin-dts": "^1.0.5",
+    "vue": "^3.2.31",
+    "vue-tsc": "^0.34.7",
+    "vue2": "npm:vue@^2.6.14"
+  }
+}

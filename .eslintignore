@@ -1,0 +1,15 @@
+**/node_modules/
+**/style/
+*.html
+es/
+**/lib/
+**/dist/
+**/lib-types/
+_site/
+**/dist/
+CHANGELOG.md
+.rollup.cache
+tsconfig.tsbuildinfo
+!.storybook
+components.d.ts
+*.generated.ts

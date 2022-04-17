@@ -1,0 +1,84 @@
+name: 持续集成
+
+on: push
+
+jobs:
+  deploy_docs:
+    name: 文档部署
+    runs-on: ubuntu-latest
+    # 目前仅运行于 dev 分支
+    if: github.ref == 'refs/heads/dev'
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v2
+
+      - name: 安装 nodejs
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+
+      - name: 缓存 npm、pnpm 依赖
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+            ~/.pnpm-store
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: 安装依赖
+        run: |
+          npm i -g pnpm
+          pnpm i
+
+      - name: 打包文档网站
+        run: pnpm run -r --filter doc-site build
+
+      - name: 部署文档到 vercel
+        uses: amondnet/vercel-action@v20
+        # see: https://github.com/amondnet/vercel-action
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_SEGI_DOCS }}
+          # 团队的话，必须设置
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+          # 相当于 npx vercel --prod
+          vercel-args: '--prod'
+          # 部署目录
+          working-directory: ./packages/doc-site/docs/.vuepress/dist
+          # 域名绑定
+          # alias-domains: |
+          #   docs.xxx.com
+          #   docs.xxx.cn
+
+      - name: 打包 storybook 文档网站
+        run: pnpm run -r --filter xxx storybook:build
+
+      - name: 部署 storybook 文档到 vercel
+        uses: amondnet/vercel-action@v20
+        # see: https://github.com/amondnet/vercel-action
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_SEGI_STORYBOOK }}
+          # 团队的话，必须设置
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+          # 相当于 npx vercel --prod
+          vercel-args: '--prod'
+          # 部署目录
+          working-directory: ./packages/xxx/dist/storybook
+          # 域名绑定
+          # alias-domains: |
+          #   docs.segi.com
+          #   docs.segi.cn
+
+
+
+
+

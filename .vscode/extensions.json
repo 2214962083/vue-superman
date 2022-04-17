@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "stylelint.vscode-stylelint",
+    "streetsidesoftware.code-spell-checker",
+    "johnsoncodehk.volar",
+    "mrmlnc.vscode-less",
+    "mikestead.dotenv",
+    "voorjaar.windicss-intellisense"
+  ]
+}

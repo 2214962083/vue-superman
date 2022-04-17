@@ -1,0 +1,17 @@
+ls:
+  examples/assets:
+    .dir: lowercase
+
+  # examples/code:
+  #   .ts: regex:SG\-[A-Z][A-Za-z]+
+
+  # examples/views/comlist:
+  #   .vue: regex:SG\-[A-Z][A-Za-z]+
+
+  # 会强制要求所有子目录，实现不了仅仅一层目录lint
+  # packages/components:
+  #   .dir: regex:SG\-[A-Z][A-Za-z]+
+
+ignore:
+  - node_modules
+  - .git
