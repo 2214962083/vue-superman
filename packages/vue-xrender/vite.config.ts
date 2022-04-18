@@ -54,7 +54,7 @@ const createViteConfig = (options: CreateViteConfigOptions = {}): UserConfig => 
     root: pathResolve('./'),
     plugins,
     resolve: {
-      dedupe: ['vue', 'vue-demi', '@vue/runtime-core'], // use the same version
+      dedupe: ['vue', 'vue-demi', '@vue/runtime-core', '@vue/runtime-dom'], // use the same version
       alias
     },
     optimizeDeps: {
@@ -76,6 +76,16 @@ const createViteConfig = (options: CreateViteConfigOptions = {}): UserConfig => 
       },
       sourcemap: true,
       minify
+    },
+    // for vitest
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: [pathResolve('./test/setup.ts')],
+      reporters: 'dot',
+      deps: {
+        inline: ['vue2', '@vue/composition-api', 'vue-demi']
+      }
     }
   }
 }

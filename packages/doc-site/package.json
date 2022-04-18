@@ -1,9 +1,7 @@
 {
   "name": "doc-site",
-  "version": "1.0.0",
   "private": true,
   "description": "the libs docs website",
-  "author": "yangjinming",
   "scripts": {
     "docs:build": "vuepress build docs",
     "docs:dev": "vuepress dev docs"

@@ -191,6 +191,7 @@
     "viewerjs",
     "vite",
     "vitejs",
+    "vitest",
     "vnode",
     "vsix",
     "vuepress",

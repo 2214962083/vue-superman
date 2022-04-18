@@ -27,11 +27,6 @@
     "importHelpers": false
   },
   "exclude": ["./node_modules/**/*", "./lib/**/*", "./es/**/*", "./dist/**/*"],
-  "references": [
-    {
-      "path": "./packages/vue-xrender/tsconfig.json"
-    }
-  ],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS",

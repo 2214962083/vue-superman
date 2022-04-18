@@ -1,0 +1,22 @@
+{
+  "name": "playground-vue3",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -r -k -g 'npm:build:vue-xrender' 'npm:dev:vite'",
+    "dev:vite": "vite",
+    "build": "vite build",
+    "build:vue-xrender": "pnpm run build:watch --filter vue-xrender",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.33",
+    "vue-demi": "^0.12.5",
+    "vue-xrender": "workspace:*"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.1",
+    "@vitejs/plugin-vue-jsx": "^1.3.10",
+    "concurrently": "^7.1.0",
+    "vite": "^2.9.5"
+  }
+}

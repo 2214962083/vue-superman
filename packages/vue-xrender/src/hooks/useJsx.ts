@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import {CreateElement, JsxNode, VueComponentConstructor} from '@/utils/types-helper'
 import {defineComponent, getCurrentInstance, VNode, h} from 'vue-demi'
-import type {DefineComponent, VNodeChild} from '@vue/runtime-dom'
-
-export type CreateElement = typeof h
-
-export type JsxNode = JSX.Element | VNodeChild
-
-export type VueComponentConstructor = DefineComponent
 
 export type JsxProps<T extends JsxNode = JsxNode> = Record<string, any> & {
   children: T
