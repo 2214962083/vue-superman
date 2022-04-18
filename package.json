@@ -11,7 +11,7 @@
     "commit": "git add . &&git-cz",
     "lint": "redrun lint:es lint:css lint:dir",
     "lint:change": "lint-staged",
-    "lint:css": "stylelint --fix ./**/*.{vue,css,sass,scss,less,html} --cache --cache-location node_modules/.cache/stylelint/",
+    "lint:css": "stylelint --aei --fix ./**/*.{vue,css,sass,scss,less,html} --cache --cache-location node_modules/.cache/stylelint/",
     "lint:dir": "ls-lint",
     "lint:es": "eslint --fix . --ext .jsx,.js,.vue,.ts,.tsx,.json",
     "preinstall": "npx only-allow pnpm",

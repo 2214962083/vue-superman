@@ -9,8 +9,8 @@
     "declaration": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noEmitOnError": false,
@@ -27,6 +27,11 @@
     "importHelpers": false
   },
   "exclude": ["./node_modules/**/*", "./lib/**/*", "./es/**/*", "./dist/**/*"],
+  "references": [
+    {
+      "path": "./packages/vue-xrender/tsconfig.json"
+    }
+  ],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS",

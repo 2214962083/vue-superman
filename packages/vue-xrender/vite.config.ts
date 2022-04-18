@@ -1,6 +1,7 @@
-import {defineConfig, LibraryFormats, UserConfig} from 'vite'
+import {defineConfig, LibraryFormats, UserConfig, PluginOption, Alias} from 'vite'
 import path from 'path'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import pkg from './package.json'
 
 const getPkgName = () => pkg.name
@@ -28,15 +29,33 @@ const externalMap: Record<string, string> = {
   '@vue/composition-api': 'VueCompositionAPI'
 }
 
-const getViteConfig = (minify: boolean): UserConfig => {
+interface CreateViteConfigOptions {
+  minify?: boolean
+}
+
+const createViteConfig = (options: CreateViteConfigOptions = {}): UserConfig => {
+  const {minify = false} = options
   const outputMap = getOutputMap(minify)
 
-  const plugins = [vue()]
+  const plugins: PluginOption[] = [vue(), vueJsx()]
+
+  const alias: Alias[] = [
+    {
+      find: /@(?=\/)/,
+      replacement: pathResolve('src')
+    },
+    {
+      find: /^vue$/,
+      replacement: pathResolve('./node_modules/vue/dist/vue.runtime.esm-browser.js') // use the same version, an use runtime template compiler
+    }
+  ]
 
   return <UserConfig>{
+    root: pathResolve('./'),
     plugins,
     resolve: {
-      dedupe: ['vue', 'vue-demi', '@vue/runtime-core'] // use the same version
+      dedupe: ['vue', 'vue-demi', '@vue/runtime-core'], // use the same version
+      alias
     },
     optimizeDeps: {
       exclude: ['vue-demi']
@@ -62,9 +81,9 @@ const getViteConfig = (minify: boolean): UserConfig => {
 }
 
 // default config and build prod config
-export const unMinifyConfig = getViteConfig(false)
+export const unMinifyConfig = createViteConfig({minify: false})
 
 // build prod and build prod config
-export const minifyConfig = getViteConfig(true)
+export const minifyConfig = createViteConfig({minify: true})
 
 export default defineConfig(unMinifyConfig)

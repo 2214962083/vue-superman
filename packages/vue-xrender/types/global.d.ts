@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type {VNodeChild, ComponentPublicInstance, FunctionalComponent, PropType as VuePropType} from 'vue'
+import type {VNodeChild, ComponentPublicInstance, FunctionalComponent, PropType as VuePropType} from 'vue-demi'
 
 declare global {
   // vue

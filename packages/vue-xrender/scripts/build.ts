@@ -19,7 +19,7 @@ async function changeConfig(config: UserConfig): Promise<InlineConfig> {
 
     config.plugins.push(
       dts({
-        // insertTypesEntry: true,
+        insertTypesEntry: true,
         tsConfigFilePath: pathResolve('../tsconfig.json')
       })
     )
