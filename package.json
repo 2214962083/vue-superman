@@ -7,8 +7,7 @@
   "author": "yangjinming",
   "scripts": {
     "bootstrap": "pnpm i",
-    "changeset": "changeset",
-    "ci:version": "changeset version &&pnpm i --no-frozen-lockfile --lockfile-only --ignore-scripts",
+    "build": "esno ./scripts/build.ts",
     "clean": "rimraf **/node_modules/**",
     "commit": "git add . &&git-cz",
     "lint": "redrun lint:es lint:css lint:dir",
@@ -18,13 +17,10 @@
     "lint:es": "eslint --fix . --ext .jsx,.js,.vue,.ts,.tsx,.json",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
-    "publish:all": "pnpm run ci:version &&pnpm -r publish --access public",
     "release": "bumpp package.json packages/*/package.json --push --tag  --commit \"build: the v%s release\"",
-    "release:all": "redrun ci:version commit publish:all"
+    "test": "echo run test"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.4.4",
-    "@changesets/cli": "^2.22.0",
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
     "@ls-lint/ls-lint": "^1.11.0",
@@ -49,7 +45,7 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-vue": "^8.6.0",
     "esno": "^0.14.1",
-    "globby": "11.0.4",
+    "globby": "11.1.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.8",
     "ora": "5.4.1",
