@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "vue": "^3.2.33",
-    "vue-demi": "^0.12.5",
+    "vue-demi": "*",
     "vue-xrender": "workspace:*"
   },
   "devDependencies": {

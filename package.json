@@ -1,6 +1,7 @@
 {
   "name": "vue-superman",
   "private": true,
+  "packageManager": "pnpm@6.32.3",
   "description": "vue useful lib collection, use vue like a superman",
   "author": "yangjinming",
   "scripts": {
@@ -71,6 +72,9 @@
     "pnpm": ">=6"
   },
   "pnpm": {
+    "overrides": {
+      "vue-demi": "0.12.5"
+    },
     "packageExtensions": {
       "stylelint-config-recommended-vue": {
         "dependencies": {

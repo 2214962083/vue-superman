@@ -39,6 +39,7 @@
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/2214962083/vue-superman.git",
