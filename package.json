@@ -1,5 +1,6 @@
 {
   "name": "vue-superman",
+  "version": "0.0.5",
   "private": true,
   "packageManager": "pnpm@6.32.3",
   "description": "vue useful lib collection, use vue like a superman",
@@ -18,6 +19,7 @@
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
     "publish:all": "pnpm run ci:version &&pnpm -r publish --access public",
+    "release": "bumpp package.json packages/*/package.json --push --tag  --commit \"build: the v%s release\"",
     "release:all": "redrun ci:version commit publish:all"
   },
   "devDependencies": {
@@ -31,6 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.19.0",
     "@vue/eslint-config-typescript": "^10.0.0",
+    "bumpp": "^7.1.1",
     "chalk": "4.1.2",
     "commitizen": "^4.2.4",
     "cross-env": "^7.0.3",
