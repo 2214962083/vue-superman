@@ -50,7 +50,7 @@ export function generateChangelog() {
   const pkgNames = getPackagesName('all')
 
   for (const pkgName of pkgNames) {
-    const cmd = `pnpm conventional-changelog -p angular -i CHANGELOG.md -s --commit-path . -l ${pkgName} -r 1`
+    const cmd = `pnpm exec conventional-changelog -p angular -i CHANGELOG.md -s --commit-path . -l ${pkgName} -r 1`
     console.log('start run command: ', cmd)
     execSync(cmd, {stdio: 'inherit', cwd: pathResolve('../packages', pkgName)})
   }
@@ -59,7 +59,10 @@ export function generateChangelog() {
 export function release() {
   generateChangelog()
   execSync('git add .', {stdio: 'inherit'})
-  execSync('pnpm bumpp package.json packages/*/package.json --push --tag  --commit "build: the v%s release"', {
-    stdio: 'inherit'
-  })
+  execSync(
+    'pnpm exec bumpp package.json packages/*/package.json --push --tag --all --commit "build: the v%s release"',
+    {
+      stdio: 'inherit'
+    }
+  )
 }
