@@ -1,5 +1,9 @@
 ## 0.1.1 (2022-04-21)
 
+### Bug Fixes
+
+- **vue-xrender:** x-tpl render error in vue3 ([21c4a88](https://github.com/2214962083/vue-superman/commit/21c4a88fba865ee651d47c5173593b47e72f2318))
+
 ## 0.1.1 (2022-04-21)
 
 ### Bug Fixes
