@@ -50,7 +50,7 @@ export function generateChangelog() {
   const pkgNames = getPackagesName('all')
 
   for (const pkgName of pkgNames) {
-    const cmd = `pnpm exec conventional-changelog -p angular -i CHANGELOG.md -s --commit-path . -l ${pkgName} -r 1`
+    const cmd = `pnpm exec conventional-changelog -p angular -i CHANGELOG.md -s --commit-path . -l ${pkgName} -r 0`
     console.log('start run command: ', cmd)
     execSync(cmd, {stdio: 'inherit', cwd: pathResolve('../packages', pkgName)})
   }

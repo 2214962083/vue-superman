@@ -68,7 +68,7 @@ const vm = defineComponent({
     if (!tpl) return null
 
     const renderFunc = compile(tpl, _ctx)
-    const result = isVue2 ? renderFunc(h) : renderFunc(ctx)
+    const result = isVue2 ? renderFunc(h) : renderFunc(_ctx)
 
     return result as VNode
   }
