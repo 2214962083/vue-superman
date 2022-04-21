@@ -16,7 +16,7 @@ export default defineConfig({
   resolve: {
     dedupe: ['vue', 'vue-demi', '@vue/runtime-core', '@vue/runtime-dom'], // use the same version
     alias: {
-      vue: pathResolve('./node_modules/vue/dist/vue.runtime.esm-browser.js') // use the same version, also use runtime template compiler
+      vue: pathResolve('./node_modules/vue/dist/vue.esm-browser.js') // use the same version, also use runtime template compiler
     }
   }
 })

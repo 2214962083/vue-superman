@@ -1,32 +1,31 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {CreateElement, JsxNode, VueComponentConstructor} from '@/utils/types-helper'
+import {JsxDefaultProps, JsxFn, JsxNode, VueComponentConstructor} from '@/utils/types-helper'
 import {defineComponent, getCurrentInstance, VNode, h} from 'vue-demi'
-
-export type JsxProps<T extends JsxNode = JsxNode> = Record<string, any> & {
-  children: T
-}
-
-export type JsxFn = (props: JsxProps, h?: CreateElement) => JsxNode
 
 /**
  * create a vue component from jsx
  * @param name component name in template
  * @param jsx jsx node, if you want to reactive the component, you can use `() => jsx`
  */
-export function useJsx(name: string, jsx: JsxNode | JsxFn): VueComponentConstructor
+export function useJsx<P extends JsxDefaultProps = JsxDefaultProps, T extends JsxNode = JsxNode>(
+  name: string,
+  jsx: JsxNode | JsxFn<P, T>
+): VueComponentConstructor
 
 /**
  * create a vue component from jsx
  * @param jsx jsx node, if you want to reactive the component, you can use `() => jsx`
  */
-export function useJsx(jsx: JsxNode | JsxFn): VueComponentConstructor
+export function useJsx<P extends JsxDefaultProps = JsxDefaultProps, T extends JsxNode = JsxNode>(
+  jsx: JsxNode | JsxFn<P, T>
+): VueComponentConstructor
 
 export function useJsx(...args: any[]) {
   const name: string | undefined = args[1] ? args[0] : undefined
   const jsx: JsxNode | JsxFn = args[1] ? args[1] : args[0]
 
   const instance = getCurrentInstance()?.proxy
-  if (!instance) throw new Error(`useJsx error: instance not found，name: ${name}`)
+  if (!instance) throw new Error(`useJsx error: instance not found, name: ${name}`)
 
   const jsxCom = defineComponent({
     name,
