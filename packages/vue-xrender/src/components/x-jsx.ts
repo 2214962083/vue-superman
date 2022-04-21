@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {FunctionComponent, JsxFn, JsxNode} from '@/utils/types-helper'
-import {defineComponent, VNode, h, PropType} from 'vue-demi'
+import {defineComponent, VNode, h} from 'vue-demi'
 
 const valueIsFunctionComponent = (value: any): value is FunctionComponent => {
   return typeof value === 'object' && value.functional && typeof value.render === 'function'
@@ -23,12 +23,12 @@ const vm = defineComponent({
   name: 'XJsx',
   props: {
     jsx: {
-      type: [Function, Object, Array, String, Number, Boolean] as PropType<JsxNode | JsxFn | FunctionComponent>
+      type: [Function, Object, Array, String, Number, Boolean]
     }
   },
   render(): VNode {
     const {$slots, $attrs, $props} = this as InstanceType<typeof vm>
-    const {jsx} = $props
+    const jsx = $props.jsx as JsxNode | JsxFn | FunctionComponent
 
     const children = typeof $slots.default === 'function' ? $slots.default() : $slots.default
     const props = {...$attrs, children}
