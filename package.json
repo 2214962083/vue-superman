@@ -18,7 +18,7 @@
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
     "release": "esno ./scripts/release.ts",
-    "test": "echo run test"
+    "test": "pnpm run -r test"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",

@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import {defineConfig, LibraryFormats, UserConfig, PluginOption, Alias} from 'vite'
 import path from 'path'
 import vue from '@vitejs/plugin-vue'
@@ -29,6 +30,8 @@ const externalMap: Record<string, string> = {
   '@vue/composition-api': 'VueCompositionAPI'
 }
 
+const dedupe: string[] = ['vue', 'vue-demi', '@vue/runtime-core', '@vue/runtime-dom', 'vue2', '@vue/composition-api'] // use the same version
+
 interface CreateViteConfigOptions {
   minify?: boolean
 }
@@ -45,8 +48,16 @@ const createViteConfig = (options: CreateViteConfigOptions = {}): UserConfig => 
       replacement: pathResolve('src')
     },
     {
+      find: /^@test/,
+      replacement: pathResolve('test')
+    },
+    {
       find: /^vue$/,
       replacement: pathResolve('./node_modules/vue/dist/vue.runtime.esm-browser.js') // use the same version, an use runtime template compiler
+    },
+    {
+      find: /^@vue\/test-utils$/,
+      replacement: pathResolve('./node_modules/@vue/test-utils/dist/vue-test-utils.esm-browser.js') // use the same version
     }
   ]
 
@@ -54,7 +65,7 @@ const createViteConfig = (options: CreateViteConfigOptions = {}): UserConfig => 
     root: pathResolve('./'),
     plugins,
     resolve: {
-      dedupe: ['vue', 'vue-demi', '@vue/runtime-core', '@vue/runtime-dom'], // use the same version
+      dedupe,
       alias
     },
     optimizeDeps: {
@@ -80,11 +91,12 @@ const createViteConfig = (options: CreateViteConfigOptions = {}): UserConfig => 
     // for vitest
     test: {
       globals: true,
+      open: true,
       environment: 'jsdom',
       setupFiles: [pathResolve('./test/setup.ts')],
       reporters: 'dot',
       deps: {
-        inline: ['vue2', '@vue/composition-api', 'vue-demi']
+        inline: ['vue2', 'vue-demi', '@vue/composition-api']
       }
     }
   }
@@ -96,4 +108,5 @@ export const unMinifyConfig = createViteConfig({minify: false})
 // build prod and build prod config
 export const minifyConfig = createViteConfig({minify: true})
 
+// for vitest
 export default defineConfig(unMinifyConfig)

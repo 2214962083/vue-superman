@@ -1,0 +1,32 @@
+// Vitest Snapshot v1
+
+exports[`useJsx > should return vue component 1`] = `
+<div
+  class="card"
+>
+  <h1>
+    Card component, create in setup useJsx, use in template
+  </h1>
+  <div
+    class="title"
+  >
+    <h1>
+      title: count realtime value: 1
+    </h1>
+    
+    <h3
+      class="sub-title"
+    >
+      subTitle: count first frame value: 0
+    </h3>
+    
+  </div>
+  
+  <div
+    class="card-children"
+  >
+    Card components children from template
+  </div>
+  
+</div>
+`;
