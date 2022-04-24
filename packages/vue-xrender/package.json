@@ -20,9 +20,9 @@
     "dev": "vite",
     "test": "pnpm test:all",
     "test:2": "vue-demi-switch 2 vue2 &&vitest run --silent",
-    "test:3": "vue-demi-switch 3 &&vitest run",
+    "test:3": "vue-demi-switch 3 &&vitest run  --silent",
     "test:all": "pnpm test:3 &&pnpm test:2 &&vue-demi-switch 3",
-    "test:watch": "vitest --watch",
+    "test:watch": "pnpm test:3 -- --watch",
     "type-check": "tsc --noEmit"
   },
   "main": "./dist/index.cjs",

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`useJsx > should return vue component 1`] = `
+exports[`useJsx hooks > should auto register jsx as component 1`] = `
 <div
   class="card"
 >

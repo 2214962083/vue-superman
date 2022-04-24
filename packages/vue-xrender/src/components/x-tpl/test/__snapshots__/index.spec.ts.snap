@@ -1,0 +1,29 @@
+// Vitest Snapshot v1
+
+exports[`XTpl Component > should render dynamic template string 1`] = `
+<div
+  class="card"
+>
+  <h1>
+    CardTpl component, create in setup template string, use in template
+  </h1>
+  <h2>
+    CardTpl real count: 1
+  </h2>
+  
+  <div
+    class="card-children"
+  >
+    Card components children from template
+  </div>
+  
+</div>
+`;
+
+exports[`XTpl Component > should render dynamic template string 2`] = `
+<div
+  class="card"
+>
+  Hello, real count: 1
+</div>
+`;

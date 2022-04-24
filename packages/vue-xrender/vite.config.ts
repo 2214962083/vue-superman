@@ -4,6 +4,7 @@ import path from 'path'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import pkg from './package.json'
+import {isVue2} from 'vue-demi'
 
 const getPkgName = () => pkg.name
 
@@ -30,6 +31,9 @@ const externalMap: Record<string, string> = {
   '@vue/composition-api': 'VueCompositionAPI'
 }
 
+const vue2Path = pathResolve('./node_modules/vue2/dist/vue.esm.js')
+const vue3Path = pathResolve('./node_modules/vue/dist/vue.esm-browser.js')
+
 const dedupe: string[] = ['vue', 'vue-demi', '@vue/runtime-core', '@vue/runtime-dom', 'vue2', '@vue/composition-api'] // use the same version
 
 interface CreateViteConfigOptions {
@@ -53,7 +57,12 @@ const createViteConfig = (options: CreateViteConfigOptions = {}): UserConfig => 
     },
     {
       find: /^vue$/,
-      replacement: pathResolve('./node_modules/vue/dist/vue.runtime.esm-browser.js') // use the same version, an use runtime template compiler
+      replacement: isVue2 ? vue2Path : vue3Path // use the same version, an use runtime template compiler
+    },
+    {
+      // for vue-demi
+      find: /^vue2$/,
+      replacement: vue2Path
     },
     {
       find: /^@vue\/test-utils$/,

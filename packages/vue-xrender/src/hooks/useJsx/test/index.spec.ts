@@ -36,8 +36,8 @@ const createComponent = () =>
     }
   })
 
-describe('useJsx', () => {
-  test('should return vue component', async () => {
+describe('useJsx hooks', () => {
+  test('should auto register jsx as component', async () => {
     const vm = mount(createComponent())
 
     const subTitle = vm.find('.sub-title')

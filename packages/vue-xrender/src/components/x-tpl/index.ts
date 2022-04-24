@@ -24,6 +24,8 @@ const compile = (template: string, ctx: Object): Function => {
     renderFunc = Vue.compile(template)
   }
 
+  if (typeof renderFunc !== 'function') throw new Error(`XTpl compile error: ${template}`)
+
   const results = {
     ...historyResults,
     [template]: renderFunc
@@ -59,16 +61,24 @@ const vm = defineComponent({
     }
   },
   render() {
-    const {$props, $parent} = this as InstanceType<typeof vm>
+    const {$props, $parent, $slots} = this as InstanceType<typeof vm>
     const {tpl, ctx} = $props
-    const _ctx = ctx || $parent || {}
+    let finalCtx = ctx || $parent || {}
 
-    // console.log('render', isVue2, tpl, _ctx)
+    if (isVue2) {
+      finalCtx.$slots = $slots
+    } else {
+      // vue3 cover $slots will throw error
+      finalCtx = {
+        ...finalCtx,
+        $slots
+      }
+    }
 
     if (!tpl) return null
 
-    const renderFunc = compile(tpl, _ctx)
-    const result = isVue2 ? renderFunc(h) : renderFunc(_ctx)
+    const renderFunc = compile(tpl, finalCtx)
+    const result = isVue2 ? renderFunc(h) : renderFunc(finalCtx)
 
     return result as VNode
   }
