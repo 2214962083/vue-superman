@@ -1,6 +1,6 @@
 import {defineComponent, h, nextTick, ref} from 'vue-demi'
 import {useJsx} from '../'
-import {mount, getComponent} from '@test/mount'
+import {mount, getComponent} from '@test/index'
 
 const createComponent = () =>
   defineComponent({

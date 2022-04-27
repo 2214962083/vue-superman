@@ -1,15 +1,9 @@
-import {Vue2, install, isVue2} from 'vue-demi'
-import './polyfill-fetch'
-import './polyfill-pointer-events'
+import {polyfillFetch, polyfillPointerEvents} from 'superman-shared/test-utils'
+import {setupVueSwitch} from 'superman-shared/test-vue-utils'
 import {beforeAll, beforeEach} from 'vitest'
 
-const setupVueSwitch = () => {
-  if (isVue2) {
-    Vue2.config.productionTip = false
-    Vue2.config.devtools = false
-    install(Vue2) // install vue composition-api
-  }
-}
+polyfillFetch()
+polyfillPointerEvents()
 
 setupVueSwitch()
 
