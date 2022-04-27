@@ -18,8 +18,8 @@
     "build": "pnpm type-check &&esno ./scripts/build.ts",
     "build:watch": "cross-env WATCH=true pnpm build",
     "clean": "rimraf ./dist/**/*",
-    "dev": "vite",
-    "test": "vitest run --silent",
+    "dev": "esno ./src/index.ts",
+    "test": "vitest run --silent --passWithNoTests",
     "test:watch": "pnpm test -- --watch",
     "type-check": "tsc --noEmit"
   },
