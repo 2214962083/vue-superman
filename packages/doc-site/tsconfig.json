@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig-base.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist",
+    "paths": {
+      "@/*": ["./.vuepress/*"]
+    }
+  },
+  "include": ["./.vuepress/**/*", "./*.js", "./*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

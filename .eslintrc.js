@@ -101,6 +101,7 @@ module.exports = /** @type { import('eslint').Linter.Config } */ ({
     'vue/require-default-prop': 'off',
     'vue/html-closing-bracket-spacing': 'error',
     'vue/no-unused-vars': 'warn',
+    'vue/multi-word-component-names': 'off',
     'vue/one-component-per-file': 'off',
     'vue/comment-directive': [
       'warn',

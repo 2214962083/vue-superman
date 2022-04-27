@@ -1,0 +1,53 @@
+name: Docs
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.1
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          registry-url: https://registry.npmjs.org/
+          cache: pnpm
+
+      - run: pnpm install
+
+      - name: build docs
+        run: pnpm run build --filter doc-site
+
+      - name: deploy docs to vercel
+        uses: amondnet/vercel-action@v20
+        # see: https://github.com/amondnet/vercel-action
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_DOC_SITE }}
+          # for team settings
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+          # just like npx vercel --prod
+          vercel-args: '--prod'
+          # the docs build dist folder
+          working-directory: ./packages/doc-site/.vuepress/dist
+          # bind domains
+          # alias-domains: |
+          #   docs.vue-superman.com
+          #   docs.vue-superman.cn
