@@ -1,4 +1,5 @@
-import './polyfill-fetch'
+import {polyfillFetch} from 'superman-shared/test-utils'
+export * from 'superman-shared/test-utils'
+export * from 'superman-shared/test-vue-utils'
 
-export * from './mount'
-export * from './helper'
+polyfillFetch()

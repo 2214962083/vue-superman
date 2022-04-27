@@ -1,9 +1,8 @@
 import {JsxFn} from '@/utils/types-helper'
 import {defineComponent, h, nextTick, ref} from 'vue-demi'
 import XJsx from '../'
-import {mount} from '@test/mount'
 import {useJsx} from '@/hooks'
-import {createFunctionComponent, getSlots, setProps} from '@test/helper'
+import {mount, createFunctionComponent, getSlots, setProps} from '@test/index'
 
 const createXJsxComponent = () =>
   defineComponent({

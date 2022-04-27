@@ -9,6 +9,6 @@
       "@test/*": ["./test/*"]
     }
   },
-  "include": ["./src/**/*", "./scripts/**/*", "./types/**/*", "./test/**/*", "./.storybook/**/*", "./*.js", "./*.ts"],
+  "include": ["./src/**/*", "./scripts/**/*", "./types/**/*", "./test/**/*", "./*.js", "./*.ts"],
   "exclude": ["node_modules", "dist"]
 }

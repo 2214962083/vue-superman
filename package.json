@@ -6,7 +6,7 @@
   "description": "vue useful lib collection, use vue like a superman",
   "author": "yangjinming",
   "scripts": {
-    "bootstrap": "pnpm i",
+    "bootstrap": "pnpm i &&pnpm run build --filter superman-shared",
     "build": "esno ./scripts/build.ts",
     "clean": "rimraf **/node_modules/**",
     "commit": "git add . &&git-cz",

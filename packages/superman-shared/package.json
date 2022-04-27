@@ -1,12 +1,10 @@
 {
-  "name": "vue-xrender",
-  "version": "0.1.2",
-  "description": "use jsx in template or use template in jsx, do what you want in vue free render",
+  "name": "superman-shared",
+  "version": "0.0.1",
+  "description": "the build and test utils share for vue-superman packages",
   "keywords": [
-    "vue",
-    "vue-xrender",
+    "superman-shared",
     "vue-superman",
-    "component",
     "utils"
   ],
   "author": "yangjinming <https://github.com/2214962083>",
@@ -14,29 +12,31 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "vue-tsc --noEmit &&esno ./scripts/build.ts",
-    "build:watch": "cross-env WATCH=true pnpm build",
+    "build": "pnpm type-check &&unbuild",
+    "build:watch": "pnpm build -- --stub",
     "clean": "rimraf ./dist/**/*",
-    "dev": "vite",
-    "test": "pnpm test:all",
-    "test:2": "vue-demi-switch 2 vue2 &&vitest run --silent",
-    "test:3": "vue-demi-switch 3 &&vitest run --silent",
-    "test:all": "pnpm test:3 &&pnpm test:2 &&vue-demi-switch 3",
-    "test:watch": "pnpm test:3 -- --watch",
     "type-check": "tsc --noEmit"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "unpkg": "./dist/index.min.umd.js",
-  "jsdelivr": "./dist/index.min.umd.js",
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
     },
-    "./*": "./*"
+    "./*": "./*",
+    "./test-utils": {
+      "require": "./dist/test-utils.cjs",
+      "import": "./dist/test-utils.mjs",
+      "types": "./dist/test-utils.d.ts"
+    },
+    "./test-vue-utils": {
+      "require": "./dist/test-vue-utils.cjs",
+      "import": "./dist/test-vue-utils.mjs",
+      "types": "./dist/test-vue-utils.d.ts"
+    }
   },
   "files": [
     "dist"
@@ -45,45 +45,51 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/2214962083/vue-superman.git",
-    "directory": "packages/vue-xrender"
+    "directory": "packages/superman-shared"
   },
   "bugs": {
     "url": "https://github.com/2214962083/vue-superman/issues"
   },
   "homepage": "https://github.com/2214962083/vue-superman#readme",
   "peerDependencies": {
-    "@vue/composition-api": "^1.1.0",
-    "vue": "^2.6.0 || ^3.2.0"
+    "vite": "*",
+    "vitest": "*",
+    "vue-demi": "*"
   },
   "peerDependenciesMeta": {
-    "vue": {
+    "vite": {
       "optional": true
     },
-    "@vue/composition-api": {
+    "vitest": {
+      "optional": true
+    },
+    "vue-demi": {
       "optional": true
     }
   },
   "dependencies": {
-    "vue-demi": "*"
+    "@types/node": "^17.0.24",
+    "@types/node-fetch": "^2.6.1",
+    "@types/rimraf": "^3.0.2",
+    "chalk": "4.1.2",
+    "fs-extra": "^10.1.0",
+    "globby": "11.1.0",
+    "msw": "^0.39.2",
+    "node-fetch": "^2.6.7",
+    "ora": "5.4.1",
+    "rimraf": "^3.0.2",
+    "vite-plugin-dts": "^1.0.5"
   },
   "devDependencies": {
-    "@types/node": "^17.0.24",
-    "@types/rimraf": "^3.0.2",
-    "@vitejs/plugin-vue": "^2.3.1",
-    "@vitejs/plugin-vue-jsx": "^1.3.10",
-    "@vue/composition-api": "^1.4.9",
-    "@vue/test-utils": "^2.0.0-rc.21",
     "conventional-changelog-cli": "^2.2.2",
     "cross-env": "^7.0.3",
     "esno": "^0.14.1",
-    "jsdom": "^19.0.0",
-    "rimraf": "^3.0.2",
-    "superman-shared": "workspace:*",
     "typescript": "4.6.3",
+    "unbuild": "^0.7.4",
     "vite": "^2.9.5",
     "vitest": "^0.9.3",
     "vue": "^3.2.31",
-    "vue-tsc": "^0.34.7",
+    "vue-demi": "*",
     "vue2": "npm:vue@^2.6.14"
   }
 }

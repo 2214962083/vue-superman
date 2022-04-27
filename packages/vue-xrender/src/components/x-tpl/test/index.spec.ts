@@ -1,7 +1,6 @@
 import {defineComponent, h, nextTick, ref} from 'vue-demi'
 import XTpl from '../'
-import {mount} from '@test/mount'
-import {setProps} from '@test/helper'
+import {mount, setProps} from '@test/index'
 
 const createComponent = () =>
   defineComponent({
