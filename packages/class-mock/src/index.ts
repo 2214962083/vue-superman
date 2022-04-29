@@ -1,53 +1,39 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import 'reflect-metadata'
 import faker from '@faker-js/faker'
-import {MetadataStorage} from './meta-storage'
-import {FakerDecorator} from './decorators/faker.decorator'
-import {valueIsFakerMeta} from './utils/common'
+import {Random, Name, Phone, Address} from './decorators/faker.decorator'
+import {createMock} from './utils/create-mock'
+
+faker.setLocale('zh_CN')
 
 class User {
-  @FakerDecorator(faker.name.firstName, 'male').config({
-    partial: true
-  })
+  @Name.firstName()
   name!: string
 
-  @FakerDecorator(faker.random.number, {min: 0, max: 100}).config({
-    alwaysRandom: true
-  })
+  @Random.number({min: 0, max: 100})
   age!: number
 }
 
 class Student extends User {
-  @FakerDecorator(faker.random.words, 5).config({
-    array: true,
-    length: 3
-  })
-  favorites!: string[]
-}
+  @Address.streetAddress().isArray({length: 3})
+  address!: string[]
 
-function createMock(Entity: any) {
-  const metas = MetadataStorage.instance.getClassMetadatas(Entity)
-  const entity = new Entity()
-  metas.map(meta => {
-    const {array = false, length, min, max, propertyName} = meta
-    if (valueIsFakerMeta(meta)) {
-      const {fakerFn, fakerParams} = meta
-      let propertyValue: any
-      if (!array) {
-        propertyValue = fakerFn(...fakerParams)
-      } else {
-        const arrayLength =
-          (length ?? min ?? max ?? undefined) === undefined
-            ? 10
-            : length ?? faker.random.number({min: min ?? 0, max: max ?? 100})
-        propertyValue = Array.from({length: arrayLength}, () => fakerFn(...fakerParams))
-      }
-      entity[propertyName] = propertyValue
-    }
-  })
-  return entity
+  @Phone.phoneNumber('188########')
+  tel!: number
 }
 
 const mockStudent = createMock(Student)
 
 console.log('mockStudent: ', mockStudent)
+
+// 比如提供一个 webpack 插件或者 vite 插件，配置一下，axios 或 fetch 访问该 url 就可以自动响应 mock 数据了
+// const serverPluginConfig = [
+//   {
+//     url: '/api/users',
+//     res: () => createMock(Student, {array: true})
+//   },
+//   {
+//     url: '/api/user/:id',
+//     res: () => createMock(Student, {array: false})
+//   }
+// ]
