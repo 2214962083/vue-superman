@@ -1,4 +1,10 @@
-## 0.1.1 (2022-04-21)
+## 0.1.2 (2022-04-30)
+
+### Features
+
+- **doc-site:** add vuepress config ([a2189d9](https://github.com/2214962083/vue-superman/commit/a2189d9a5f802abed444515d4da54546be4a1bf5))
+
+## 0.1.2 (2022-04-21)
 
 ## 0.1.1 (2022-04-21)
 
