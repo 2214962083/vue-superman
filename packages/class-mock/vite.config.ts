@@ -13,7 +13,10 @@ const createViteConfig = (options: CreateViteConfigOptions = {}): UserConfig => 
   return buildUtils.createViteConfig({
     packagePath,
     minify,
-    dedupe: ['reflect-metadata'] // use the same version
+    externalMap: {
+      '@faker-js/faker': ''
+    },
+    dedupe: ['reflect-metadata', '@faker-js/faker'] // use the same version
   })
 }
 
