@@ -7,8 +7,6 @@ import {MockDecorator} from './mock.decorator'
 export type FakeProp = typeof fakeProps[number]
 export type MockFaker = Pick<Faker, FakeProp>
 const createFakeProxy = <T extends keyof MockFaker, KeyFns extends keyof MockFaker[T]>(fakeKey: T) => {
-  const mockFaker = faker as MockFaker
-
   // fix Parameter params only allow function
   type MockFnParameters<T> = T extends (...args: infer P) => any ? P : never
 
@@ -21,7 +19,7 @@ const createFakeProxy = <T extends keyof MockFaker, KeyFns extends keyof MockFak
 
   return new Proxy(faker[fakeKey], {
     get(target, targetKey: string) {
-      const mockFn = mockFaker[fakeKey][targetKey as KeyFns] as unknown as Fn
+      const mockFn = target[targetKey as KeyFns] as unknown as Fn
       return (...params: any[]) => MockDecorator(mockFn, ...params)
     }
   }) as unknown as MockProxy

@@ -1,3 +1,5 @@
+import {CLASS_META_KEY} from '@/constants/meta.constants'
+import {mergeConfig} from './common'
 import {BaseMetadata, MockPropertyMetadata, TargetMap, MetadataTarget} from './types-helper'
 
 export class MetadataUtils<Meta extends BaseMetadata> {
@@ -144,12 +146,36 @@ export class MetadataStorage {
   private _mockMockConstructMap: TargetMap<MockPropertyMetadata> = new Map()
   private _metadataUtils = new MetadataUtils()
 
-  addMockMetadata(metadata: MockPropertyMetadata): void {
+  setMockMetadata(metadata: MockPropertyMetadata): void {
     this._metadataUtils.setMetadata(this._mockMockConstructMap, metadata)
+  }
+
+  updateMockMetadata(target: MetadataTarget, propertyName: string, metadata: Partial<MockPropertyMetadata>): void {
+    // const {target, propertyName} = metadata
+    const oldMeta = this.findMockMetadata(target, propertyName)
+    const newMockMeta = mergeConfig(oldMeta, {target, propertyName, ...metadata} as MockPropertyMetadata)
+    this.setMockMetadata(newMockMeta)
   }
 
   findMockMetadata(target: MetadataTarget, propertyName: string): MockPropertyMetadata | undefined {
     return this._metadataUtils.findMetadata(this._mockMockConstructMap, target, propertyName)
+  }
+
+  mergeAllPropertyMockMetadata<MergeMeta extends Partial<MockPropertyMetadata>>(
+    target: MetadataTarget,
+    metadata: MergeMeta,
+    updateFn?: (oldMeta: MockPropertyMetadata, mergeMeta: MergeMeta) => void
+  ): void {
+    const metas = this.getClassMetadatas(target)
+    metas.map(meta => {
+      const {propertyName} = meta
+      if (propertyName === CLASS_META_KEY) return
+      if (updateFn) {
+        updateFn(meta, metadata)
+      } else {
+        this.updateMockMetadata(target, propertyName, metadata)
+      }
+    })
   }
 
   getClassMetadatas(target: Function): Array<MockPropertyMetadata> {

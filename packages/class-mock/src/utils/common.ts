@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import {DEFAULT_ARRAY_LENGTH, DEFAULT_ARRAY_MAX, DEFAULT_ARRAY_MIN} from '@/constants/meta.constants'
 import {ArrayConfig, BasePropertyConfig, MetadataTarget} from './types-helper'
 
 export function getTarget(target: any): MetadataTarget {
@@ -10,6 +11,10 @@ export function randomNumber(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+export function randomBoolean() {
+  return Math.random() < 0.5
+}
+
 export interface getGenerateArrayLengthOptions extends ArrayConfig {
   defaultLength?: number
   defaultMax?: number
@@ -17,7 +22,14 @@ export interface getGenerateArrayLengthOptions extends ArrayConfig {
 }
 
 export function getGenerateArrayLength(options: getGenerateArrayLengthOptions): number {
-  const {length, min, max, defaultLength = 10, defaultMax = 50, defaultMin = 0} = options
+  const {
+    length,
+    min,
+    max,
+    defaultLength = DEFAULT_ARRAY_LENGTH,
+    defaultMax = DEFAULT_ARRAY_MAX,
+    defaultMin = DEFAULT_ARRAY_MIN
+  } = options
   const arrayLength =
     (length ?? min ?? max ?? undefined) === undefined
       ? defaultLength
