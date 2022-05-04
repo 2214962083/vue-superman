@@ -30,8 +30,8 @@ export default defineUserConfig({
       }
     ],
     ['link', {rel: 'manifest', href: '/manifest.webmanifest'}],
-    ['meta', {name: 'application-name', content: 'VuePress'}],
-    ['meta', {name: 'apple-mobile-web-app-title', content: 'VuePress'}],
+    ['meta', {name: 'application-name', content: 'Vue Superman'}],
+    ['meta', {name: 'apple-mobile-web-app-title', content: 'Vue Superman'}],
     ['meta', {name: 'apple-mobile-web-app-status-bar-style', content: 'black'}],
     ['link', {rel: 'apple-touch-icon', href: `/images/icons/apple-touch-icon.png`}],
     [
@@ -39,33 +39,33 @@ export default defineUserConfig({
       {
         rel: 'mask-icon',
         href: '/images/icons/safari-pinned-tab.svg',
-        color: '#3eaf7c'
+        color: '#ff3d00'
       }
     ],
-    ['meta', {name: 'msapplication-TileColor', content: '#3eaf7c'}],
-    ['meta', {name: 'theme-color', content: '#3eaf7c'}]
+    ['meta', {name: 'msapplication-TileColor', content: '#ff3d00'}],
+    ['meta', {name: 'theme-color', content: '#ff3d00'}]
   ],
 
   // site-level locales config
   locales: {
     '/': {
       lang: 'en-US',
-      title: 'VuePress',
-      description: 'Vue-powered Static Site Generator'
+      title: 'Vue Superman',
+      description: 'vue useful lib collection, use vue like a superman'
     },
     '/zh/': {
       lang: 'zh-CN',
-      title: 'VuePress',
-      description: 'Vue 驱动的静态网站生成器'
+      title: 'Vue Superman',
+      description: 'vue 好用的 lib 合集，像超人一样使用 vue'
     }
   },
 
   themeConfig: <DefaultThemeOptions>{
-    logo: '/images/hero.png',
+    logo: '/images/logo.png',
 
-    repo: 'vuepress/vuepress-next',
+    repo: '2214962083/vue-superman',
 
-    docsDir: 'docs',
+    docsDir: 'packages/doc-site',
 
     // theme-level locales config
     locales: {
