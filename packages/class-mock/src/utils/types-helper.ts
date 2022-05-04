@@ -45,11 +45,10 @@ export interface BasePropertyConfig extends ArrayConfig {
   alwaysRandom?: boolean | undefined
 
   /**
-   * @TODO
    * property only generate in these groups, groups will provide by createMock
    * @default undefined
    */
-  groups?: string[] | undefined
+  groups?: string[] | Nil
 
   /**
    * if true, value will be an array
@@ -175,7 +174,7 @@ export interface MockPropertyDecoratorProps<T extends BasePropertyConfig> {
    * set metadata.groups to groups
    * @param groups property only generate in these groups, groups will provide by createMock
    */
-  groups(groups: string[]): MockPropertyDecorator<T>
+  groups(groups: string[] | Nil): MockPropertyDecorator<T>
 }
 export interface MockPropertyDecorator<T extends BasePropertyConfig>
   extends PropertyDecorator,

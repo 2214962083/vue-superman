@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import {Nil, ArrayConfig, BasePropertyConfig, MetadataTarget} from './types-helper'
 import {DEFAULT_ARRAY_LENGTH, DEFAULT_ARRAY_MAX, DEFAULT_ARRAY_MIN} from '@/constants/meta.constants'
-import {ArrayConfig, BasePropertyConfig, MetadataTarget} from './types-helper'
+import faker, {UsableLocale} from '@faker-js/faker'
 
 export function getTarget(target: any): MetadataTarget {
   return target instanceof Function ? target : target.constructor
@@ -45,4 +46,19 @@ export function mergeConfig<Config extends BasePropertyConfig>(
     ...(oldMeta || {}),
     ...(newMeta || {})
   } as Config
+}
+
+export function IsGroupsIntersect(source: any[] | Nil, target: any[] | Nil) {
+  if (!source && !target) return true
+  if (!source) return false
+  if (!target) return true
+  return source?.some(item => target?.includes(item))
+}
+
+export function setLocale(locale: UsableLocale) {
+  return faker.setLocale(locale)
+}
+
+export function seed(seed?: number | number[]) {
+  return faker.seed(seed)
 }

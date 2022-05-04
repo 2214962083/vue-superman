@@ -110,7 +110,6 @@ importers:
       cross-env: ^7.0.3
       esno: ^0.14.1
       jsdom: ^19.0.0
-      reflect-metadata: ^0.1.13
       rimraf: ^3.0.2
       superman-shared: workspace:*
       typescript: 4.6.3
@@ -125,7 +124,6 @@ importers:
       cross-env: 7.0.3
       esno: 0.14.1
       jsdom: 19.0.0
-      reflect-metadata: 0.1.13
       rimraf: 3.0.2
       superman-shared: link:../superman-shared
       typescript: 4.6.3
@@ -7825,7 +7823,7 @@ packages:
     dev: false
 
   /nano-memoize/1.3.0:
-    resolution: {integrity: sha512-yM/gMQHvA5EOtNGfEbJ8tmAveNjbckhzZ1hkNtMjY8zps3ocjPfp1kuJ1++OgtVHAhsGSTJttG3S6UV+FZZzxQ==, tarball: nano-memoize/-/nano-memoize-1.3.0.tgz}
+    resolution: {integrity: sha512-yM/gMQHvA5EOtNGfEbJ8tmAveNjbckhzZ1hkNtMjY8zps3ocjPfp1kuJ1++OgtVHAhsGSTJttG3S6UV+FZZzxQ==}
     dev: true
 
   /nanoid/3.3.3:
@@ -8734,10 +8732,6 @@ packages:
       yargs-parser: 21.0.1
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /reflect-metadata/0.1.13:
-    resolution: {integrity: sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==}
     dev: true
 
   /regexp-tree/0.1.24:

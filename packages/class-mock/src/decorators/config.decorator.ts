@@ -2,6 +2,7 @@
 import {mergeConfig, getTarget} from '@/utils/common'
 import {MetadataStorage} from '@/utils/meta-storage'
 import {
+  Nil,
   MockPropertyDecoratorConfig,
   MockPropertyMetadata,
   MockPropertyDecorator,
@@ -82,7 +83,7 @@ export function ConfigDecorator<
           ...(typeof arrayConfig === 'number' ? {length: arrayConfig} : arrayConfig)
         }),
       isNotArray: () => createMergeConfigDecorator(<T>{array: false}),
-      groups: (groups: string[]) => createMergeConfigDecorator(<T>{groups})
+      groups: (groups: string[] | Nil) => createMergeConfigDecorator(<T>{groups})
     }
 
     const classDecoratorProto: MockClassDecoratorProps<T> = {

@@ -13,6 +13,7 @@ export {
   // entity decorator
   Entity,
   // faker decorators
+  Fake,
   Mersenne,
   Random,
   Helpers,
@@ -45,4 +46,5 @@ export {
 } from './decorators'
 export {createMock} from './utils/create-mock'
 export type {CreateMockOptions} from './utils/create-mock'
+export {setLocale, seed} from './utils/common'
 export * from './utils/types-helper'

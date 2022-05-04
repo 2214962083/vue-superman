@@ -48,3 +48,5 @@ export const System = createFakeProxy('system')
 export const Time = createFakeProxy('time')
 export const Vehicle = createFakeProxy('vehicle')
 export const Word = createFakeProxy('word')
+
+export const Fake = (...params: Parameters<typeof faker.fake>) => MockDecorator(faker.fake, ...params)

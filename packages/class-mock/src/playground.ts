@@ -1,12 +1,10 @@
-import 'reflect-metadata'
-import faker from '@faker-js/faker'
-import {Random, Name, Phone, Address, Datatype} from './decorators/faker.decorator'
+import {Random, Name, Phone, Address, Datatype, Fake} from './decorators/faker.decorator'
 import {createMock} from './utils/create-mock'
-import {IsArray, IsExclude, IsNotAlwaysRandom, IsPartial} from './decorators/config.decorator'
+import {Groups, IsArray, IsExclude, IsNotAlwaysRandom} from './decorators/config.decorator'
 import {DefaultAlwaysRandom} from './decorators/class.decorator'
 import {Entity} from './decorators/entity.decorator'
 
-faker.setLocale('zh_CN')
+// setLocale('zh_CN')
 
 @DefaultAlwaysRandom()
 class User {
@@ -19,6 +17,7 @@ class User {
 }
 
 class Skill {
+  @Groups(['user', 'people'])
   @Random.words(5)
   name!: string
 }
@@ -31,9 +30,12 @@ class Student extends User {
   @Phone.phoneNumber('188########')
   tel!: number
 
-  @IsPartial()
-  @Entity(() => Skill)
+  // @IsPartial()
+  @Entity(() => Skill).groups(['aaa'])
   skills!: Skill[]
+
+  @Fake('Hi, my name is {{name.firstName}} {{name.lastName}}!')
+  introduction!: string
 
   @IsExclude()
   privateKey!: string
@@ -42,7 +44,7 @@ class Student extends User {
 const mockStudent = createMock(Student)
 console.log('mockStudent: ', mockStudent)
 
-const mockStudentList = createMock(Student, {array: true, length: 3})
+const mockStudentList = createMock(Student, {array: true, length: 3, groups: ['user', 'aaa'], seed: 12})
 console.log('\n\nmockStudentList: ', mockStudentList)
 
 // 比如提供一个 webpack 插件或者 vite 插件，配置一下，axios 或 fetch 访问该 url 就可以自动响应 mock 数据了

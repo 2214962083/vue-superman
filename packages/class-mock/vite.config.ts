@@ -16,7 +16,7 @@ const createViteConfig = (options: CreateViteConfigOptions = {}): UserConfig => 
     externalMap: {
       '@faker-js/faker': ''
     },
-    dedupe: ['reflect-metadata', '@faker-js/faker'] // use the same version
+    dedupe: ['@faker-js/faker'] // use the same version
   })
 }
 

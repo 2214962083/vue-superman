@@ -49,9 +49,6 @@
     "url": "https://github.com/2214962083/vue-superman/issues"
   },
   "homepage": "https://github.com/2214962083/vue-superman#readme",
-  "peerDependencies": {
-    "reflect-metadata": "*"
-  },
   "devDependencies": {
     "@types/node": "^17.0.24",
     "@types/rimraf": "^3.0.2",
@@ -59,7 +56,6 @@
     "cross-env": "^7.0.3",
     "esno": "^0.14.1",
     "jsdom": "^19.0.0",
-    "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "superman-shared": "workspace:*",
     "typescript": "4.6.3",
