@@ -66,6 +66,8 @@ export default defineUserConfig<ThemeConfig, ViteBundlerOptions>({
 
     repo: '2214962083/vue-superman',
 
+    docsBranch: 'master',
+
     docsDir: 'packages/doc-site',
 
     // theme-level locales config

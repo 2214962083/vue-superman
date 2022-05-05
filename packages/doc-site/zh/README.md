@@ -4,10 +4,10 @@ title: 首页
 heroImage: /images/logo.png
 actions:
   - text: 起步
-    link: /guide/getting-started.html
+    link: /zh/guide/getting-started.html
     type: primary
   - text: 介绍
-    link: /guide/
+    link: /zh/guide/
     type: secondary
 features:
   - title: vue-xrender
