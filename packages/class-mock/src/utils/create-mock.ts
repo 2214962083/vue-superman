@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {CLASS_META_KEY} from '@/constants/meta.constants'
-import faker from '@faker-js/faker'
-import {getGenerateArrayLength, IsGroupsIntersect, randomBoolean} from './common'
+import {getGenerateArrayLength, IsGroupsIntersect, randomBoolean, seed} from './common'
 import {MetadataStorage} from './meta-storage'
 import {BaseClass, BasePropertyConfig, MockPropertyMetadata} from './types-helper'
 
@@ -23,7 +22,7 @@ export function createMock<T extends BaseClass, IsArray extends boolean = false>
   options: CreateMockOptions<IsArray> = {}
 ): IsArray extends false ? T : T[] {
   if (options.seed) {
-    faker.seed(options.seed)
+    seed(options.seed as number)
     delete options.seed
   }
   if (!options.array) {

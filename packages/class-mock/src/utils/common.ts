@@ -59,6 +59,8 @@ export function setLocale(locale: UsableLocale) {
   return faker.setLocale(locale)
 }
 
-export function seed(seed?: number | number[]) {
-  return faker.seed(seed)
+export function seed(seedArray: number[]): number[]
+export function seed(seed: number): number
+export function seed(seed?: number | number[]): number | number[] {
+  return faker.seed(seed as number)
 }
