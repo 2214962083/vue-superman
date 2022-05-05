@@ -3,11 +3,11 @@ home: true
 title: 首页
 heroImage: /images/logo.png
 actions:
-  - text: 起步
-    link: /zh/guide/getting-started.html
-    type: primary
-  - text: 介绍
+  - text: 快速上手
     link: /zh/guide/
+    type: primary
+  - text: Github
+    link: https://github.com/2214962083/vue-superman
     type: secondary
 features:
   - title: vue-xrender
