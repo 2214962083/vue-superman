@@ -1,5 +1,5 @@
 import type {NavbarConfig} from '@vuepress/theme-default'
-import {version} from '../'
+import {version} from '../../utils/common'
 
 export const en: NavbarConfig = [
   {

@@ -1,13 +1,14 @@
-import {defineUserConfig} from 'vuepress'
+import {defineUserConfig, ThemeConfig, ViteBundlerOptions} from 'vuepress'
 import {DefaultThemeOptions} from '@vuepress/theme-default'
 import {path} from '@vuepress/utils'
 import {navbar, sidebar} from './.vuepress/config'
 import {plugins} from './.vuepress/plugins'
 import {isProd} from './.vuepress/utils/common'
+import {bundlerConfig} from './bundler.config'
 
 const pathResolve = (..._path: string[]) => path.resolve(__dirname, ..._path)
 
-export default defineUserConfig({
+export default defineUserConfig<ThemeConfig, ViteBundlerOptions>({
   base: '/',
 
   head: [
@@ -124,7 +125,9 @@ export default defineUserConfig({
       // only enable git plugin in production mode
       git: isProd,
       // use shiki plugin in production mode instead
-      prismjs: !isProd
+      prismjs: !isProd,
+      // disable the @vuepress/plugin-nprogress plugin to fix the bug of `Cannot set properties of undefined (setting 'NProgress')`
+      nprogress: false
     }
   },
 
@@ -135,6 +138,7 @@ export default defineUserConfig({
       }
     }
   },
-
+  bundler: '@vuepress/vite',
+  bundlerConfig,
   plugins
 })
