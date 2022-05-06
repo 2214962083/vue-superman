@@ -10,7 +10,9 @@
     "serve": "http-server --port 8080 .vuepress/dist"
   },
   "dependencies": {
+    "@babel/types": "^7.17.10",
     "@vueuse/core": "^8.4.1",
+    "sucrase": "^3.21.0",
     "vue-router": "^4.0.15"
   },
   "devDependencies": {
