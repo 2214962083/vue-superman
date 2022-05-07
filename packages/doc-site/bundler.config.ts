@@ -1,9 +1,12 @@
 import {path} from '@vuepress/utils'
+import {SSROptions} from 'vite'
 import {ViteBundlerOptions} from 'vuepress'
 
 const pathResolve = (..._path: string[]) => path.resolve(__dirname, ..._path)
-
-export const bundlerConfig: ViteBundlerOptions = {
+const ssr: SSROptions = {
+  noExternal: ['monaco-editor']
+}
+export const bundlerConfig = {
   viteOptions: {
     resolve: {
       alias: [
@@ -12,6 +15,7 @@ export const bundlerConfig: ViteBundlerOptions = {
           replacement: pathResolve('./.vuepress')
         }
       ]
-    }
+    },
+    ssr
   }
-}
+} as ViteBundlerOptions
