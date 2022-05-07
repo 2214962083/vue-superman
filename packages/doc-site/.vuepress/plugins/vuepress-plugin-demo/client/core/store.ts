@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {version, reactive, watchEffect} from 'vue'
 import * as defaultCompiler from 'vue/compiler-sfc'
-import {compileFile} from './compiler'
+import {compileFile} from './compiler/transform'
 import {utoa, atou} from './utils/common'
 import {SFCScriptCompileOptions, SFCAsyncStyleCompileOptions, SFCTemplateCompileOptions} from 'vue/compiler-sfc'
 import {OutputModes} from './utils/types-helper'
@@ -77,9 +78,11 @@ export class ReplStore implements Store {
     serializedState = '',
     defaultVueRuntimeURL = `https://cdn.jsdelivr.net/npm/@vue/runtime-dom@${version}/dist/runtime-dom.esm-browser.js`,
     showOutput = false,
-    outputMode = 'preview'
+    outputMode = 'preview',
+    initFiles
   }: {
     serializedState?: string
+    initFiles?: File[]
     showOutput?: boolean
     // loose type to allow getting from the URL without inducing a typing error
     outputMode?: OutputModes | string
@@ -91,6 +94,10 @@ export class ReplStore implements Store {
       const saved = JSON.parse(atou(serializedState))
       for (const filename in saved) {
         files[filename] = new File(filename, saved[filename])
+      }
+    } else if (initFiles) {
+      for (const file of initFiles) {
+        files[file.filename] = file
       }
     } else {
       files = {
@@ -195,7 +202,9 @@ export class ReplStore implements Store {
           json.imports.vue = this.defaultVueRuntimeURL
           map.code = JSON.stringify(json, null, 2)
         }
-      } catch (e) {}
+      } catch (e) {
+        // ignore
+      }
     }
   }
 

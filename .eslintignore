@@ -11,5 +11,6 @@ CHANGELOG.md
 .rollup.cache
 tsconfig.tsbuildinfo
 !.storybook
+!.vuepress
 components.d.ts
 *.generated.ts

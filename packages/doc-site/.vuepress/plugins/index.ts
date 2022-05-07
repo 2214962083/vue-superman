@@ -5,6 +5,7 @@ import {ShikiPluginOptions} from '@vuepress/plugin-shiki'
 import {path} from '@vuepress/utils'
 import {PluginConfig} from 'vuepress'
 import {isProd} from '../utils/common'
+import {demoPlugin} from './vuepress-plugin-demo'
 
 const pathResolve = (..._path: string[]) => path.resolve(__dirname, ..._path)
 
@@ -79,7 +80,8 @@ const vuepressPlugins: PluginConfig[] = [
     <RegisterComponentsPluginOptions>{
       componentsDir: pathResolve('../components')
     }
-  ]
+  ],
+  demoPlugin()
 ]
 
 if (isProd) {

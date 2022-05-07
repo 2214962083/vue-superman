@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // ReplProxy and srcdoc implementation from Svelte REPL
 // MIT License https://github.com/sveltejs/svelte-repl/blob/master/LICENSE
 
@@ -75,13 +76,13 @@ export class PreviewProxy {
 
   handleActionMessage(data: PreviewProxyMessageData) {
     const {cmd_id: id, action} = data
-    let handler = this.pendingActions.get(id)
+    const handler = this.pendingActions.get(id)
 
     if (handler) {
       this.pendingActions.delete(id)
       if (action === 'cmd_error') {
         const {message, stack} = data
-        let e = new Error(message)
+        const e = new Error(message)
         e.stack = stack
         handler.reject(e)
       }

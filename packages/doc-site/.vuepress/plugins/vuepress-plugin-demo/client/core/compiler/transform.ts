@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {Store, File} from '../store'
 import {SFCDescriptor, BindingMetadata, shouldTransformRef, transformRef, CompilerOptions} from 'vue/compiler-sfc'
 import {transform} from 'sucrase'
 
 export const COMP_IDENTIFIER = `__sfc__`
 
-async function transformTS(src: string) {
+async function transformTsJsx(src: string) {
   return transform(src, {
-    transforms: ['typescript']
+    transforms: ['typescript', 'jsx'],
+    jsxPragma: 'h',
+    jsxFragmentPragma: 'Fragment'
   }).code
 }
 
@@ -22,12 +25,12 @@ export async function compileFile(store: Store, {filename, code, compiled}: File
     return
   }
 
-  if (filename.endsWith('.js') || filename.endsWith('.ts')) {
+  if (/\.(jsx?|tsx?)$/.test(filename)) {
     if (shouldTransformRef(code)) {
       code = transformRef(code, {filename}).code
     }
-    if (filename.endsWith('.ts')) {
-      code = await transformTS(code)
+    if (/\.(jsx|tsx?)$/.test(filename)) {
+      code = await transformTsJsx(code)
     }
     compiled.js = compiled.ssr = code
     store.state.errors = []
@@ -56,7 +59,7 @@ export async function compileFile(store: Store, {filename, code, compiled}: File
 
   const scriptLang =
     (descriptor.script && descriptor.script.lang) || (descriptor.scriptSetup && descriptor.scriptSetup.lang)
-  const isTS = scriptLang === 'ts'
+  const isTS = ['ts', 'tsx'].includes(scriptLang ?? '')
   if (scriptLang && !isTS) {
     store.state.errors = [`Only lang="ts" is supported for <script> blocks.`]
     return
@@ -168,7 +171,7 @@ async function doCompileScript(
 ): Promise<[string, BindingMetadata | undefined] | undefined> {
   if (descriptor.script || descriptor.scriptSetup) {
     try {
-      const expressionPlugins: CompilerOptions['expressionPlugins'] = isTS ? ['typescript'] : undefined
+      const expressionPlugins: CompilerOptions['expressionPlugins'] = isTS ? ['typescript'] : []
       const compiledScript = store.compiler.compileScript(descriptor, {
         inlineTemplate: true,
         ...store.options?.script,
@@ -179,7 +182,7 @@ async function doCompileScript(
           ssrCssVars: descriptor.cssVars,
           compilerOptions: {
             ...store.options?.template?.compilerOptions,
-            expressionPlugins
+            expressionPlugins: ['jsx', ...expressionPlugins]
           }
         }
       })
@@ -189,8 +192,8 @@ async function doCompileScript(
       }
       code += `\n` + store.compiler.rewriteDefault(compiledScript.content, COMP_IDENTIFIER, expressionPlugins)
 
-      if ((descriptor.script || descriptor.scriptSetup)!.lang === 'ts') {
-        code = await transformTS(code)
+      if (descriptor.script || ['ts', 'tsx', 'jsx'].includes(descriptor.scriptSetup!.lang ?? '')) {
+        code = await transformTsJsx(code)
       }
 
       return [code, compiledScript.bindings]

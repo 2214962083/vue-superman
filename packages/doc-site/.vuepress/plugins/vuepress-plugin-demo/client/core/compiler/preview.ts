@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {Store} from '../store'
 import {PreviewProxy} from './preview-proxy'
 import PreviewIframe from './preview-iframe.html?raw'

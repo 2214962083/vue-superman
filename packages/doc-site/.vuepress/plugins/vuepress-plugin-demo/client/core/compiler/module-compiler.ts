@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {File, Store} from '../store'
 import {
   babelParse,
@@ -44,6 +45,7 @@ function processFile(store: Store, file: File, processed: string[], seen: Set<Fi
     return processHtmlFile(store, file.code, file.filename, processed, seen)
   }
 
+  // eslint-disable-next-line prefer-const
   let [js, importedFiles] = processModule(store, file.compiled.js, file.filename)
   // append css
   if (file.compiled.css) {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type OutputModes = 'preview' | 'js' | 'css' | 'ssr'
 
 export type Module = any
