@@ -8,6 +8,7 @@ export interface PreviewOptions {
   store: Store
   onBeforeDestroy?: () => void
   onLoad?: () => void
+  onWarning?: (msg: string) => void
   onError?: (errorMsg: string) => void
 }
 
@@ -17,6 +18,7 @@ export class Preview {
   store!: Store
   onBeforeDestroy?: () => void
   onLoad?: () => void
+  onWarning?: (msg: string) => void
   onError?: (errorMsg: string) => void
 
   constructor(options: PreviewOptions) {
@@ -86,10 +88,12 @@ export class Preview {
             }
           } else if (log.level === 'warn') {
             if (log.args[0].toString().includes('[Vue warn]')) {
-              msg = log.args
-                .join('')
-                .replace(/\[Vue warn\]:/, '')
-                .trim()
+              this.onWarning?.(
+                log.args
+                  .join('')
+                  .replace(/\[Vue warn\]:/, '')
+                  .trim()
+              )
             }
           }
           if (msg) this.onError?.(msg)

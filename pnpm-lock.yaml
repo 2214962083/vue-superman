@@ -134,6 +134,7 @@ importers:
     specifiers:
       '@babel/types': ^7.17.10
       '@types/markdown-it-container': ^2.0.5
+      '@types/path-browserify': ^1.0.0
       '@vue/reactivity': ^3.2.33
       '@vue/runtime-core': ^3.2.33
       '@vue/runtime-dom': ^3.2.33
@@ -157,6 +158,7 @@ importers:
       markdown-it: ^13.0.1
       markdown-it-container: ^3.0.0
       monaco-editor: ^0.33.0
+      path-browserify: ^1.0.1
       rimraf: ^3.0.2
       sass: ^1.51.0
       sucrase: ^3.21.0
@@ -168,6 +170,7 @@ importers:
     dependencies:
       '@babel/types': 7.17.10
       '@types/markdown-it-container': 2.0.5
+      '@types/path-browserify': 1.0.0
       '@vue/reactivity': 3.2.33
       '@vue/runtime-core': 3.2.33
       '@vue/runtime-dom': 3.2.33
@@ -178,6 +181,7 @@ importers:
       markdown-it: 13.0.1
       markdown-it-container: 3.0.0
       monaco-editor: 0.33.0
+      path-browserify: 1.0.1
       sucrase: 3.21.0
       theme-vitesse: 0.4.9
       vue-router: 4.0.15_vue@3.2.33
@@ -2801,6 +2805,10 @@ packages:
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
     dev: true
+
+  /@types/path-browserify/1.0.0:
+    resolution: {integrity: sha512-XMCcyhSvxcch8b7rZAtFAaierBYdeHXVvg2iYnxOV0MCQHmPuRRmGZPFDRzPayxcGiiSL1Te9UIO+f3cuj0tfw==}
+    dev: false
 
   /@types/prettier/2.6.0:
     resolution: {integrity: sha512-G/AdOadiZhnJp0jXCaBQU449W2h716OW/EoXeYkCytxKL06X1WCXB4DZpp8TpZ8eyIJVS1cw4lrlkkSYU21cDw==}

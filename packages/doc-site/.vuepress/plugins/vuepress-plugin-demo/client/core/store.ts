@@ -41,6 +41,7 @@ export class File {
 export interface StoreState {
   mainFile: string
   files: Record<string, File>
+  initFiles: Record<string, File>
   activeFile: File
   errors: (string | Error)[]
   vueRuntimeURL: string
@@ -116,6 +117,7 @@ export class ReplStore implements Store {
     this.state = reactive({
       mainFile,
       files,
+      initFiles: files,
       activeFile: files[mainFile],
       errors: [],
       vueRuntimeURL: this.defaultVueRuntimeURL

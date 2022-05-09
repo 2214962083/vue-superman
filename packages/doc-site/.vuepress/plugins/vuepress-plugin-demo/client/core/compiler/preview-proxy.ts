@@ -66,11 +66,11 @@ export class PreviewProxy {
 
   dispatchIframeAction(action: IframeAction, args: any) {
     return new Promise((resolve, reject) => {
-      const actionId = PreviewProxy.uid++
+      const cmd_id = PreviewProxy.uid++
 
-      this.pendingActions.set(actionId, {resolve, reject})
+      this.pendingActions.set(cmd_id, {resolve, reject})
 
-      this.iframe.contentWindow!.postMessage({action, actionId, args}, '*')
+      this.iframe.contentWindow!.postMessage({action, cmd_id, args}, '*')
     })
   }
 

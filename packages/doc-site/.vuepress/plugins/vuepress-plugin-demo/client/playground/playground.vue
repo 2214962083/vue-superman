@@ -4,10 +4,11 @@ export default defineComponent({
 })
 </script>
 <script lang="ts" setup>
-import {defineComponent, onMounted, PropType} from 'vue'
-import {File, ReplStore} from '../core/store'
-import * as monaco from 'monaco-editor'
+import {defineComponent, onMounted, PropType, provide} from 'vue'
+import {File, ReplStore} from '../core'
 import Editor from './components/editor.vue'
+import Preview from './components/preview.vue'
+import {SHOW_IMPORT_MAP_INJECT_KEY, STORE_INJECT_KEY} from './constants'
 
 interface PlaygroundOptions {
   files: File[]
@@ -24,39 +25,18 @@ const store = new ReplStore({
   initFiles: props.options.files
 })
 
+provide(STORE_INJECT_KEY, store)
+provide(SHOW_IMPORT_MAP_INJECT_KEY, true)
+
 onMounted(() => {
   console.log('onMounted', store)
 })
-
-const getLanguageFromFile = (file: File) => {
-  const ext = file.filename.split('.').pop()
-  switch (ext) {
-    case 'js':
-    case 'jsx':
-      return 'javascript'
-    case 'ts':
-    case 'tsx':
-      return 'typescript'
-    case 'vue':
-      return 'html'
-    case 'css':
-      return 'css'
-    default:
-      return 'plaintext'
-  }
-}
-
-const activeFile = store.state.activeFile
-const model = monaco.editor.createModel(
-  activeFile.code,
-  getLanguageFromFile(activeFile),
-  monaco.Uri.parse(`file:///root/${activeFile.filename}`)
-)
 </script>
 <template>
   <div>
     vue playground
-    <editor :model="model"></editor>
+    <preview></preview>
+    <editor></editor>
   </div>
 </template>
 <style lang="scss" scoped></style>
