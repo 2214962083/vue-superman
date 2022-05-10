@@ -22,6 +22,7 @@ export const getOutputMap = (minify: boolean): Record<LibraryFormats, string> =>
 export interface CreateViteConfigOptions {
   minify?: boolean
   packagePath: string
+  formats?: LibraryFormats[]
   externalMap?: Record<string, string>
   dedupe?: string[] // use the same version
   plugins?: PluginOption[]
@@ -33,13 +34,17 @@ export const createViteConfig = (options: CreateViteConfigOptions): UserConfig =
   const {
     minify = false,
     packagePath,
+    formats = ['es', 'cjs', 'umd', 'iife'],
     externalMap = {},
     dedupe: _dedupe = [],
     plugins = [],
     alias: _alias = [],
     test
   } = options
-  const outputMap = getOutputMap(minify)
+
+  const outputMap = Object.fromEntries(
+    Object.entries(getOutputMap(minify)).filter(([format]) => formats.includes(format as LibraryFormats))
+  ) as Record<LibraryFormats, string>
 
   const pathResolve = (..._path: string[]) => path.resolve(packagePath, ..._path)
 
@@ -88,7 +93,10 @@ export const createViteConfig = (options: CreateViteConfigOptions): UserConfig =
       },
       rollupOptions: {
         output: {
-          globals: externalMap
+          globals: externalMap,
+          chunkFileNames: () => {
+            return '[format]/[name].[format].js'
+          }
         },
         external: Object.keys(externalMap)
       },

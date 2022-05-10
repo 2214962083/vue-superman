@@ -30,8 +30,11 @@ const createViteConfig = (options: CreateViteConfigOptions = {}): UserConfig => 
     minify,
     plugins,
     alias,
+    formats: ['es', 'cjs'],
+    dedupe: ['monaco-editor'],
     externalMap: {
-      vue: 'Vue'
+      vue: 'Vue',
+      'monaco-editor': 'monaco-editor'
     }
   })
 }

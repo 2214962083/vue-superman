@@ -49,6 +49,7 @@ module.exports = /** @type { Partial<import('stylelint').Config> } */ ({
     'keyframes-name-pattern': null,
     'color-function-notation': 'legacy',
     'alpha-value-notation': 'number',
+    'no-empty-source': null,
     'at-rule-no-unknown': [
       true,
       {

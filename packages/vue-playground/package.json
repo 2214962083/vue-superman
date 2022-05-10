@@ -28,8 +28,8 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "unpkg": "./dist/index.min.umd.js",
-  "jsdelivr": "./dist/index.min.umd.js",
+  "unpkg": "/dist/index.min.mjs",
+  "jsdelivr": "/dist/index.min.mjs",
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
@@ -52,7 +52,8 @@
   },
   "homepage": "https://github.com/2214962083/vue-superman#readme",
   "peerDependencies": {
-    "vue": "^3.2.0"
+    "vue": ">=3.0.0",
+    "monaco-editor": ">=0.30.0"
   },
   "dependencies": {
     "@babel/types": "^7.17.10",
@@ -63,9 +64,9 @@
     "@vueuse/core": "^8.4.1",
     "emmet-monaco-es": "^5.1.0",
     "js-base64": "^3.7.2",
-    "monaco-editor": "^0.33.0",
     "sucrase": "^3.21.0",
-    "theme-vitesse": "^0.4.9"
+    "theme-vitesse": "^0.4.9",
+    "vue-demi": "*"
   },
   "devDependencies": {
     "@types/node": "^17.0.24",
@@ -77,6 +78,7 @@
     "cross-env": "^7.0.3",
     "esno": "^0.14.1",
     "jsdom": "^19.0.0",
+    "monaco-editor": "^0.33.0",
     "rimraf": "^3.0.2",
     "superman-shared": "workspace:*",
     "typescript": "4.6.3",
