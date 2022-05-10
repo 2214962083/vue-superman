@@ -43,11 +43,12 @@ export async function changeViteConfig(config: UserConfig, options: ChangeConfig
   }
 }
 
+export type ChangeConfigFn = (config: UserConfig, options: ChangeConfigOptions) => Promise<InlineConfig>
 export interface BuildOptions {
   minifyConfig: UserConfig
   unMinifyConfig: UserConfig
   packagePath: string
-  changeConfigFn?: (config: UserConfig, options: ChangeConfigOptions) => Promise<InlineConfig>
+  changeConfigFn?: ChangeConfigFn
 }
 
 export async function build(config: BuildOptions) {
