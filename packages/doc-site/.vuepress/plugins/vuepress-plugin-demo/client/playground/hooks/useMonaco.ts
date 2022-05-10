@@ -53,10 +53,7 @@ export function useMonaco(target: Ref<HTMLElement | undefined>, options: UseMona
       target,
       () => {
         const el = unref(target)
-
         if (!el) return
-
-        console.log('el', el)
 
         editor = monaco.editor.create(el, {
           tabSize: 2,
@@ -72,10 +69,7 @@ export function useMonaco(target: Ref<HTMLElement | undefined>, options: UseMona
           }
         }) as MonacoEditor.IStandaloneCodeEditor
 
-        console.log('editor', el, editor)
-
         disposeEditor.value = addEditor(editor)
-
         isSetup.value = true
         editorUpdateId.value++
 
