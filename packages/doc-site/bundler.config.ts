@@ -18,8 +18,11 @@ export const bundlerConfig = {
     },
     build: {
       rollupOptions: {
-        manualChunks: {
-          monaco: ['monaco-editor', 'emmet-monaco-es']
+        output: {
+          inlineDynamicImports: false,
+          manualChunks: {
+            monaco: ['monaco-editor', 'emmet-monaco-es']
+          }
         }
       }
     },
