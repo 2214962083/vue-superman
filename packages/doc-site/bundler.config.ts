@@ -16,6 +16,13 @@ export const bundlerConfig = {
         }
       ]
     },
+    build: {
+      rollupOptions: {
+        manualChunks: {
+          monaco: ['monaco-editor', 'emmet-monaco-es']
+        }
+      }
+    },
     ssr
   }
 } as ViteBundlerOptions

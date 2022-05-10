@@ -1,18 +1,18 @@
+import {generateProjectId, mustBeRef} from './../utils/common'
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {ref, Ref, unref, watch, onUnmounted} from 'vue'
-import {tryOnScopeDispose, MaybeRef, createEventHook, EventHookOn} from '@vueuse/core'
+import {ref, Ref, unref, watch} from 'vue'
+import {tryOnScopeDispose, MaybeRef, createEventHook, tryOnUnmounted, EventHookOn} from '@vueuse/core'
 import darkTheme from 'theme-vitesse/themes/vitesse-dark.json'
 import lightTheme from 'theme-vitesse/themes/vitesse-light.json'
-import * as monaco from 'monaco-editor'
 import {useEditors} from './useEditor'
-import {setLanguage, setWorker} from '../monaco'
+import {setupMonaco} from '../monaco'
 import {File} from '../../core'
 import {useMonacoModels} from './useMonacoModels'
 import {toggleDark, isDark} from './index'
-import {mustBeRef} from '../utils/common'
+
+import {MonacoEditor} from '../utils/types-helper'
 
 export interface UseMonacoOptions {
-  id: MaybeRef<string>
   activeFile: MaybeRef<File>
   files: MaybeRef<File[]>
 }
@@ -25,109 +25,119 @@ export interface ChangeEvent {
 const {addEditor} = useEditors()
 
 export function useMonaco(target: Ref<HTMLElement | undefined>, options: UseMonacoOptions) {
-  const {id, activeFile, files} = options
+  const {activeFile, files} = options
   const changeEventHook = createEventHook<ChangeEvent>()
   const isSetup = ref(false)
-  const editor = ref<monaco.editor.IStandaloneCodeEditor>()
-  const editorStateCacheMap = ref<Map<string, monaco.editor.ICodeEditorViewState | null>>(new Map())
+  const editorUpdateId = ref(0)
+  const editorStateCacheMap = ref<Map<string, MonacoEditor.ICodeEditorViewState | null>>(new Map())
   const disposeEditor = ref<() => void>(() => {})
+  let editor: MonacoEditor.IStandaloneCodeEditor
+  const getEditor = () => editor
 
-  setWorker()
-  setLanguage()
-  monaco.editor.defineTheme('vitesse-dark', darkTheme as unknown as monaco.editor.IStandaloneThemeData)
-  monaco.editor.defineTheme('vitesse-light', lightTheme as unknown as monaco.editor.IStandaloneThemeData)
-  const {models, modelUpdateId} = useMonacoModels({id, files})
+  const init = async () => {
+    const {monaco} = await setupMonaco()
+    if (!monaco) return
 
-  watch(
-    target,
-    () => {
-      const el = unref(target)
+    monaco.editor.defineTheme('vitesse-dark', darkTheme as unknown as MonacoEditor.IStandaloneThemeData)
+    monaco.editor.defineTheme('vitesse-light', lightTheme as unknown as MonacoEditor.IStandaloneThemeData)
+    const {getModels, modelUpdateId} = useMonacoModels({
+      projectId: generateProjectId(),
+      files,
+      isSetup,
+      monaco,
+      getEditor,
+      editorUpdateId
+    })
 
-      if (!el) return
+    watch(
+      target,
+      () => {
+        const el = unref(target)
 
-      console.log('el', el)
+        if (!el) return
 
-      editor.value = monaco.editor.create(el, {
-        tabSize: 2,
-        insertSpaces: true,
-        autoClosingQuotes: 'always',
-        detectIndentation: false,
-        folding: true,
-        automaticLayout: true,
-        smoothScrolling: true,
-        theme: 'vitesse-dark',
-        minimap: {
-          enabled: true
-        }
-      })
+        console.log('el', el)
 
-      console.log('editor', el, editor.value)
+        editor = monaco.editor.create(el, {
+          tabSize: 2,
+          insertSpaces: true,
+          autoClosingQuotes: 'always',
+          detectIndentation: false,
+          folding: true,
+          automaticLayout: true,
+          smoothScrolling: true,
+          theme: 'vitesse-dark',
+          minimap: {
+            enabled: true
+          }
+        }) as MonacoEditor.IStandaloneCodeEditor
 
-      disposeEditor.value = addEditor(editor.value)
+        console.log('editor', el, editor)
 
-      isSetup.value = true
+        disposeEditor.value = addEditor(editor)
 
-      // editor.value.onDidFocusEditorText(() => {
-      //   editor.value?.updateOptions({
-      //     scrollbar: {
-      //       handleMouseWheel: true
-      //     }
-      //   })
-      // })
+        isSetup.value = true
+        editorUpdateId.value++
 
-      // editor.value.onDidBlurEditorText(() => {
-      //   editor.value?.updateOptions({
-      //     scrollbar: {
-      //       handleMouseWheel: false
-      //     }
-      //   })
-      // })
-    },
-    {
-      immediate: true
-    }
-  )
+        // editor.value.onDidFocusEditorText(() => {
+        //   editor.value?.updateOptions({
+        //     scrollbar: {
+        //       handleMouseWheel: true
+        //     }
+        //   })
+        // })
 
-  watch(
-    [mustBeRef(activeFile), disposeEditor, modelUpdateId, editorStateCacheMap],
-    async () => {
-      const activeFileName = unref(activeFile)?.filename
-      const activeModel = models.value?.find(model => model.uri.path.endsWith(activeFileName))
-      if (editor.value && activeModel && !activeModel.isDisposed() && editor.value.getModel() !== activeModel) {
-        editor.value.setModel(activeModel)
-        editor.value.onDidChangeModelContent(() => {
-          const value = editor.value!.getValue()
-          changeEventHook.trigger({
-            newCode: value,
-            activeFile: unref(activeFile)
-          })
-        })
-
-        const cacheState = editorStateCacheMap.value.get(activeFileName)
-        if (cacheState) editor.value.restoreViewState(cacheState)
+        // editor.value.onDidBlurEditorText(() => {
+        //   editor.value?.updateOptions({
+        //     scrollbar: {
+        //       handleMouseWheel: false
+        //     }
+        //   })
+        // })
+      },
+      {
+        immediate: true
       }
-    },
-    {immediate: true}
-  )
+    )
 
-  watch(
-    isDark,
-    () => (isDark.value ? monaco.editor.setTheme('vitesse-dark') : monaco.editor.setTheme('vitesse-light')),
-    {immediate: true}
-  )
+    watch(
+      [mustBeRef(activeFile), disposeEditor, modelUpdateId, editorStateCacheMap],
+      async () => {
+        const activeFileName = unref(activeFile)?.filename
+        const activeModel = getModels()?.find(model => model.uri.path.endsWith(activeFileName))
+        if (editor && activeModel && !activeModel.isDisposed() && editor.getModel() !== activeModel) {
+          editor.setModel(activeModel)
+          editor.onDidChangeModelContent(() => {
+            const value = editor!.getValue()
+            changeEventHook.trigger({
+              newCode: value,
+              activeFile: unref(activeFile)
+            })
+          })
+
+          const cacheState = editorStateCacheMap.value.get(activeFileName)
+          if (cacheState) editor.restoreViewState(cacheState)
+        }
+      },
+      {immediate: true}
+    )
+
+    // watch(isDark, () => monaco.editor.setTheme(isDark.value ? 'vitesse-dark' : 'vitesse-light'), {immediate: true})
+  }
+
+  init()
 
   tryOnScopeDispose(() => {
-    stop()
     disposeEditor.value()
   })
 
-  onUnmounted(() => {
+  tryOnUnmounted(() => {
     editorStateCacheMap.value = new Map()
     disposeEditor.value()
   })
 
   return {
-    editor,
+    getEditor,
     isDark,
     toggleDark,
     disposeEditor,

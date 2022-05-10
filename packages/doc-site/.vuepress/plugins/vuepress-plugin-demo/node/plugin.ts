@@ -47,7 +47,7 @@ export const demoPlugin = (options: DemoPluginOptions = {}): Plugin => {
       })
     }
 
-    console.log('files....', files)
+    // console.log('files....', files)
 
     const options = {files}
     const optionsBase64 = base64.encode(JSON.stringify(options))

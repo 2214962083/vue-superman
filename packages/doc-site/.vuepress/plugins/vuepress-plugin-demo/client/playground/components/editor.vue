@@ -6,6 +6,7 @@ export default defineComponent({
 <script setup lang="ts">
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {ref, defineComponent, inject, computed} from 'vue'
+import {debounce} from '../../core'
 import {STORE_INJECT_KEY} from '../constants'
 import {useMonaco} from '../hooks/useMonaco'
 import FileManageBar from './file-manage-bar.vue'
@@ -23,19 +24,17 @@ const editorEl = ref<HTMLElement>()
 const files = computed(() => Object.values(store.state.files))
 const activeFile = computed(() => store.state.activeFile)
 
-const {editor, onChange, isDark, toggleDark} = useMonaco(editorEl, {
-  id: '',
+const {getEditor, onChange, isDark, toggleDark} = useMonaco(editorEl, {
   files,
   activeFile
 })
 
-onChange(({newCode, activeFile}) => {
-  const newFiles = [...files.value]
-  const activeFileName = activeFile.filename
-  const idx = newFiles.findIndex(file => file.filename === activeFileName)
-  if (idx !== -1) newFiles[idx] = {...newFiles[idx], code: newCode}
+const handleChange = debounce(({newCode, activeFile}: {newCode: string; activeFile: File}) => {
+  store.state.activeFile.code = newCode
   emit('change', newCode)
-})
+}, 250)
+
+onChange(handleChange)
 </script>
 
 <template>

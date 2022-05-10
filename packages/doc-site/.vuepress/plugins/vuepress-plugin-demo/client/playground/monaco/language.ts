@@ -1,12 +1,6 @@
-import * as monaco from 'monaco-editor'
-import {emmetHTML} from 'emmet-monaco-es'
-import runtimeTypes from './runtime.d.ts?raw'
-import vueTypes from 'vue/dist/vue.d.ts?raw'
-import vueSharedTypes from '@vue/shared/dist/shared.d.ts?raw'
-import vueRuntimeDomTypes from '@vue/runtime-dom/dist/runtime-dom.d.ts?raw'
-import vueRuntimeCoreTypes from '@vue/runtime-core/dist/runtime-core.d.ts?raw'
-import vueReactivityTypes from '@vue/reactivity/dist/reactivity.d.ts?raw'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {FILE_BASE_URL} from '../constants'
+import {Monaco} from '../utils/types-helper'
 
 interface TsLib {
   content: string
@@ -15,7 +9,7 @@ interface TsLib {
 
 type Tsconfig = Parameters<typeof monaco.languages.typescript.typescriptDefaults.setCompilerOptions>[0]
 
-export function setLanguage() {
+export async function setLanguage(monaco: Monaco) {
   const tsconfig: Tsconfig = {
     ...monaco.languages.typescript.typescriptDefaults.getCompilerOptions(),
     target: monaco.languages.typescript.ScriptTarget.ESNext,
@@ -60,6 +54,22 @@ export function setLanguage() {
     noSemanticValidation: false,
     noSyntaxValidation: false
   })
+
+  const [
+    {default: vueTypes},
+    {default: vueSharedTypes},
+    {default: vueRuntimeDomTypes},
+    {default: vueRuntimeCoreTypes},
+    {default: vueReactivityTypes},
+    {default: runtimeTypes}
+  ] = await Promise.all([
+    import('vue/dist/vue.d.ts?raw'),
+    import('@vue/shared/dist/shared.d.ts?raw'),
+    import('@vue/runtime-dom/dist/runtime-dom.d.ts?raw'),
+    import('@vue/runtime-core/dist/runtime-core.d.ts?raw'),
+    import('@vue/reactivity/dist/reactivity.d.ts?raw'),
+    import('./runtime.d.ts?raw')
+  ])
 
   const tsLibs: TsLib[] = [
     {content: runtimeTypes},
@@ -110,5 +120,6 @@ export function setLanguage() {
   })
 
   // support emmet
-  emmetHTML(monaco)
+  const {emmetHTML} = await import('emmet-monaco-es')
+  emmetHTML(monaco as any)
 }

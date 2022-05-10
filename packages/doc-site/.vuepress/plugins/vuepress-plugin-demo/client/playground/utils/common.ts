@@ -1,14 +1,14 @@
 import {computed, unref} from 'vue'
 import {MaybeRef} from '@vueuse/core'
-import * as monaco from 'monaco-editor'
-import path from 'path-browserify'
 import {File} from '../../core'
-import {FILE_NAME_PREFIX, FILE_BASE_URL} from '../constants'
+import {PROJECT_ID_PREFIX, FILE_BASE_URL} from '../constants'
+import {Monaco} from './types-helper'
 
-export const getFileUri = (id: string, filename: string) => {
-  console.log(`${FILE_BASE_URL}${path.join(id, filename)}`)
-  console.log(monaco.Uri.parse(`${FILE_BASE_URL}${path.join(id, filename)}`))
-  return monaco.Uri.parse(`${FILE_BASE_URL}${path.join(id, filename)}`)
+export const getProjectFileBaseUrl = (projectId: string) => `${FILE_BASE_URL}${projectId}/`
+
+export const getFileUri = (mona: Monaco, projectId: string, filename: string) => {
+  // console.log(mona.Uri.parse(`${getProjectFileBaseUrl(projectId)}${filename}`))
+  return mona.Uri.parse(`${getProjectFileBaseUrl(projectId)}${filename}`)
 }
 
 export const getFileLanguage = (file: File) => {
@@ -42,8 +42,33 @@ export const hash = (str: string) => {
   return '' + (hash | 0)
 }
 
-export const safeId = (id?: string) => hash(id ? id : genRandomStr())
+export const safeId = (id?: string) => hash(id ? String(id) : genRandomStr())
 
-export const generateMonacoFileId = (id: string | number) => FILE_NAME_PREFIX + safeId(String(id) ?? genRandomStr())
+export const generateProjectId = (id?: string) => PROJECT_ID_PREFIX + safeId(id)
 
 export const mustBeRef = <T>(value: MaybeRef<T>) => computed(() => unref(value))
+
+// export interface SingletonPromiseReturn<T> {
+//   (): Promise<T>
+//   /**
+//    * Reset current staled promise.
+//    * Await it to have proper shutdown.
+//    */
+//   reset: () => Promise<void>
+// }
+
+// export function createSingletonPromise<T>(fn: () => Promise<T>): SingletonPromiseReturn<T> {
+//   let _promise: Promise<T> | undefined
+
+//   function wrapper() {
+//     if (!_promise) _promise = fn()
+//     return _promise
+//   }
+//   wrapper.reset = async () => {
+//     const _prev = _promise
+//     _promise = undefined
+//     if (_prev) await _prev
+//   }
+
+//   return wrapper
+// }

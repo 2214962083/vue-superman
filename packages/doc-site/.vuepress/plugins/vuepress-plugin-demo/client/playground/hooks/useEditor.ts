@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type {editor as Editor} from 'monaco-editor'
 import {createEventHook, EventHookOn} from '@vueuse/core'
+import {MonacoEditor} from '../utils/types-helper'
 
-const onEditorCreatedHook = createEventHook<{id: string; editor: Editor.IStandaloneCodeEditor}>()
+const onEditorCreatedHook = createEventHook<{id: string; editor: MonacoEditor.IStandaloneCodeEditor}>()
 const onEditorDestroyedHook = createEventHook<{id: string}>()
-const editors: Record<string, Editor.IStandaloneCodeEditor> = {}
+const editors: Record<string, MonacoEditor.IStandaloneCodeEditor> = {}
 let id = 0
 
 interface EventHookOnParam {
   id: string
-  editor?: Editor.IStandaloneCodeEditor
+  editor?: MonacoEditor.IStandaloneCodeEditor
 }
 
 /**
@@ -24,7 +24,7 @@ export function useEditors() {
     }
   }
 
-  const addEditor = (editor: Editor.IStandaloneCodeEditor) => {
+  const addEditor = (editor: MonacoEditor.IStandaloneCodeEditor) => {
     id++
     editors[id] = editor
     onEditorCreatedHook.trigger({id: id.toString(), editor})

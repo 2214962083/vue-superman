@@ -27,7 +27,6 @@ const store = new ReplStore({
 
 provide(STORE_INJECT_KEY, store)
 provide(SHOW_IMPORT_MAP_INJECT_KEY, true)
-
 onMounted(() => {
   console.log('onMounted', store)
 })
