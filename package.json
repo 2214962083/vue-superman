@@ -6,8 +6,9 @@
   "description": "vue useful lib collection, use vue like a superman",
   "author": "yangjinming",
   "scripts": {
-    "bootstrap": "pnpm i &&pnpm run build --filter superman-shared",
+    "bootstrap": "pnpm i &&pnpm build:all",
     "build": "esno ./scripts/build.ts",
+    "build:all": "turbo run build",
     "clean": "rimraf **/node_modules/**",
     "commit": "git add . &&git-cz",
     "lint": "redrun lint:es lint:css lint:dir",
@@ -65,6 +66,7 @@
     "stylelint-less": "^1.0.5",
     "stylelint-order": "^5.0.0",
     "stylelint-prettier": "^2.0.0",
+    "turbo": "^1.2.8",
     "typescript": "4.6.3"
   },
   "engines": {

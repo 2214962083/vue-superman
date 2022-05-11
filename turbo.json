@@ -1,0 +1,54 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "baseBranch": "origin/master",
+  "pipeline": {
+    "class-mock#build": {
+      "dependsOn": ["superman-shared#build"],
+      "inputs": ["src/**", "scripts/**", "types/**"],
+      "outputs": ["dist/**"]
+    },
+    "vue-xrender#build": {
+      "dependsOn": ["superman-shared#build"],
+      "inputs": ["src/**", "scripts/**", "types/**"],
+      "outputs": ["dist/**"]
+    },
+    "vue-playground#build": {
+      "dependsOn": ["superman-shared#build"],
+      "inputs": ["src/**", "scripts/**", "types/**"],
+      "outputs": ["dist/**"]
+    },
+    "vuepress-plugin-sandbox#build": {
+      "dependsOn": ["superman-shared#build", "vue-playground#build"],
+      "inputs": ["src/**", "scripts/**", "types/**"],
+      "outputs": ["dist/**"]
+    },
+    "doc-site#build": {
+      "dependsOn": ["^build"],
+      "inputs": [".vuepress/**"],
+      "outputs": ["dist/**"]
+    },
+    "playground-vue2": {
+      "dependsOn": ["^build"],
+      "inputs": [".vuepress/**"],
+      "outputs": ["dist/**"]
+    },
+    "playground-vue3": {
+      "dependsOn": ["^build"],
+      "inputs": [".vuepress/**"],
+      "outputs": ["dist/**"]
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["src/**", "scripts/**", "types/**"],
+      "outputs": ["dist/**"]
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "outputs": []
+    },
+    "dev": {
+      "cache": false
+    }
+  },
+  "globalDependencies": ["tsconfig-base.json"]
+}

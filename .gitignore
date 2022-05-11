@@ -31,3 +31,4 @@ yarn-error.log*
 *.sw?
 
 .vercel
+.turbo

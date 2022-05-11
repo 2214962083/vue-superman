@@ -40,8 +40,7 @@ export function getPackagesName(type: 'public' | 'all') {
 }
 
 export function build() {
-  const filterPkgNames = getPackagesName('public').join(' ')
-  const cmd = `pnpm -r --parallel run build --filter ${filterPkgNames}`
+  const cmd = `pnpm run build:all`
   console.log('start run command: ', cmd)
   execSync(cmd, {stdio: 'inherit'})
 }

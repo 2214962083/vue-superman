@@ -28,7 +28,8 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: pnpm
 
-      - run: pnpm bootstrap
+      - name: Install Dependencies
+      - run: pnpm i
 
       - name: Lint
         run: pnpm run lint

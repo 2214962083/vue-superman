@@ -28,10 +28,8 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: pnpm
 
-      - run: pnpm bootstrap
-
-      - name: build docs
-        run: pnpm run build --filter doc-site
+      - name: Install Dependencies and build all packages
+        run: pnpm bootstrap
 
       - name: deploy docs to vercel
         uses: amondnet/vercel-action@v20
