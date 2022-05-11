@@ -36,7 +36,7 @@ jobs:
         run: pnpm bootstrap
 
       - name: Go to doc dist folder
-        run: cd ./packages/doc-site/.vuepress/dist && ls
+        run: pwd && ls && cd ./packages/doc-site/.vuepress/dist && ls
 
       - name: deploy docs to vercel
         uses: BetaHuhn/deploy-to-vercel-action@v1
