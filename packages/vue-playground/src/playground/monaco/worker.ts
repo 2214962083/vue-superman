@@ -1,7 +1,8 @@
-import {createSingletonPromise, SingletonPromiseReturn} from '@vueuse/core'
+import {Monaco, PlaygroundLifeCycle} from '../utils/types-helper'
+import {createSingletonPromise} from '../utils/common'
 
-export const loadWorkers = createSingletonPromise(async () => {
-  return Promise.resolve()
+export const loadWorkers = createSingletonPromise(async (monaco: Monaco, lifeCycle?: PlaygroundLifeCycle) => {
+  await lifeCycle?.loadWorkers?.(monaco, self)
   // return await Promise.all([
   //   // load workers
   //   (async () => {
@@ -42,4 +43,4 @@ export const loadWorkers = createSingletonPromise(async () => {
   //     }
   //   })()
   // ])
-}) as SingletonPromiseReturn<unknown>
+})

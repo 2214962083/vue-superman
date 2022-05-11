@@ -1,0 +1,89 @@
+{
+  "name": "vuepress-plugin-sandbox",
+  "version": "0.1.4",
+  "description": "a codesandbox playground for vuepress",
+  "keywords": [
+    "vuepress-plugin-sandbox",
+    "vue",
+    "vuepress",
+    "vue-playground",
+    "codesandbox",
+    "playground",
+    "sandbox",
+    "vue-superman",
+    "component",
+    "utils"
+  ],
+  "author": "yangjinming <https://github.com/2214962083>",
+  "funding": "https://github.com/sponsors/2214962083",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "pnpm type-check &&unbuild",
+    "build:watch": "pnpm build -- --stub",
+    "clean": "rimraf ./dist/**/*",
+    "dev": "vite",
+    "test": "vitest run --silent --passWithNoTests",
+    "test:watch": "pnpm test -- --watch",
+    "type-check": "tsc --noEmit"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": "./*",
+    "./client": {
+      "require": "./dist/client.cjs",
+      "import": "./dist/client.mjs",
+      "types": "./dist/client.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2214962083/vue-superman.git",
+    "directory": "packages/vuepress-plugin-sandbox"
+  },
+  "bugs": {
+    "url": "https://github.com/2214962083/vue-superman/issues"
+  },
+  "homepage": "https://github.com/2214962083/vue-superman#readme",
+  "dependencies": {
+    "@types/markdown-it-container": "^2.0.5",
+    "@vue/shared": "^3.2.33",
+    "@vuepress/client": "2.0.0-beta.38",
+    "@vuepress/core": "2.0.0-beta.38",
+    "@vuepress/markdown": "2.0.0-beta.38",
+    "@vueuse/core": "^8.4.1",
+    "js-base64": "^3.7.2",
+    "markdown-it": "^13.0.1",
+    "markdown-it-container": "^3.0.0",
+    "monaco-editor": "^0.33.0",
+    "vue": "^3.2.31",
+    "vue-demi": "*",
+    "vue-playground": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.24",
+    "@types/rimraf": "^3.0.2",
+    "@vue/test-utils": "^2.0.0-rc.21",
+    "conventional-changelog-cli": "^2.2.2",
+    "cross-env": "^7.0.3",
+    "esno": "^0.14.1",
+    "jsdom": "^19.0.0",
+    "rimraf": "^3.0.2",
+    "superman-shared": "workspace:*",
+    "typescript": "4.6.3",
+    "unbuild": "^0.7.4",
+    "vite": "^2.9.5",
+    "vitest": "^0.9.3"
+  }
+}

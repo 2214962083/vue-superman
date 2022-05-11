@@ -19,6 +19,7 @@ import {
 } from 'vue'
 import {Preview, PreviewProxy} from '../../core/'
 import {CLEAR_CONSOLE_INJECT_KEY, STORE_INJECT_KEY} from '../constants'
+import {PreviewExpose} from '../utils/types-helper'
 
 const store = inject(STORE_INJECT_KEY)!
 const clearConsole = computed(() => unref(inject(CLEAR_CONSOLE_INJECT_KEY)))
@@ -85,6 +86,11 @@ watch(
 onUnmounted(() => {
   proxy.destroy()
 })
+
+defineExpose({
+  container,
+  sandboxIframe: preview.sandboxEl
+} as PreviewExpose)
 </script>
 
 <template>

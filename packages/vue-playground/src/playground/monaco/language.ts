@@ -1,16 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {FILE_BASE_URL} from '../constants'
-import {Monaco} from '../utils/types-helper'
+import {Monaco, PlaygroundLifeCycle, Tsconfig, TsLib} from '../utils/types-helper'
 
-interface TsLib {
-  content: string
-  filePath?: string
-}
-
-type Tsconfig = Parameters<typeof monaco.languages.typescript.typescriptDefaults.setCompilerOptions>[0]
-
-export async function setLanguage(monaco: Monaco) {
-  const tsconfig: Tsconfig = {
+export async function setLanguage(monaco: Monaco, lifeCycle?: PlaygroundLifeCycle) {
+  const defaultTsconfig: Tsconfig = {
     ...monaco.languages.typescript.typescriptDefaults.getCompilerOptions(),
     target: monaco.languages.typescript.ScriptTarget.ESNext,
     baseUrl: FILE_BASE_URL,
@@ -36,6 +29,8 @@ export async function setLanguage(monaco: Monaco) {
     strict: false,
     typeRoots: ['node_modules/@types']
   }
+
+  const tsconfig = (await lifeCycle?.loadTsconfig?.(monaco, defaultTsconfig)) || defaultTsconfig
 
   // ts
   monaco.languages.typescript.typescriptDefaults.setCompilerOptions(tsconfig)
@@ -71,7 +66,7 @@ export async function setLanguage(monaco: Monaco) {
     import('./runtime.d.ts?raw')
   ])
 
-  const tsLibs: TsLib[] = [
+  const defaultTsLibs: TsLib[] = [
     {content: runtimeTypes},
     {content: `declare module '@vue/shared' { ${vueSharedTypes} }`},
     {content: `declare module '@vue/runtime-core' { ${vueRuntimeCoreTypes} }`},
@@ -79,6 +74,8 @@ export async function setLanguage(monaco: Monaco) {
     {content: `declare module '@vue/reactivity' { ${vueReactivityTypes} }`},
     {content: `declare module 'vue' { ${vueTypes} }`}
   ]
+
+  const tsLibs = (await lifeCycle?.loadTsLibs?.(monaco, defaultTsLibs)) || defaultTsLibs
 
   tsLibs.forEach(lib => {
     monaco.languages.typescript.typescriptDefaults.addExtraLib(lib.content, lib.filePath)

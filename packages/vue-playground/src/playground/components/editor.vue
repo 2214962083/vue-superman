@@ -5,12 +5,19 @@ export default defineComponent({
 </script>
 <script setup lang="ts">
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {ref, defineComponent, inject, computed} from 'vue'
-import {debounce} from '../../core'
+import {ref, defineComponent, inject, computed, PropType, toRefs} from 'vue'
+import {debounce, File} from '../../core'
 import {STORE_INJECT_KEY} from '../constants'
 import {useMonaco} from '../hooks/useMonaco'
+import {EditorExpose, PlaygroundLifeCycle} from '../utils/types-helper'
 import FileManageBar from './file-manage-bar.vue'
 import Message from './message.vue'
+
+const props = defineProps({
+  lifeCycle: {
+    type: Object as PropType<PlaygroundLifeCycle>
+  }
+})
 
 interface Emits {
   (e: 'change', value: string): void
@@ -18,21 +25,34 @@ interface Emits {
 
 const emit = defineEmits<Emits>()
 
+const {lifeCycle} = toRefs(props)
 const store = inject(STORE_INJECT_KEY)!
 
 const editorEl = ref<HTMLElement>()
 const files = computed(() => Object.values(store.state.files))
 const activeFile = computed(() => store.state.activeFile)
 
-const {getEditor, onChange, isDark, toggleDark} = useMonaco(editorEl, {
+const {getEditor, onChange, isDark, toggleDark, disposeEditor} = useMonaco(editorEl, {
+  lifeCycle,
   files,
   activeFile
 })
 
 const handleChange = debounce(({newCode, activeFile}: {newCode: string; activeFile: File}) => {
   store.state.activeFile.code = newCode
+  lifeCycle?.value?.onCodeChange?.({
+    newCode,
+    activeFile
+  })
   emit('change', newCode)
 }, 250)
+
+defineExpose({
+  getEditor,
+  isDark,
+  toggleDark,
+  disposeEditor
+} as EditorExpose)
 
 onChange(handleChange)
 </script>

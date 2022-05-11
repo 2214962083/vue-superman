@@ -26,7 +26,8 @@
     "path-browserify": "^1.0.1",
     "sucrase": "^3.21.0",
     "theme-vitesse": "^0.4.9",
-    "vue-router": "^4.0.15"
+    "vue-router": "^4.0.15",
+    "vuepress-plugin-sandbox": "workspace:*"
   },
   "devDependencies": {
     "@vuepress/bundler-vite": "2.0.0-beta.39",

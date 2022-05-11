@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {computed, unref} from 'vue'
 import {MaybeRef} from '@vueuse/core'
 import {File} from '../../core'
 import {PROJECT_ID_PREFIX, FILE_BASE_URL} from '../constants'
-import {Monaco} from './types-helper'
+import {Monaco, PromiseFnReturnType} from './types-helper'
 
 export const getProjectFileBaseUrl = (projectId: string) => `${FILE_BASE_URL}${projectId}/`
 
@@ -48,27 +49,30 @@ export const generateProjectId = (id?: string) => PROJECT_ID_PREFIX + safeId(id)
 
 export const mustBeRef = <T>(value: MaybeRef<T>) => computed(() => unref(value))
 
-// export interface SingletonPromiseReturn<T> {
-//   (): Promise<T>
-//   /**
-//    * Reset current staled promise.
-//    * Await it to have proper shutdown.
-//    */
-//   reset: () => Promise<void>
-// }
+export interface SingletonPromiseReturn<Args extends any[], R> {
+  (...args: Args): Promise<R>
+  /**
+   * Reset current staled promise.
+   * Await it to have proper shutdown.
+   */
+  reset: () => Promise<void>
+}
 
-// export function createSingletonPromise<T>(fn: () => Promise<T>): SingletonPromiseReturn<T> {
-//   let _promise: Promise<T> | undefined
+export function createSingletonPromise<Fn extends (...args: any[]) => Promise<any>>(
+  fn: Fn
+): SingletonPromiseReturn<Parameters<Fn>, PromiseFnReturnType<Fn>> {
+  type R = PromiseFnReturnType<Fn>
+  let _promise: Promise<R> | undefined
 
-//   function wrapper() {
-//     if (!_promise) _promise = fn()
-//     return _promise
-//   }
-//   wrapper.reset = async () => {
-//     const _prev = _promise
-//     _promise = undefined
-//     if (_prev) await _prev
-//   }
+  function wrapper(...args: Parameters<Fn>) {
+    if (!_promise) _promise = fn(...args)
+    return _promise
+  }
+  wrapper.reset = async () => {
+    const _prev = _promise
+    _promise = undefined
+    if (_prev) await _prev
+  }
 
-//   return wrapper
-// }
+  return wrapper
+}

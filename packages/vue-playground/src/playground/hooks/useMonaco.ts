@@ -1,4 +1,4 @@
-import {generateProjectId, mustBeRef} from './../utils/common'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import {ref, Ref, unref, watch} from 'vue'
 import {tryOnScopeDispose, MaybeRef, createEventHook, tryOnUnmounted, EventHookOn} from '@vueuse/core'
@@ -9,10 +9,11 @@ import {setupMonaco} from '../monaco'
 import {File} from '../../core'
 import {useMonacoModels} from './useMonacoModels'
 import {toggleDark, isDark} from './index'
-
-import {MonacoEditor} from '../utils/types-helper'
+import {CreateEditorOptions, MonacoEditor, PlaygroundLifeCycle} from '../utils/types-helper'
+import {generateProjectId, mustBeRef} from '../utils/common'
 
 export interface UseMonacoOptions {
+  lifeCycle?: MaybeRef<PlaygroundLifeCycle | undefined>
   activeFile: MaybeRef<File>
   files: MaybeRef<File[]>
 }
@@ -35,8 +36,14 @@ export function useMonaco(target: Ref<HTMLElement | undefined>, options: UseMona
   const getEditor = () => editor
 
   const init = async () => {
-    const {monaco} = await setupMonaco()
+    const lifeCycle = unref(options.lifeCycle)
+
+    await lifeCycle?.beforeLoadMonaco?.()
+
+    const {monaco} = await setupMonaco(lifeCycle)
     if (!monaco) return
+
+    await lifeCycle?.afterLoadMonaco?.(monaco)
 
     monaco.editor.defineTheme('vitesse-dark', darkTheme as unknown as MonacoEditor.IStandaloneThemeData)
     monaco.editor.defineTheme('vitesse-light', lightTheme as unknown as MonacoEditor.IStandaloneThemeData)
@@ -51,11 +58,13 @@ export function useMonaco(target: Ref<HTMLElement | undefined>, options: UseMona
 
     watch(
       target,
-      () => {
+      async () => {
         const el = unref(target)
         if (!el) return
 
-        editor = monaco.editor.create(el, {
+        await lifeCycle?.beforeCreateEditor?.(monaco)
+
+        const defaultEditorOptions: CreateEditorOptions = {
           tabSize: 2,
           insertSpaces: true,
           autoClosingQuotes: 'always',
@@ -67,11 +76,24 @@ export function useMonaco(target: Ref<HTMLElement | undefined>, options: UseMona
           minimap: {
             enabled: true
           }
-        }) as MonacoEditor.IStandaloneCodeEditor
+        }
 
-        disposeEditor.value = addEditor(editor)
+        const editorOptions =
+          (await lifeCycle?.loadEditorOption?.(monaco, defaultEditorOptions)) || defaultEditorOptions
+
+        editor = monaco.editor.create(el, editorOptions) as MonacoEditor.IStandaloneCodeEditor
+
+        const _destroyEditor = addEditor(editor)
+        disposeEditor.value = async () => {
+          await lifeCycle?.beforeDestroyEditor?.(monaco, editor as any)
+          _destroyEditor()
+          await lifeCycle?.afterDestroyEditor?.(monaco)
+        }
+
         isSetup.value = true
         editorUpdateId.value++
+
+        await lifeCycle?.afterCreateEditor?.(monaco, editor as any)
 
         // editor.value.onDidFocusEditorText(() => {
         //   editor.value?.updateOptions({
