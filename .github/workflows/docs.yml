@@ -35,6 +35,9 @@ jobs:
       - name: Install Dependencies and build all packages
         run: pnpm bootstrap
 
+      - name: Go to doc dist folder
+        run: cd ./packages/doc-site/.vuepress/dist && ls
+
       - name: deploy docs to vercel
         uses: BetaHuhn/deploy-to-vercel-action@v1
         # see: https://github.com/BetaHuhn/deploy-to-vercel-action
@@ -46,7 +49,7 @@ jobs:
           # for team settings
           VERCEL_SCOPE: ${{ secrets.VERCEL_ORG_ID }}
           # the docs build dist folder
-          WORKING_DIRECTORY: ./packages/doc-site/.vuepress/dist
+          # WORKING_DIRECTORY: ./packages/doc-site/.vuepress/dist
           # bind domains
           # alias-domains: |
           #   docs.vue-superman.com
