@@ -8,7 +8,7 @@
   "scripts": {
     "bootstrap": "pnpm i &&pnpm build:all",
     "build": "esno ./scripts/build.ts",
-    "build:all": "turbo run build --ignore='playgrounds/**/*'",
+    "build:all": "turbo run build",
     "clean": "rimraf **/node_modules/**",
     "commit": "git add . &&git-cz",
     "lint": "redrun lint:es lint:css lint:dir",

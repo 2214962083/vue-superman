@@ -35,9 +35,6 @@ jobs:
       - name: Install Dependencies and build all packages
         run: pnpm bootstrap
 
-      # - name: Build docs
-      #   run: pnpm run build --filter doc-site
-
       - name: deploy docs to vercel
         uses: BetaHuhn/deploy-to-vercel-action@v1
         # see: https://github.com/BetaHuhn/deploy-to-vercel-action
