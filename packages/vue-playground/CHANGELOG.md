@@ -7,11 +7,4 @@
 ### Features
 
 - **vue-playground:** init package ([1707879](https://github.com/2214962083/vue-superman/commit/17078791f7ad43a9431af6b365ecfe96e0fbd5cd))
-
-## 0.1.4 (2022-04-30)
-
-## 0.1.3 (2022-04-30)
-
-### Features
-
-- **class-mock/vue-xrender/superman-shared:** extract duplicate tool functions to superman-shared ([8a638f9](https://github.com/2214962083/vue-superman/commit/8a638f99509303f646795ce4971d3b08cb9f2dd3))
+- **vuepress-plugin-sandbox,vue-playground:** init vuepress-plugin-sandbox, add life cycle supports ([3d218cc](https://github.com/2214962083/vue-superman/commit/3d218ccb4de17ec4d2870692bb200f4742667b85))

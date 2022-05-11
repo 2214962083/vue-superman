@@ -1,4 +1,10 @@
-## 0.1.3 (2022-04-30)
+## 0.1.4 (2022-05-11)
+
+### Features
+
+- **class-mock:** add seed,setLocale function, add Fake decorator ([cd47f54](https://github.com/2214962083/vue-superman/commit/cd47f5406e0464f9491ea1cfd4be28f3c95ca806))
+
+## 0.1.4 (2022-04-30)
 
 ## 0.1.3 (2022-04-30)
 

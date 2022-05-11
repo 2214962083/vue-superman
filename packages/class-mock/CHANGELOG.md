@@ -1,4 +1,14 @@
-## 0.1.3 (2022-04-30)
+## 0.1.4 (2022-05-11)
+
+### Bug Fixes
+
+- **class-mock:** seed function parameters types error ([2e3d33b](https://github.com/2214962083/vue-superman/commit/2e3d33b3fb54e89d434beefa455a562d8db281f9))
+
+### Features
+
+- **class-mock:** add seed,setLocale function, add Fake decorator ([cd47f54](https://github.com/2214962083/vue-superman/commit/cd47f5406e0464f9491ea1cfd4be28f3c95ca806))
+
+## 0.1.4 (2022-04-30)
 
 ## 0.1.3 (2022-04-30)
 
