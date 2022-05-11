@@ -14,11 +14,13 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     strategy:
       matrix:
         node-version: [14.x, 16.x]
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, macos-latest]
       fail-fast: false
 
     steps:
