@@ -3,11 +3,18 @@ import {defineClientAppEnhance} from '@vuepress/client'
 import {ConcreteComponent, DefineComponent, h, resolveComponent} from 'vue'
 import * as base64 from 'js-base64'
 import {SANDBOX_COMPONENT_NAME} from './constants'
+import css from '../node_modules/vue-playground/dist/style.css'
 
 export default defineClientAppEnhance(async ({app}) => {
   let Playground: DefineComponent<{}, {}, any> | undefined
 
   if (!__VUEPRESS_SSR__) {
+    // add playground styles to global
+    const styleEl = document.createElement('style')
+    styleEl.innerHTML = css
+    document.head.appendChild(styleEl)
+
+    // load playground
     const VuePlayground = await import('vue-playground')
     Playground = VuePlayground.Playground
   }

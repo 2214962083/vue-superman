@@ -8082,7 +8082,7 @@ packages:
     dev: false
 
   /nano-memoize/1.3.0:
-    resolution: {integrity: sha512-yM/gMQHvA5EOtNGfEbJ8tmAveNjbckhzZ1hkNtMjY8zps3ocjPfp1kuJ1++OgtVHAhsGSTJttG3S6UV+FZZzxQ==}
+    resolution: {integrity: sha512-yM/gMQHvA5EOtNGfEbJ8tmAveNjbckhzZ1hkNtMjY8zps3ocjPfp1kuJ1++OgtVHAhsGSTJttG3S6UV+FZZzxQ==, tarball: nano-memoize/-/nano-memoize-1.3.0.tgz}
     dev: true
 
   /nanoid/3.3.4:
