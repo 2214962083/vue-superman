@@ -121,6 +121,7 @@ export function useMonaco(target: Ref<HTMLElement | undefined>, options: UseMona
       async () => {
         const activeFileName = unref(activeFile)?.filename
         const activeModel = getModels()?.find(model => model.uri.path.endsWith(activeFileName))
+
         if (editor && activeModel && !activeModel.isDisposed() && editor.getModel() !== activeModel) {
           editor.setModel(activeModel)
           editor.onDidChangeModelContent(() => {

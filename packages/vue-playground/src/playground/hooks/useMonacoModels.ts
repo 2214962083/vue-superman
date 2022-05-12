@@ -36,15 +36,20 @@ export function useMonacoModels(options: UseMonacoModelsOptions) {
     () => {
       if (!unref(isSetup) || !getEditor() || !unref(projectId)) return
 
-      if (!models || !models.length) {
+      const findModel = (file: File) =>
+        models?.find(model => getFileUri(monaco, unref(projectId), file.filename).path === model.uri.path)
+
+      if (!models || !models.length || models.length !== unref(files).length) {
         const newModels = unref(files).map(file => {
-          return monaco.editor.createModel(
-            file.code,
-            getFileLanguage(file),
-            getFileUri(monaco, unref(projectId), file.filename)
+          return (
+            findModel(file) ||
+            monaco.editor.createModel(
+              file.code,
+              getFileLanguage(file),
+              getFileUri(monaco, unref(projectId), file.filename)
+            )
           )
         })
-        console.log('newModels', newModels)
         setModels(newModels)
       } else {
         models.forEach(model => {

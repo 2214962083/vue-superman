@@ -47,6 +47,7 @@
     "source.fixAll.stylelint": true
   },
   "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true,
       "source.fixAll.stylelint": true
