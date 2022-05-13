@@ -20,6 +20,12 @@ export type PromiseFnReturnType<Fn extends (...args: any[]) => Promise<any>, R =
 
 export type Tsconfig = Parameters<typeof monaco.languages.typescript.typescriptDefaults.setCompilerOptions>[0]
 
+export type LayoutDirection =
+  | 'EditorBottomPreviewTop'
+  | 'EditorTopPreviewBottom'
+  | 'EditorRightPreviewLeft'
+  | 'EditorLeftPreviewRight'
+
 export interface TsLib {
   content: string
   filePath?: string

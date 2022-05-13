@@ -17,7 +17,7 @@ import {
   computed,
   unref
 } from 'vue'
-import {Preview, PreviewProxy} from '../../core/'
+import {Preview} from '../../core/'
 import {CLEAR_CONSOLE_INJECT_KEY, STORE_INJECT_KEY} from '../constants'
 import {PreviewExpose} from '../utils/types-helper'
 
@@ -27,8 +27,6 @@ const clearConsole = computed(() => unref(_clearConsole))
 const container = ref<HTMLElement>()
 const runtimeError = ref()
 const runtimeWarning = ref()
-
-let proxy: PreviewProxy
 
 let stopUpdateWatcher: WatchStopHandle | undefined
 
@@ -85,7 +83,7 @@ watch(
 )
 
 onUnmounted(() => {
-  proxy.destroy()
+  preview.destroy()
 })
 
 defineExpose({
@@ -95,16 +93,22 @@ defineExpose({
 </script>
 
 <template>
-  <div class="preview">
-    <div ref="container" class="iframe-container"></div>
+  <div class="vue-playground-preview">
+    <div ref="container" class="vue-playground-preview-iframe-container"></div>
     <Message :err="runtimeError" />
     <Message v-if="!runtimeError" :warn="runtimeWarning" />
   </div>
 </template>
 
 <style scoped>
-.iframe-container,
-.iframe-container :deep(iframe) {
+.vue-playground-preview {
+  box-sizing: border-box;
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+}
+.vue-playground-preview-iframe-container,
+.vue-playground-preview-iframe-container :deep(iframe) {
   width: 100%;
   height: 100%;
   background-color: #fff;

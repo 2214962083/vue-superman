@@ -103,6 +103,7 @@ module.exports = /** @type { import('eslint').Linter.Config } */ ({
     'vue/no-unused-vars': 'warn',
     'vue/multi-word-component-names': 'off',
     'vue/one-component-per-file': 'off',
+    'vue/no-v-model-argument': 'off',
     'vue/comment-directive': [
       'warn',
       {

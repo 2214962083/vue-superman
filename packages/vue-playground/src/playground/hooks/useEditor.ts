@@ -18,7 +18,7 @@ interface EventHookOnParam {
 export function useEditors() {
   const removeEditor = (id: string) => {
     return () => {
-      editors[id].dispose()
+      editors[id]?.dispose?.()
       delete editors[id]
       onEditorDestroyedHook.trigger({id})
     }

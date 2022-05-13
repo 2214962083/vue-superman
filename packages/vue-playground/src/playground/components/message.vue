@@ -37,15 +37,19 @@ function formatMessage(err: string | Error): string {
 
 <template>
   <Transition name="fade">
-    <div v-if="!dismissed && (err || warn)" class="msg" :class="err ? 'err' : 'warn'">
+    <div
+      v-if="!dismissed && (err || warn)"
+      class="vue-playground-msg"
+      :class="err ? 'vue-playground-msg-err' : 'vue-playground-msg-warn'"
+    >
       <pre>{{ formatMessage(err || warn) }}</pre>
-      <button class="dismiss" @click="dismissed = true">✕</button>
+      <button class="vue-playground-dismiss" @click="dismissed = true">✕</button>
     </div>
   </Transition>
 </template>
 
 <style scoped>
-.msg {
+.vue-playground-msg {
   position: absolute;
   right: 8px;
   bottom: 0;
@@ -61,12 +65,14 @@ function formatMessage(err: string | Error): string {
   border: 2px solid transparent;
   border-radius: 6px;
 }
-pre {
+
+.vue-playground-msg pre {
   padding: 12px 20px;
   margin: 0;
   overflow: scroll;
 }
-.dismiss {
+
+.vue-playground-dismiss {
   position: absolute;
   top: 2px;
   right: 2px;
@@ -81,27 +87,31 @@ pre {
   background-color: red;
   border-radius: 9px;
 }
+
 @media (max-width: 720px) {
-  .dismiss {
+  .vue-playground-dismiss {
     top: -9px;
     right: -9px;
   }
-  .msg {
+  .vue-playground-msg {
     bottom: 50px;
   }
 }
-.msg.err {
+
+.vue-playground-msg-err {
   color: red;
   background-color: #ffd7d7;
   border-color: red;
 }
-.msg.warn {
+
+.vue-playground-msg-warn {
   --color: rgb(105, 95, 27);
   color: var(--color);
   background-color: rgb(247, 240, 205);
   border-color: var(--color);
 }
-.msg.warn .dismiss {
+
+.vue-playground-msg-warn .vue-playground-dismiss {
   background-color: var(--color);
 }
 .fade-enter-active,
