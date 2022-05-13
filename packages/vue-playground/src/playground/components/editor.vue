@@ -10,7 +10,7 @@ import {debounce, File} from '../../core'
 import {STORE_INJECT_KEY} from '../constants'
 import {useMonaco} from '../hooks/useMonaco'
 import {EditorExpose, PlaygroundLifeCycle} from '../utils/types-helper'
-import FileManageBar from './file-manage-bar.vue'
+import FileManagerBar from './file-manager-bar.vue'
 import Message from './message.vue'
 
 const props = defineProps({
@@ -58,19 +58,36 @@ onChange(handleChange)
 </script>
 
 <template>
-  <div>
-    <FileManageBar />
-    <div class="editor-container">
-      <div ref="editorEl" style="width: 100%; height: 600px"></div>
+  <div class="vue-playground-editor">
+    <FileManagerBar />
+    <div class="vue-playground-editor-container">
+      <div ref="editorEl" class="vue-playground-editor-monaco"></div>
       <Message :err="store.state.errors[0]" />
     </div>
   </div>
 </template>
 
 <style scoped>
-.editor-container {
+.vue-playground-editor {
   position: relative;
-  height: calc(100% - var(--header-height));
+  flex: 1;
+  width: 100%;
+  height: 50%;
+  min-height: 320px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.vue-playground-editor-container {
+  position: absolute;
+  top: 40px;
+  flex: 1;
+  width: 100%;
+  height: calc(100% - 40px);
   overflow: hidden;
+}
+.vue-playground-editor-monaco {
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 </style>

@@ -21,7 +21,8 @@ import {Preview, PreviewProxy} from '../../core/'
 import {CLEAR_CONSOLE_INJECT_KEY, STORE_INJECT_KEY} from '../constants'
 
 const store = inject(STORE_INJECT_KEY)!
-const clearConsole = computed(() => unref(inject(CLEAR_CONSOLE_INJECT_KEY)))
+const _clearConsole = inject(CLEAR_CONSOLE_INJECT_KEY)!
+const clearConsole = computed(() => unref(_clearConsole))
 const container = ref<HTMLElement>()
 const runtimeError = ref()
 const runtimeWarning = ref()

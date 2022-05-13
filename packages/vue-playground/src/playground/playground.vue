@@ -38,10 +38,20 @@ defineExpose({
 } as PlaygroundExpose)
 </script>
 <template>
-  <div>
+  <div class="vue-playground">
     vue playground
-    <preview></preview>
-    <editor ref="editorRef" :life-cycle="options.lifeCycle"></editor>
+    <Preview></Preview>
+    <Editor ref="EditorRef" :life-cycle="options.lifeCycle"></Editor>
   </div>
 </template>
-<style lang="scss" scoped></style>
+<style scoped>
+.vue-playground {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+</style>
