@@ -12,6 +12,15 @@ export default defineClientAppEnhance(async ({app}) => {
     // load playground
     const VuePlayground = await import('vue-playground')
     Playground = VuePlayground.Playground
+
+    // set global css
+    const styleEl = document.createElement('style')
+    styleEl.innerHTML = `
+      .demo-container + .demo-container {
+        margin-top: 3rem;
+      }
+    `
+    document.head.appendChild(styleEl)
   }
   // wrap the component with default options
   app.component(SANDBOX_COMPONENT_NAME, defaultProps => {

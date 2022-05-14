@@ -18,15 +18,17 @@ import {
   unref
 } from 'vue'
 import {Preview} from '../../core/'
-import {CLEAR_CONSOLE_INJECT_KEY, STORE_INJECT_KEY} from '../constants'
+import {CLEAR_CONSOLE_INJECT_KEY, STORE_INJECT_KEY, THEME_INJECT_KEY} from '../constants'
 import {PreviewExpose} from '../utils/types-helper'
 
 const store = inject(STORE_INJECT_KEY)!
 const _clearConsole = inject(CLEAR_CONSOLE_INJECT_KEY, false)
 const clearConsole = computed(() => unref(_clearConsole))
+const theme = inject(THEME_INJECT_KEY)
 const container = ref<HTMLElement>()
 const runtimeError = ref()
 const runtimeWarning = ref()
+const sandboxUpdateId = ref(0)
 
 let stopUpdateWatcher: WatchStopHandle | undefined
 
@@ -41,6 +43,7 @@ const preview = new Preview({
         console.clear()
       }
       preview.updateSandbox()
+      sandboxUpdateId.value++
     })
   },
   onError(err) {
@@ -82,6 +85,25 @@ watch(
   () => createSandbox()
 )
 
+watch(
+  () => [sandboxUpdateId.value, unref(theme)],
+  () => {
+    if (!preview.sandboxEl?.contentDocument?.documentElement) return
+    const cssVars = unref(theme)
+    const iframeDocument = preview.sandboxEl.contentDocument
+
+    Object.assign(iframeDocument.body.style, {
+      ...cssVars,
+      color: cssVars?.['--preview-text-color'] || '#000',
+      backgroundColor: cssVars?.['--preview-bg-color'] || '#fff'
+    })
+  },
+  {
+    deep: true,
+    immediate: true
+  }
+)
+
 onUnmounted(() => {
   preview.destroy()
 })
@@ -111,7 +133,8 @@ defineExpose({
 .vue-playground-preview-iframe-container :deep(iframe) {
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  color: var(--preview-text-color);
+  background-color: var(--preview-bg-color);
   border: none;
 }
 </style>

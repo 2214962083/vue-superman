@@ -28,7 +28,7 @@ function focus({el}: VNode) {
 
 function doneAddFile() {
   const filename = pendingFilename.value
-
+  if (!pending.value) return
   if (!/\.(vue|js|ts|css|tsx|jsx)$/.test(filename)) {
     store.state.errors = [`Playground only supports *.vue, *.js, *.ts, '*.jsx', '*.tsx', *.css files.`]
     return
@@ -117,8 +117,8 @@ function horizontalScroll(e: WheelEvent) {
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
-  background-color: #fff;
-  border-bottom: 1px solid #e5e7eb;
+  background-color: var(--file-manager-bg-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .vue-playground-file-manager-bar::-webkit-scrollbar {
@@ -126,11 +126,11 @@ function horizontalScroll(e: WheelEvent) {
 }
 
 .vue-playground-file-manager-bar::-webkit-scrollbar-track {
-  background-color: #e5e7eb;
+  background-color: var(--border-color);
 }
 
 .vue-playground-file-manager-bar::-webkit-scrollbar-thumb {
-  background-color: #584984;
+  background-color: var(--theme-color);
 }
 
 .vue-playground-file-manager-bar-has-import-map .vue-playground-file-manager-bar-create-btn {
@@ -146,16 +146,18 @@ function horizontalScroll(e: WheelEvent) {
   margin: 2px 2px 0;
   font-size: 12px;
   font-weight: 600;
-  color: #94a3b8;
+  color: var(--file-manager-text-color);
   cursor: pointer;
   user-select: none;
+  background-color: var(--file-manager-bg-color);
   border-bottom: 3px solid transparent;
 }
 
 .vue-playground-file-manager-bar-file-active {
-  color: #584984;
+  color: var(--file-manager-active-text-color);
   cursor: text;
-  border-bottom: 3px solid #584984;
+  background-color: var(--file-manager-active-bg-color);
+  border-bottom: 3px solid var(--file-manager-active-text-color);
 }
 
 .vue-playground-file-manager-bar-file span {
@@ -190,8 +192,9 @@ function horizontalScroll(e: WheelEvent) {
   margin-left: 6px;
   font-size: 12px;
   line-height: 30px;
-  color: #584984;
-  border: 1px solid #584984;
+  color: var(--file-manager-active-text-color);
+  background-color: var(--file-manager-active-bg-color);
+  border: 1px solid var(--file-manager-active-text-color);
   border-radius: 4px;
   outline: none;
 }
@@ -202,12 +205,12 @@ function horizontalScroll(e: WheelEvent) {
   justify-content: center;
   margin-left: 6px;
   font-size: 18px;
-  color: #94a3b8;
+  color: var(--file-manager-text-color);
   cursor: pointer;
 }
 
 .vue-playground-file-manager-bar-create-btn:hover {
-  color: #584984;
+  color: var(--file-manager-active-text-color);
 }
 
 .vue-playground-file-manager-bar-import-map-wrapper {
@@ -220,12 +223,8 @@ function horizontalScroll(e: WheelEvent) {
   padding: 0 15px;
   margin-left: auto;
   font-size: 12px;
-  color: #94a3b8;
+  color: var(--file-manager-text-color);
   cursor: pointer;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 25%);
-}
-
-.vue-playground-dark .vue-playground-file-manager-bar-import-map-wrapper {
-  background: linear-gradient(90deg, rgba(26, 26, 26, 0) 0%, rgba(26, 26, 26, 1) 25%);
+  background: var(--file-manager-right-float-bg);
 }
 </style>

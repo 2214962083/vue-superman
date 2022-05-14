@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type {Ref} from 'vue'
+import type {CSSProperties, Ref} from 'vue'
 import type {File, ReplStore} from '../../core'
 
 export type {editor as MonacoEditor} from 'monaco-editor'
@@ -67,4 +67,32 @@ export interface PlaygroundExpose {
   store: ReplStore
   preview: Ref<PreviewExpose>
   editor: Ref<EditorExpose>
+}
+
+export interface PlaygroundTheme extends CSSProperties {
+  '--editor-theme-name'?: string
+  '--theme-color'?: string
+  '--border-color'?: string
+  '--bg-color'?: string
+  '--toolbar-title-color'?: string
+  '--toolbar-bg-color'?: string
+  '--toolbar-text-color'?: string
+  '--toolbar-icon-bg-color'?: string
+  '--toolbar-icon-color'?: string
+  '--toolbar-icon-active-color'?: string
+  '--preview-bg-color'?: string
+  '--preview-text-color'?: string
+  '--file-manager-bg-color'?: string
+  '--file-manager-text-color'?: string
+  '--file-manager-active-bg-color'?: string
+  '--file-manager-active-text-color'?: string
+  '--file-manager-right-float-bg'?: string
+  '--message-warn-text-color'?: string
+  '--message-warn-bg-color'?: string
+  '--message-warn-border-color'?: string
+  '--message-error-text-color'?: string
+  '--message-error-bg-color'?: string
+  '--message-error-border-color'?: string
+  '--message-dismiss-text-color'?: string
+  '--message-dismiss-bg-color'?: string
 }

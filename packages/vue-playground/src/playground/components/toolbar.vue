@@ -14,6 +14,8 @@ import {
   EditorTopPreviewBottomIcon,
   HideCodeIcon,
   ShowCodeIcon,
+  LightIcon,
+  DarkIcon,
   ExitFullscreenIcon,
   FullscreenIcon
 } from './icon'
@@ -26,6 +28,10 @@ const props = defineProps({
   showCode: {
     type: Boolean,
     default: true
+  },
+  showDark: {
+    type: Boolean,
+    default: false
   },
   fullScreen: {
     type: Boolean,
@@ -41,6 +47,7 @@ interface Emits {
   (e: 'update:layoutDirection', value: LayoutDirection): void
   (e: 'update:showCode', value: boolean): void
   (e: 'update:fullScreen', value: boolean): void
+  (e: 'update:showDark', value: boolean): void
 }
 
 const emit = defineEmits<Emits>()
@@ -58,6 +65,10 @@ function handleDirectionIconClick(direction: LayoutDirection) {
 
 function handleVisibleCodeIconClick() {
   emit('update:showCode', !props.showCode)
+}
+
+function handleToggleDarkIconClick() {
+  emit('update:showDark', !props.showDark)
 }
 
 function handleFullscreenIconClick() {
@@ -85,6 +96,10 @@ function handleFullscreenIconClick() {
         <HideCodeIcon v-if="showCode" />
         <ShowCodeIcon v-else />
       </ControlButton>
+      <ControlButton title="Toggle Dark Mode" @click="handleToggleDarkIconClick">
+        <LightIcon v-if="!showDark" />
+        <DarkIcon v-else />
+      </ControlButton>
       <ControlButton title="Toggle fullscreen" @click="handleFullscreenIconClick">
         <ExitFullscreenIcon v-if="fullScreen" />
         <FullscreenIcon v-else />
@@ -95,9 +110,6 @@ function handleFullscreenIconClick() {
 
 <style scoped>
 .vue-playground-toolbar {
-  top: 0;
-  left: 0;
-  z-index: 20;
   box-sizing: border-box;
   display: flex;
   flex-shrink: 0;
@@ -106,8 +118,9 @@ function handleFullscreenIconClick() {
   height: 40px;
   padding: 0 15px;
   overflow: hidden;
-  background-color: #f7f8f8;
-  border-bottom: 1px solid #e5e7eb;
+  color: var(--toolbar-text-color);
+  background-color: var(--toolbar-bg-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .vue-playground-toolbar-title {
@@ -125,7 +138,7 @@ function handleFullscreenIconClick() {
   white-space: nowrap;
 }
 
-.vue-playground-toolbar-actions::v-deep .vue-playground-control-btn {
+.vue-playground-toolbar-actions :deep(.vue-playground-control-btn) {
   margin-left: 8px;
 }
 </style>

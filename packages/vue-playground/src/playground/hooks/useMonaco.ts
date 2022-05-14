@@ -13,6 +13,7 @@ import {CreateEditorOptions, MonacoEditor, PlaygroundLifeCycle} from '../utils/t
 import {generateProjectId, mustBeRef} from '../utils/common'
 
 export interface UseMonacoOptions {
+  themeName?: MaybeRef<string | undefined>
   lifeCycle?: MaybeRef<PlaygroundLifeCycle | undefined>
   activeFile: MaybeRef<File>
   files: MaybeRef<File[]>
@@ -26,7 +27,7 @@ export interface ChangeEvent {
 const {addEditor} = useEditors()
 
 export function useMonaco(target: Ref<HTMLElement | undefined>, options: UseMonacoOptions) {
-  const {activeFile, files} = options
+  const {activeFile, files, themeName} = options
   const changeEventHook = createEventHook<ChangeEvent>()
   const isSetup = ref(false)
   const editorUpdateId = ref(0)
@@ -47,6 +48,14 @@ export function useMonaco(target: Ref<HTMLElement | undefined>, options: UseMona
 
     monaco.editor.defineTheme('vitesse-dark', darkTheme as unknown as MonacoEditor.IStandaloneThemeData)
     monaco.editor.defineTheme('vitesse-light', lightTheme as unknown as MonacoEditor.IStandaloneThemeData)
+
+    const defaultThemeMap = {
+      light: 'vitesse-light',
+      dark: 'vitesse-dark'
+    } as const
+    const getDefaultThemeName = () => defaultThemeMap[isDark.value ? 'dark' : 'light']
+    const getThemeName = () => unref(themeName) || getDefaultThemeName()
+
     const {getModels, modelUpdateId} = useMonacoModels({
       projectId: generateProjectId(),
       files,
@@ -72,7 +81,7 @@ export function useMonaco(target: Ref<HTMLElement | undefined>, options: UseMona
           folding: true,
           automaticLayout: true,
           smoothScrolling: true,
-          theme: 'vitesse-dark',
+          theme: getThemeName(),
           minimap: {
             enabled: true
           }
@@ -137,6 +146,14 @@ export function useMonaco(target: Ref<HTMLElement | undefined>, options: UseMona
         }
       },
       {immediate: true}
+    )
+
+    watch(
+      () => unref(themeName),
+      () => {
+        console.log('themeName', unref(themeName), getThemeName())
+        monaco.editor.setTheme(getThemeName())
+      }
     )
 
     // watch(isDark, () => monaco.editor.setTheme(isDark.value ? 'vitesse-dark' : 'vitesse-light'), {immediate: true})

@@ -34,16 +34,16 @@ defineProps({
   width: 24px;
   height: 24px;
   font-size: 12px;
-  color: #656666;
+  color: var(--toolbar-icon-color);
   cursor: pointer;
-  background-color: #fff;
-  border: 1px solid #c5c7c8;
+  background-color: var(--toolbar-icon-bg-color);
+  border: 1px solid var(--toolbar-icon-color);
   border-radius: 4px;
   box-shadow: 0 4px 6px -1px rgb(0, 0, 0, 0.1), 0 2px 4px -2px rgb(0, 0, 0, 0.1);
 }
 
 .vue-playground-control-btn.vue-playground-toolbar-direction-active {
-  color: #584984;
-  border: 1px solid #584984;
+  color: var(--toolbar-icon-active-color);
+  border: 1px solid var(--toolbar-icon-active-color);
 }
 </style>

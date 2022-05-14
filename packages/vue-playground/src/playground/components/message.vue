@@ -53,23 +53,20 @@ function formatMessage(err: string | Error): string {
   position: absolute;
   right: 8px;
   bottom: 0;
-  left: 8px;
   z-index: 10;
-  display: flex;
-  align-items: stretch;
+  width: 50%;
   min-height: 40px;
-  max-height: calc(100% - 300px);
   margin-bottom: 8px;
-  font-family: var(--font-code);
-  white-space: pre-wrap;
-  border: 2px solid transparent;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid transparent;
   border-radius: 6px;
 }
 
 .vue-playground-msg pre {
   padding: 12px 20px;
   margin: 0;
-  overflow: scroll;
+  white-space: normal;
 }
 
 .vue-playground-dismiss {
@@ -82,9 +79,11 @@ function formatMessage(err: string | Error): string {
   padding: 0;
   font-size: 9px;
   line-height: 18px;
-  color: #fff;
+  color: var(--message-dismiss-text-color);
   text-align: center;
-  background-color: red;
+  cursor: pointer;
+  background-color: var(--message-dismiss-bg-color);
+  border: none;
   border-radius: 9px;
 }
 
@@ -99,21 +98,17 @@ function formatMessage(err: string | Error): string {
 }
 
 .vue-playground-msg-err {
-  color: red;
-  background-color: #ffd7d7;
-  border-color: red;
+  color: var(--message-error-text-color);
+  background-color: var(--message-error-bg-color);
+  border-color: var(--message-error-border-color);
 }
 
 .vue-playground-msg-warn {
-  --color: rgb(105, 95, 27);
-  color: var(--color);
-  background-color: rgb(247, 240, 205);
-  border-color: var(--color);
+  color: var(--message-warn-text-color);
+  background-color: var(--message-warn-bg-color);
+  border-color: var(--message-warn-text-color);
 }
 
-.vue-playground-msg-warn .vue-playground-dismiss {
-  background-color: var(--color);
-}
 .fade-enter-active,
 .fade-leave-active {
   transition: all 0.15s ease-out;
