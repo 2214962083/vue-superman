@@ -1,4 +1,4 @@
-import type {LoadSandbox} from '../src/types-helper'
+import type {LoadSandbox} from '../src/client/types-helper'
 
 declare global {
   interface Window {

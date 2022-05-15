@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type {CSSProperties, Ref} from 'vue'
 import type {File, ReplStore} from '../../core'
+import type {PlaygroundProps} from '../playground.type'
 
 export type {editor as MonacoEditor} from 'monaco-editor'
 
@@ -31,10 +32,7 @@ export interface TsLib {
   filePath?: string
 }
 
-export interface PlaygroundOptions {
-  files: File[]
-  lifeCycle?: PlaygroundLifeCycle
-}
+export type PlaygroundOptions = Partial<PlaygroundProps>
 
 export interface PlaygroundLifeCycle {
   beforeLoadMonaco?: () => MaybePromise<void>
@@ -49,13 +47,12 @@ export interface PlaygroundLifeCycle {
   onCodeChange?: (event: {activeFile: File; newCode: string}) => MaybePromise<void>
   beforeDestroyEditor?: (monaco: Monaco, editor: IStandaloneCodeEditor) => MaybePromise<void>
   afterDestroyEditor?: (monaco: Monaco) => MaybePromise<void>
+  onDarkModeChange?: (darkMode: boolean) => MaybePromise<void>
 }
 
 export interface EditorExpose {
   getEditor: () => IStandaloneCodeEditor
-  isDark: Ref<boolean>
   disposeEditor: Ref<() => void>
-  toggleDark: (preIsDark?: boolean | undefined) => void
 }
 
 export interface PreviewExpose {
@@ -67,6 +64,8 @@ export interface PlaygroundExpose {
   store: ReplStore
   preview: Ref<PreviewExpose>
   editor: Ref<EditorExpose>
+  isDark: Ref<boolean>
+  toggleDark: (preIsDark?: boolean | undefined) => void
 }
 
 export interface PlaygroundTheme extends CSSProperties {
@@ -95,4 +94,9 @@ export interface PlaygroundTheme extends CSSProperties {
   '--message-error-border-color'?: string
   '--message-dismiss-text-color'?: string
   '--message-dismiss-bg-color'?: string
+}
+
+export interface PlaygroundThemes {
+  light?: PlaygroundTheme
+  dark?: PlaygroundTheme
 }

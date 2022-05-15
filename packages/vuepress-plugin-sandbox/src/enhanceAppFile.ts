@@ -26,12 +26,11 @@ export default defineClientAppEnhance(async ({app}) => {
   app.component(SANDBOX_COMPONENT_NAME, defaultProps => {
     if (!Playground) return null
     const ClientOnly = resolveComponent('ClientOnly')
-    const playgroundOptions = self?.loadSandbox?.(defaultProps?.options) || defaultProps?.options
+    const playgroundOptions = self?.loadSandbox?.(defaultProps) || defaultProps
 
     return h(ClientOnly, {}, () =>
       h(Playground as ConcreteComponent, {
-        ...defaultProps,
-        options: playgroundOptions
+        ...playgroundOptions
       })
     )
   })

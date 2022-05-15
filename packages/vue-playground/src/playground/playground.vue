@@ -4,37 +4,35 @@ export default defineComponent({
 })
 </script>
 <script lang="ts" setup>
-import {computed, CSSProperties, defineComponent, onMounted, PropType, provide, ref} from 'vue'
+import {computed, CSSProperties, defineComponent, inject, onMounted, provide, ref, unref, watch} from 'vue'
 import {ReplStore} from '../core'
 import Toolbar from './components/toolbar.vue'
 import Editor from './components/editor.vue'
 import Preview from './components/preview.vue'
 import Portal from './components/portal'
-import {PLAYGROUND_COMPONENT_NAME, SHOW_IMPORT_MAP_INJECT_KEY, STORE_INJECT_KEY, THEME_INJECT_KEY} from './constants'
 import {
-  EditorExpose,
-  LayoutDirection,
-  PlaygroundExpose,
-  PlaygroundOptions,
-  PlaygroundTheme,
-  PreviewExpose
-} from './utils/types-helper'
-import {isDark} from './hooks'
+  GET_DARK_THEME,
+  GET_LIGHT_THEME,
+  PLAYGROUND_COMPONENT_NAME,
+  SHOW_DARK_MODE_INJECT_KEY,
+  SHOW_IMPORT_MAP_INJECT_KEY,
+  STORE_INJECT_KEY,
+  THEME_INJECT_KEY
+} from './constants'
+import {EditorExpose, LayoutDirection, PlaygroundExpose, PlaygroundTheme, PreviewExpose} from './utils/types-helper'
+import {isDark, toggleDark} from './hooks'
+import {playgroundProps} from './playground.type'
 
-const props = defineProps({
-  options: {
-    type: Object as PropType<PlaygroundOptions>,
-    default: () => ({})
-  }
-})
+const props = defineProps(playgroundProps())
 
 const previewRef = ref<PreviewExpose>()
 const editorRef = ref<EditorExpose>()
 
 const store = new ReplStore({
-  initFiles: props.options.files
+  initFiles: props.files
 })
 
+const showDarkMode = inject(SHOW_DARK_MODE_INJECT_KEY, undefined)
 const showCode = ref(true)
 const fullScreen = ref(false)
 const layoutDirection = ref<LayoutDirection>('EditorBottomPreviewTop')
@@ -61,63 +59,30 @@ const contentStyle = computed<CSSProperties>(() => {
 })
 
 const theme = computed<CSSProperties>(() => {
-  const themeColor = '#42b883'
-  const lightTheme: PlaygroundTheme = {
-    '--editor-theme-name': 'vitesse-light',
-    '--theme-color': themeColor,
-    '--border-color': '#eaecef',
-    '--bg-color': '#fff',
-    '--toolbar-bg-color': '##eeeeee',
-    '--toolbar-text-color': '#2c3e50',
-    '--toolbar-icon-bg-color': '#fff',
-    '--toolbar-icon-color': '#999',
-    '--toolbar-icon-active-color': themeColor,
-    '--preview-bg-color': '#fff',
-    '--preview-text-color': '#2c3e50',
-    '--file-manager-bg-color': '#fff',
-    '--file-manager-text-color': '#94a3b8',
-    '--file-manager-active-bg-color': '#fff',
-    '--file-manager-active-text-color': themeColor,
-    '--file-manager-right-float-bg': 'linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 25%)',
-    '--message-warn-text-color': '#695f1b',
-    '--message-warn-bg-color': '#f7f0cd',
-    '--message-warn-border-color': '#695f1b',
-    '--message-error-text-color': '#f00',
-    '--message-error-bg-color': '#ffd7d7',
-    '--message-error-border-color': '#f00',
-    '--message-dismiss-text-color': '#fff',
-    '--message-dismiss-bg-color': '#f00'
-  }
-
-  const darkTheme: PlaygroundTheme = {
-    '--editor-theme-name': 'vitesse-dark',
-    '--theme-color': themeColor,
-    '--border-color': '#3e4c5a',
-    '--bg-color': '#22272e',
-    '--toolbar-bg-color': '#262c34',
-    '--toolbar-text-color': '#adbac7',
-    '--toolbar-icon-bg-color': '#22272e',
-    '--toolbar-icon-color': '#adbac7',
-    '--toolbar-icon-active-color': themeColor,
-    '--preview-bg-color': '#22272e',
-    '--preview-text-color': '#fff',
-    '--file-manager-bg-color': '#22272e',
-    '--file-manager-text-color': '#94a3b8',
-    '--file-manager-active-bg-color': '#22272e',
-    '--file-manager-active-text-color': themeColor,
-    '--file-manager-right-float-bg': 'linear-gradient(90deg, rgba(34, 39, 46, 0) 0%, rgba(34, 39, 46, 1) 25%)',
-    '--message-warn-text-color': '#695f1b',
-    '--message-warn-bg-color': '#f7f0cd',
-    '--message-warn-border-color': '#695f1b',
-    '--message-error-text-color': '#f00',
-    '--message-error-bg-color': '#ffd7d7',
-    '--message-error-border-color': '#f00',
-    '--message-dismiss-text-color': '#fff',
-    '--message-dismiss-bg-color': '#f00'
-  }
-
+  const lightTheme: PlaygroundTheme = GET_LIGHT_THEME(props?.themes?.light)
+  const darkTheme: PlaygroundTheme = GET_DARK_THEME(props?.themes?.dark)
   return isDark.value ? darkTheme : lightTheme
 })
+
+watch(
+  isDark,
+  val => {
+    props?.lifeCycle?.onDarkModeChange?.(val)
+  },
+  {
+    immediate: true
+  }
+)
+
+watch(
+  () => unref(showDarkMode),
+  val => {
+    if (val !== null && val !== undefined) toggleDark(val)
+  },
+  {
+    immediate: true
+  }
+)
 
 provide(STORE_INJECT_KEY, store)
 provide(SHOW_IMPORT_MAP_INJECT_KEY, true)
@@ -129,7 +94,9 @@ onMounted(() => {
 defineExpose({
   store,
   preview: previewRef,
-  editor: editorRef
+  editor: editorRef,
+  isDark,
+  toggleDark
 } as PlaygroundExpose)
 </script>
 <template>
@@ -157,7 +124,7 @@ defineExpose({
         <Editor
           v-show="showCode"
           ref="EditorRef"
-          :life-cycle="options.lifeCycle"
+          :life-cycle="lifeCycle"
           :style="{
             borderTop: layoutDirection === 'EditorBottomPreviewTop' ? '1px solid var(--border-color)' : 'none',
             borderRight: layoutDirection === 'EditorLeftPreviewRight' ? '1px solid var(--border-color)' : 'none'

@@ -6,7 +6,7 @@ import markdownItContainer from 'markdown-it-container'
 import type {MarkdownEnv} from '@vuepress/markdown'
 import type * as Token from 'markdown-it/lib/token'
 import type * as Renderer from 'markdown-it/lib/renderer'
-import {File, PlaygroundLifeCycle} from 'vue-playground'
+import {File, PlaygroundLifeCycle, PlaygroundOptions, PlaygroundThemes} from 'vue-playground'
 import * as base64 from 'js-base64'
 
 const pathResolve = (..._path: string[]) => path.resolve(__dirname, ..._path)
@@ -23,12 +23,13 @@ export interface DemoPluginOptions {
   demoCodeMark?: string
   defaultDescription?: string
   lifeCycle?: PlaygroundLifeCycle
+  themes?: PlaygroundThemes
 }
 
 export type RenderPlaceFunction = (description: string, codeBlockTokens?: Token[]) => string
 
 export const sandboxPlugin = (options: DemoPluginOptions = {}): Plugin => {
-  const {demoCodeMark = 'demo', defaultDescription = '', lifeCycle} = options
+  const {demoCodeMark = 'demo', defaultDescription = '', lifeCycle, themes} = options
 
   const START_TYPE = `container_${demoCodeMark}_open`
   const END_TYPE = `container_${demoCodeMark}_close`
@@ -50,12 +51,12 @@ export const sandboxPlugin = (options: DemoPluginOptions = {}): Plugin => {
 
     console.log('files....', files)
 
-    const options = {files}
+    const options: PlaygroundOptions = {files, themes}
     const optionsBase64 = base64.encode(JSON.stringify(options))
 
     return `<div class="demo-container ${demoCodeMark}">${
       des ? `<p class="demo-container-title">${des}</p>` : ''
-    }<playground :options="JSON.parse(base64.decode('${optionsBase64}'))">\n`
+    }<playground v-bind="JSON.parse(base64.decode('${optionsBase64}'))">\n`
   }
 
   const renderAfter: RenderPlaceFunction = () => '</playground></div>\n'
