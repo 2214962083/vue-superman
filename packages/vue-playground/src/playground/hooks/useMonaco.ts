@@ -33,10 +33,12 @@ export function useMonaco(target: Ref<HTMLElement | undefined>, options: UseMona
   const editorUpdateId = ref(0)
   const editorStateCacheMap = ref<Map<string, MonacoEditor.ICodeEditorViewState | null>>(new Map())
   const disposeEditor = ref<() => void>(() => {})
+  const loading = ref(false)
   let editor: MonacoEditor.IStandaloneCodeEditor
   const getEditor = () => editor
 
   const init = async () => {
+    loading.value = true
     const lifeCycle = unref(options.lifeCycle)
 
     await lifeCycle?.beforeLoadMonaco?.()
@@ -157,6 +159,8 @@ export function useMonaco(target: Ref<HTMLElement | undefined>, options: UseMona
     )
 
     // watch(isDark, () => monaco.editor.setTheme(isDark.value ? 'vitesse-dark' : 'vitesse-light'), {immediate: true})
+
+    loading.value = false
   }
 
   init()
@@ -173,6 +177,7 @@ export function useMonaco(target: Ref<HTMLElement | undefined>, options: UseMona
   return {
     getEditor,
     isDark,
+    loading,
     toggleDark,
     disposeEditor,
     onChange: changeEventHook.on as EventHookOn<ChangeEvent>

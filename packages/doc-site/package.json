@@ -10,22 +10,12 @@
     "serve": "http-server --port 8080 .vuepress/dist"
   },
   "dependencies": {
-    "@babel/types": "^7.17.10",
-    "@types/markdown-it-container": "^2.0.5",
-    "@types/path-browserify": "^1.0.0",
     "@vue/reactivity": "^3.2.33",
     "@vue/runtime-core": "^3.2.33",
     "@vue/runtime-dom": "^3.2.33",
     "@vue/shared": "^3.2.33",
     "@vueuse/core": "^8.4.1",
-    "emmet-monaco-es": "^5.1.0",
-    "js-base64": "^3.7.2",
-    "markdown-it": "^13.0.1",
-    "markdown-it-container": "^3.0.0",
     "monaco-editor": "^0.33.0",
-    "path-browserify": "^1.0.1",
-    "sucrase": "^3.21.0",
-    "theme-vitesse": "^0.4.9",
     "vue-router": "^4.0.15",
     "vuepress-plugin-sandbox": "workspace:*"
   },

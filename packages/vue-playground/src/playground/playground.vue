@@ -9,6 +9,7 @@ import {ReplStore} from '../core'
 import Toolbar from './components/toolbar.vue'
 import Editor from './components/editor.vue'
 import Preview from './components/preview.vue'
+import Loading from './components/loading.vue'
 import Portal from './components/portal'
 import {
   GET_DARK_THEME,
@@ -29,7 +30,8 @@ const previewRef = ref<PreviewExpose>()
 const editorRef = ref<EditorExpose>()
 
 const store = new ReplStore({
-  initFiles: props.files
+  initFiles: props.files,
+  initImportMap: props.importMap
 })
 
 const showDarkMode = inject(SHOW_DARK_MODE_INJECT_KEY, undefined)
@@ -131,6 +133,7 @@ defineExpose({
           }"
         ></Editor>
       </div>
+      <Loading v-if="editorRef?.loading" />
     </div>
   </Portal>
 </template>

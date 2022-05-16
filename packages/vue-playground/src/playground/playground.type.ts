@@ -1,5 +1,5 @@
 import type {PropType, ExtractPropTypes} from 'vue'
-import type {File} from '../core'
+import type {File, ImportMap} from '../core'
 import type {PlaygroundLifeCycle, PlaygroundThemes} from './utils/types-helper'
 
 export const playgroundProps = () =>
@@ -14,6 +14,10 @@ export const playgroundProps = () =>
     },
     themes: {
       type: Object as PropType<PlaygroundThemes>,
+      default: () => ({})
+    },
+    importMap: {
+      type: Object as PropType<ImportMap>,
       default: () => ({})
     }
   } as const)

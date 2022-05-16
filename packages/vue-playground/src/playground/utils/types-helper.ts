@@ -53,11 +53,13 @@ export interface PlaygroundLifeCycle {
 export interface EditorExpose {
   getEditor: () => IStandaloneCodeEditor
   disposeEditor: Ref<() => void>
+  loading: Ref<boolean>
 }
 
 export interface PreviewExpose {
   container: Ref<HTMLElement | undefined>
   sandboxIframe: HTMLIFrameElement | undefined
+  loading: Ref<boolean>
 }
 
 export interface PlaygroundExpose {

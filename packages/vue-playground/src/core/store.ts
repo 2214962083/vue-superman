@@ -3,8 +3,8 @@ import {version, reactive, watchEffect} from 'vue'
 import * as defaultCompiler from 'vue/compiler-sfc'
 import {compileFile} from './compiler/transform'
 import {utoa, atou} from './utils/common'
+import {ImportMap, OutputModes} from './utils/types-helper'
 import {SFCScriptCompileOptions, SFCAsyncStyleCompileOptions, SFCTemplateCompileOptions} from 'vue/compiler-sfc'
-import {OutputModes} from './utils/types-helper'
 
 const defaultMainFile = 'App.vue'
 
@@ -80,7 +80,8 @@ export class ReplStore implements Store {
     defaultVueRuntimeURL = `https://cdn.jsdelivr.net/npm/@vue/runtime-dom@${version}/dist/runtime-dom.esm-browser.js`,
     showOutput = false,
     outputMode = 'preview',
-    initFiles
+    initFiles,
+    initImportMap
   }: {
     serializedState?: string
     initFiles?: File[]
@@ -88,6 +89,7 @@ export class ReplStore implements Store {
     // loose type to allow getting from the URL without inducing a typing error
     outputMode?: OutputModes | string
     defaultVueRuntimeURL?: string
+    initImportMap?: ImportMap
   } = {}) {
     let files: StoreState['files'] = {}
 
@@ -123,7 +125,7 @@ export class ReplStore implements Store {
       vueRuntimeURL: this.defaultVueRuntimeURL
     })
 
-    this.initImportMap()
+    this.initImportMap(initImportMap)
 
     watchEffect(() => compileFile(this, this.state.activeFile))
 
@@ -182,7 +184,7 @@ export class ReplStore implements Store {
     this.setActive(mainFile)
   }
 
-  private initImportMap() {
+  private initImportMap(initImportMap?: ImportMap) {
     const map = this.state.files['import-map.json']
     if (!map) {
       this.state.files['import-map.json'] = new File(
@@ -190,7 +192,8 @@ export class ReplStore implements Store {
         JSON.stringify(
           {
             imports: {
-              vue: this.defaultVueRuntimeURL
+              vue: this.defaultVueRuntimeURL,
+              ...initImportMap?.imports
             }
           },
           null,
@@ -202,6 +205,7 @@ export class ReplStore implements Store {
         const json = JSON.parse(map.code)
         if (!json.imports.vue) {
           json.imports.vue = this.defaultVueRuntimeURL
+          Object.assign(json.imports, initImportMap?.imports)
           map.code = JSON.stringify(json, null, 2)
         }
       } catch (e) {
@@ -219,7 +223,7 @@ export class ReplStore implements Store {
     }
   }
 
-  setImportMap(map: {imports: Record<string, string>; scopes?: Record<string, Record<string, string>>}) {
+  setImportMap(map: ImportMap) {
     this.state.files['import-map.json']!.code = JSON.stringify(map, null, 2)
   }
 

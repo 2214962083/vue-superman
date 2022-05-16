@@ -3,6 +3,10 @@ export type OutputModes = 'preview' | 'js' | 'css' | 'ssr'
 
 export type Module = any
 
+export interface ImportMap {
+  imports: Record<string, string>
+}
+
 declare global {
   interface Window {
     process: {

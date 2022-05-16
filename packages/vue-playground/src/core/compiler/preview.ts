@@ -7,6 +7,7 @@ import {compileModulesForPreview} from './module-compiler'
 export interface PreviewOptions {
   store: Store
   onBeforeDestroy?: () => void
+  onBeforeLoad?: () => void
   onLoad?: () => void
   onWarning?: (msg: string) => void
   onError?: (errorMsg: string) => void
@@ -17,6 +18,7 @@ export class Preview {
   previewProxy?: PreviewProxy
   store!: Store
   onBeforeDestroy?: () => void
+  onBeforeLoad?: () => void
   onLoad?: () => void
   onWarning?: (msg: string) => void
   onError?: (errorMsg: string) => void
@@ -36,6 +38,7 @@ export class Preview {
 
   createSandbox(container: HTMLElement) {
     if (this.sandboxEl) this.destroy()
+    this.onBeforeLoad?.()
 
     this.sandboxEl = document.createElement('iframe')
     this.sandboxEl.setAttribute(

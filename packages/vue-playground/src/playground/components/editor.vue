@@ -34,7 +34,7 @@ const files = computed(() => Object.values(store.state.files))
 const activeFile = computed(() => store.state.activeFile)
 const themeName = computed(() => unref(theme)?.['--editor-theme-name'])
 
-const {getEditor, onChange, disposeEditor} = useMonaco(editorEl, {
+const {getEditor, onChange, disposeEditor, loading} = useMonaco(editorEl, {
   themeName,
   lifeCycle,
   files,
@@ -52,7 +52,8 @@ const handleChange = debounce(({newCode, activeFile}: {newCode: string; activeFi
 
 defineExpose({
   getEditor,
-  disposeEditor
+  disposeEditor,
+  loading
 } as EditorExpose)
 
 onChange(handleChange)

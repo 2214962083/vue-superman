@@ -5,8 +5,11 @@ import {ShikiPluginOptions} from '@vuepress/plugin-shiki'
 import {path} from '@vuepress/utils'
 import {PluginConfig} from 'vuepress'
 import {isProd} from '../utils/common'
+import {SandboxOptions} from 'vuepress-plugin-sandbox'
 
 const pathResolve = (..._path: string[]) => path.resolve(__dirname, ..._path)
+const getPkgUrl = (name: string, version = 'latest', ending = '') =>
+  `https://cdn.jsdelivr.net/npm/${name}@${version}${ending}`
 
 const vuepressPlugins: PluginConfig[] = [
   [
@@ -80,7 +83,17 @@ const vuepressPlugins: PluginConfig[] = [
       componentsDir: pathResolve('../components')
     }
   ],
-  ['vuepress-plugin-sandbox', {}]
+  [
+    'vuepress-plugin-sandbox',
+    <SandboxOptions>{
+      importMap: {
+        imports: {
+          'vue-xrender': getPkgUrl('vue-xrender'),
+          'class-mock': getPkgUrl('class-mock')
+        }
+      }
+    }
+  ]
 ]
 
 if (isProd) {

@@ -29,6 +29,7 @@ const container = ref<HTMLElement>()
 const runtimeError = ref()
 const runtimeWarning = ref()
 const sandboxUpdateId = ref(0)
+const loading = ref(false)
 
 let stopUpdateWatcher: WatchStopHandle | undefined
 
@@ -37,12 +38,16 @@ const preview = new Preview({
   onBeforeDestroy() {
     stopUpdateWatcher?.()
   },
+  onBeforeLoad() {
+    loading.value = true
+  },
   onLoad() {
     stopUpdateWatcher = watchEffect(() => {
       if (import.meta.env.PROD && clearConsole.value) {
         console.clear()
       }
       preview.updateSandbox()
+      loading.value = false
       sandboxUpdateId.value++
     })
   },
@@ -110,7 +115,8 @@ onUnmounted(() => {
 
 defineExpose({
   container,
-  sandboxIframe: preview.sandboxEl
+  sandboxIframe: preview.sandboxEl,
+  loading
 } as PreviewExpose)
 </script>
 
