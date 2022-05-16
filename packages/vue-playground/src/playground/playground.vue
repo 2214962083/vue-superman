@@ -118,6 +118,7 @@ defineExpose({
       ></Toolbar>
       <div class="vue-playground-content" :style="contentStyle">
         <Preview
+          ref="previewRef"
           :style="{
             borderTop: layoutDirection === 'EditorTopPreviewBottom' ? '1px solid var(--border-color)' : 'none',
             borderRight: layoutDirection === 'EditorRightPreviewLeft' ? '1px solid var(--border-color)' : 'none'
@@ -125,7 +126,7 @@ defineExpose({
         ></Preview>
         <Editor
           v-show="showCode"
-          ref="EditorRef"
+          ref="editorRef"
           :life-cycle="lifeCycle"
           :style="{
             borderTop: layoutDirection === 'EditorBottomPreviewTop' ? '1px solid var(--border-color)' : 'none',
@@ -133,7 +134,7 @@ defineExpose({
           }"
         ></Editor>
       </div>
-      <Loading v-if="editorRef?.loading" />
+      <Loading v-if="!editorRef || editorRef.loading" />
     </div>
   </Portal>
 </template>

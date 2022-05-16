@@ -5,6 +5,7 @@ export default defineComponent({
 </script>
 <script setup lang="ts">
 import Message from './message.vue'
+import Loading from './loading.vue'
 import {
   defineComponent,
   ref,
@@ -125,11 +126,13 @@ defineExpose({
     <div ref="container" class="vue-playground-preview-iframe-container"></div>
     <Message :err="runtimeError" />
     <Message v-if="!runtimeError" :warn="runtimeWarning" />
+    <Loading v-if="loading" />
   </div>
 </template>
 
 <style scoped>
 .vue-playground-preview {
+  position: relative;
   box-sizing: border-box;
   flex: 1;
   width: 100%;

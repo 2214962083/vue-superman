@@ -21,7 +21,7 @@ export const bundlerConfig = {
         output: {
           inlineDynamicImports: false,
           manualChunks: {
-            monaco: ['monaco-editor', 'emmet-monaco-es']
+            monaco: ['monaco-editor']
           }
         }
       }

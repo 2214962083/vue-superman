@@ -31,5 +31,12 @@ import {LoadingIcon} from './icon'
   max-width: 40px;
   height: 30%;
   max-height: 40px;
+  animation: loadingCircle 1s infinite linear;
+}
+
+@keyframes loadingCircle {
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>
