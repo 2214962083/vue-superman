@@ -97,7 +97,9 @@ function horizontalScroll(e: WheelEvent) {
     <div v-if="showImportMap" class="vue-playground-file-manager-bar-import-map-wrapper">
       <div
         class="vue-playground-file-manager-bar-import-map"
-        :class="{active: store.state.activeFile.filename === importMapFile}"
+        :class="{
+          'vue-playground-file-manager-bar-import-map-active': store.state.activeFile.filename === importMapFile
+        }"
         @click="store.setActive(importMapFile)"
       >
         <span class="vue-playground-file-manager-bar-import-map-name">Import Map</span>
@@ -137,7 +139,8 @@ function horizontalScroll(e: WheelEvent) {
   margin-right: 10px;
 }
 
-.vue-playground-file-manager-bar-file {
+.vue-playground-file-manager-bar-file,
+.vue-playground-file-manager-bar-import-map {
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -153,7 +156,12 @@ function horizontalScroll(e: WheelEvent) {
   border-bottom: 3px solid transparent;
 }
 
-.vue-playground-file-manager-bar-file-active {
+.vue-playground-file-manager-bar-import-map {
+  height: 100%;
+}
+
+.vue-playground-file-manager-bar-file-active,
+.vue-playground-file-manager-bar-import-map-active {
   color: var(--file-manager-active-text-color);
   cursor: text;
   background-color: var(--file-manager-active-bg-color);

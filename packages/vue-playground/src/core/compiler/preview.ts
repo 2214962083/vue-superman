@@ -130,7 +130,6 @@ export class Preview {
         codeToEval.push(
           `import { createApp as _createApp } from "vue"
           const AppComponent = __modules__["${mainFile}"].default
-          AppComponent.name = 'Repl'
           const app = window.__app__ = _createApp(AppComponent)
           app.config.unwrapInjectedRef = true
           app.config.errorHandler = e => console.error(e)

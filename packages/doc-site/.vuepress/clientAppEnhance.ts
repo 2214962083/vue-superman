@@ -1,5 +1,7 @@
 import {defineClientAppEnhance} from '@vuepress/client'
 import {configLoadSandbox} from 'vuepress-plugin-sandbox/client'
+// import vueXrenderTypes from 'vue-xrender/dist/index.d.ts?raw'
+// import classMockTypes from 'class-mock/dist/index.d.ts?raw'
 
 export default defineClientAppEnhance(() => {
   if (!__VUEPRESS_SSR__) {
@@ -7,6 +9,15 @@ export default defineClientAppEnhance(() => {
       return {
         ...preOptions,
         lifeCycle: {
+          // TODO: FIX types declaration
+          // loadTsLibs(_, defaultTsLibs) {
+          //   console.log('classMockTypes', classMockTypes)
+          //   const tsLibs = [
+          //     {content: `declare module 'vue-xrender' { ${vueXrenderTypes} }`},
+          //     {content: `declare module 'class-mock' { ${classMockTypes} }`}
+          //   ]
+          //   return [...defaultTsLibs, ...tsLibs]
+          // },
           loadWorkers: async () => {
             await Promise.all([
               // load workers

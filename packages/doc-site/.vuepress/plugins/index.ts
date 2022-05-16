@@ -88,8 +88,10 @@ const vuepressPlugins: PluginConfig[] = [
     <SandboxOptions>{
       importMap: {
         imports: {
-          'vue-xrender': getPkgUrl('vue-xrender'),
-          'class-mock': getPkgUrl('class-mock')
+          'vue-xrender': getPkgUrl('vue-xrender', 'latest', '/dist/index.mjs'),
+          'class-mock': getPkgUrl('class-mock', 'latest', '/dist/index.mjs'),
+          'vue-demi': getPkgUrl('vue-demi', 'latest', '/lib/v3/index.mjs'),
+          '@faker-js/faker': getPkgUrl('@faker-js/faker', 'latest', '/dist/esm/index.mjs')
         }
       }
     }

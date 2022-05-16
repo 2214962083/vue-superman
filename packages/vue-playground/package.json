@@ -52,11 +52,14 @@
   },
   "homepage": "https://github.com/2214962083/vue-superman#readme",
   "peerDependencies": {
-    "vue": ">=3.0.0",
-    "monaco-editor": ">=0.30.0"
+    "monaco-editor": ">=0.30.0",
+    "vue": ">=3.0.0"
   },
   "dependencies": {
+    "@babel/standalone": "^7.17.11",
     "@babel/types": "^7.17.10",
+    "@types/babel__core": "^7.1.19",
+    "@types/babel__standalone": "^7.1.4",
     "@vue/reactivity": "^3.2.33",
     "@vue/runtime-core": "^3.2.33",
     "@vue/runtime-dom": "^3.2.33",
@@ -64,7 +67,6 @@
     "@vueuse/core": "^8.4.1",
     "emmet-monaco-es": "^5.1.0",
     "js-base64": "^3.7.2",
-    "sucrase": "^3.21.0",
     "theme-vitesse": "^0.4.9",
     "vue-demi": "*"
   },

@@ -15,8 +15,10 @@
     "@vue/runtime-dom": "^3.2.33",
     "@vue/shared": "^3.2.33",
     "@vueuse/core": "^8.4.1",
+    "class-mock": "workspace:*",
     "monaco-editor": "^0.33.0",
     "vue-router": "^4.0.15",
+    "vue-xrender": "workspace:*",
     "vuepress-plugin-sandbox": "workspace:*"
   },
   "devDependencies": {

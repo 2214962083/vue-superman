@@ -1,16 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {Store, File} from '../store'
 import {SFCDescriptor, BindingMetadata, shouldTransformRef, transformRef, CompilerOptions} from 'vue/compiler-sfc'
-import {transform} from 'sucrase'
+import {babelTransformTsJsx} from '../utils/babel'
 
 export const COMP_IDENTIFIER = `__sfc__`
 
 async function transformTsJsx(src: string) {
-  return transform(src, {
-    transforms: ['typescript', 'jsx'],
-    jsxPragma: 'h',
-    jsxFragmentPragma: 'Fragment'
-  }).code
+  // console.log('compile source: ', src)
+  try {
+    const result = babelTransformTsJsx(src)
+    // console.log('compile result: ', result)
+    return result || ''
+  } catch (e) {
+    console.error('compile error: ', e)
+    throw e
+  }
 }
 
 export async function compileFile(store: Store, {filename, code, compiled}: File) {
