@@ -153,7 +153,7 @@ export function useMonaco(target: Ref<HTMLElement | undefined>, options: UseMona
     watch(
       () => unref(themeName),
       () => {
-        console.log('themeName', unref(themeName), getThemeName())
+        // console.log('themeName', unref(themeName), getThemeName())
         monaco.editor.setTheme(getThemeName())
       }
     )

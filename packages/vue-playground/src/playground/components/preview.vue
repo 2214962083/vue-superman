@@ -26,7 +26,8 @@ const store = inject(STORE_INJECT_KEY)!
 const _clearConsole = inject(CLEAR_CONSOLE_INJECT_KEY, false)
 const clearConsole = computed(() => unref(_clearConsole))
 const theme = inject(THEME_INJECT_KEY)
-const container = ref<HTMLElement>()
+
+const containerRef = ref<HTMLElement>()
 const runtimeError = ref()
 const runtimeWarning = ref()
 const sandboxUpdateId = ref(0)
@@ -61,8 +62,8 @@ const preview = new Preview({
 })
 
 const createSandbox = () => {
-  if (!container.value) return
-  preview.createSandbox(container.value)
+  if (!containerRef.value) return
+  preview.createSandbox(containerRef.value)
 }
 
 // create sandbox on mount
@@ -115,7 +116,7 @@ onUnmounted(() => {
 })
 
 defineExpose({
-  container,
+  containerRef,
   sandboxIframe: preview.sandboxEl,
   loading
 } as PreviewExpose)
@@ -123,7 +124,7 @@ defineExpose({
 
 <template>
   <div class="vue-playground-preview">
-    <div ref="container" class="vue-playground-preview-iframe-container"></div>
+    <div ref="containerRef" class="vue-playground-preview-iframe-container"></div>
     <Message :err="runtimeError" />
     <Message v-if="!runtimeError" :warn="runtimeWarning" />
     <Loading v-if="loading" />

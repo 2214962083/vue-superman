@@ -1,7 +1,7 @@
 import {defineBuildConfig} from 'unbuild'
 
 export default defineBuildConfig({
-  entries: ['src/index', 'src/client', 'src/enhanceAppFile'],
+  entries: ['src/index', 'src/client', 'src/clientConfigFile'],
   clean: true,
   declaration: true,
   // externals: ['js-base64'],

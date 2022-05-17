@@ -4,5 +4,9 @@ import {minifyConfig, unMinifyConfig, packagePath} from '../vite.config'
 buildUtils.build({
   minifyConfig,
   unMinifyConfig,
-  packagePath
+  packagePath,
+  dtsOptions: {
+    // merge all .d.ts files
+    rollupTypes: true
+  }
 })

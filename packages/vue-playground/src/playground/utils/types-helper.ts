@@ -57,7 +57,7 @@ export interface EditorExpose {
 }
 
 export interface PreviewExpose {
-  container: Ref<HTMLElement | undefined>
+  containerRef: Ref<HTMLElement | undefined>
   sandboxIframe: HTMLIFrameElement | undefined
   loading: Ref<boolean>
 }

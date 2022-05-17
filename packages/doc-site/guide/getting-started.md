@@ -1,6 +1,6 @@
 # Guide Getting Started
 
-::: demo
+::: demo Vue Xrender Demo
 
 ```vue hello-world.vue
 <template>
@@ -59,7 +59,7 @@ export default {
 
 :::
 
-::: demo
+::: demo Class Mock Demo
 
 ```vue app.vue
 <template>

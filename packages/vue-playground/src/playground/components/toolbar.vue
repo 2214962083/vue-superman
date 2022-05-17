@@ -22,8 +22,7 @@ import {
 
 const props = defineProps({
   title: {
-    type: String,
-    default: 'Demo'
+    type: String
   },
   showCode: {
     type: Boolean,

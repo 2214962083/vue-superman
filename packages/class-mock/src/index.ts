@@ -48,3 +48,5 @@ export {createMock} from './utils/create-mock'
 export type {CreateMockOptions} from './utils/create-mock'
 export {setLocale, seed} from './utils/common'
 export * from './utils/types-helper'
+
+export default {}

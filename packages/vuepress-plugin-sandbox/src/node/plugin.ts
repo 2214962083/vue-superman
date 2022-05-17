@@ -49,14 +49,12 @@ export const sandboxPlugin = (options: SandboxOptions = {}): Plugin => {
       })
     }
 
-    console.log('files....', files)
+    // console.log('files....', files)
 
-    const options: PlaygroundOptions = {files, themes, importMap}
+    const options: PlaygroundOptions = {title: des, files, themes, importMap}
     const optionsBase64 = base64.encode(JSON.stringify(options))
 
-    return `<div class="demo-container ${demoCodeMark}">${
-      des ? `<p class="demo-container-title">${des}</p>` : ''
-    }<playground v-bind="JSON.parse(base64.decode('${optionsBase64}'))">\n`
+    return `<div class="demo-container ${demoCodeMark}"><playground v-bind="JSON.parse(base64.decode('${optionsBase64}'))">\n`
   }
 
   const renderAfter: RenderPlaceFunction = () => '</playground></div>\n'
@@ -95,7 +93,7 @@ export const sandboxPlugin = (options: SandboxOptions = {}): Plugin => {
 
   const plugin: Plugin = {
     name: 'vuepress-plugin-sandbox',
-    clientAppEnhanceFiles: [pathResolve('./enhanceAppFile.mjs').replace(/\\/g, '/')],
+    clientConfigFile: pathResolve('./clientConfigFile.mjs').replace(/\\/g, '/'),
     extendsMarkdown: md => {
       md.use(markdownItContainer, demoCodeMark, {render})
     }

@@ -5,14 +5,17 @@ import dts from 'vite-plugin-dts'
 
 export const WATCH = Boolean(process.env.WATCH)
 
+export type DtsOptions = Parameters<typeof dts>[0]
+
 export interface ChangeConfigOptions {
   genDts?: boolean
+  dtsOptions?: DtsOptions
   watch?: boolean
   packagePath: string
 }
 
 export async function changeViteConfig(config: UserConfig, options: ChangeConfigOptions): Promise<InlineConfig> {
-  const {genDts = false, watch = false, packagePath} = options
+  const {genDts = false, watch = false, dtsOptions, packagePath} = options
 
   const pathResolve = (..._path: string[]) => path.resolve(packagePath, ..._path)
 
@@ -26,7 +29,8 @@ export async function changeViteConfig(config: UserConfig, options: ChangeConfig
     config.plugins.push(
       dts({
         insertTypesEntry: true,
-        tsConfigFilePath: pathResolve('./tsconfig.json')
+        tsConfigFilePath: pathResolve('./tsconfig.json'),
+        ...dtsOptions
       })
     )
   }
@@ -48,11 +52,12 @@ export interface BuildOptions {
   minifyConfig: UserConfig
   unMinifyConfig: UserConfig
   packagePath: string
+  dtsOptions?: DtsOptions
   changeConfigFn?: ChangeConfigFn
 }
 
 export async function build(config: BuildOptions) {
-  const {minifyConfig, unMinifyConfig, packagePath, changeConfigFn = changeViteConfig} = config
+  const {minifyConfig, unMinifyConfig, packagePath, changeConfigFn = changeViteConfig, dtsOptions} = config
 
   const pathResolve = (..._path: string[]) => path.resolve(packagePath, ..._path)
 
@@ -61,9 +66,9 @@ export async function build(config: BuildOptions) {
 
   if (!WATCH) {
     // build minify, don't build in watch mode
-    await viteBuild(await changeConfigFn(minifyConfig, {packagePath}))
+    await viteBuild(await changeConfigFn(minifyConfig, {packagePath, dtsOptions}))
   }
 
   // build un minify
-  await viteBuild(await changeConfigFn(unMinifyConfig, {genDts: true, watch: WATCH, packagePath}))
+  await viteBuild(await changeConfigFn(unMinifyConfig, {genDts: true, watch: WATCH, packagePath, dtsOptions}))
 }

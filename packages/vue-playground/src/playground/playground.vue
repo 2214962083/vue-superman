@@ -115,6 +115,7 @@ defineExpose({
         v-model:fullScreen="fullScreen"
         v-model:layoutDirection="layoutDirection"
         v-model:showDark="isDark"
+        :title="title"
       ></Toolbar>
       <div class="vue-playground-content" :style="contentStyle">
         <Preview

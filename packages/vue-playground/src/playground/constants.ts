@@ -3,6 +3,7 @@ import type {InjectionKey} from 'vue'
 import type {Store} from '../core'
 import type {PlaygroundTheme} from './utils/types-helper'
 
+export const DEFAULT_TITLE = 'Demo' as const
 export const PLAYGROUND_COMPONENT_NAME = 'Playground' as const
 export const FILE_BASE_URL = 'file:///root/' as const
 export const PROJECT_ID_PREFIX = 'project' as const

@@ -1,14 +1,15 @@
-import {defineUserConfig, ThemeConfig, ViteBundlerOptions} from 'vuepress'
-import {DefaultThemeOptions} from '@vuepress/theme-default'
+import {defineUserConfig} from 'vuepress'
+import {defaultTheme} from '@vuepress/theme-default'
 import {path} from '@vuepress/utils'
-import {navbar, sidebar} from './.vuepress/config'
+import {viteBundler} from '@vuepress/bundler-vite'
+import {navbar, sidebar} from './.vuepress/configs'
 import {plugins} from './.vuepress/plugins'
 import {isProd} from './.vuepress/utils/common'
 import {bundlerConfig} from './bundler.config'
 
 const pathResolve = (..._path: string[]) => path.resolve(__dirname, ..._path)
 
-export default defineUserConfig<ThemeConfig, ViteBundlerOptions>({
+export default defineUserConfig({
   base: '/',
 
   head: [
@@ -61,7 +62,7 @@ export default defineUserConfig<ThemeConfig, ViteBundlerOptions>({
     }
   },
 
-  themeConfig: <DefaultThemeOptions>{
+  theme: defaultTheme({
     logo: '/images/logo.png',
 
     repo: '2214962083/vue-superman',
@@ -131,7 +132,7 @@ export default defineUserConfig<ThemeConfig, ViteBundlerOptions>({
       // disable the @vuepress/plugin-nprogress plugin to fix the bug of `Cannot set properties of undefined (setting 'NProgress')`
       nprogress: false
     }
-  },
+  }),
 
   markdown: {
     importCode: {
@@ -140,7 +141,6 @@ export default defineUserConfig<ThemeConfig, ViteBundlerOptions>({
       }
     }
   },
-  bundler: '@vuepress/vite',
-  bundlerConfig,
+  bundler: viteBundler(bundlerConfig),
   plugins
 })
