@@ -1,4 +1,10 @@
-## 0.1.4 (2022-05-11)
+## 0.1.5 (2022-05-17)
+
+### Features
+
+- **vue-playground/vue-xrender/class-mock:** supports vuepress 2.0.0-beta.45, merge lib dts files ([7d3300c](https://github.com/2214962083/vue-superman/commit/7d3300ca6183ed6070d9bc762f1324cc13d1d820))
+
+## 0.1.5 (2022-05-11)
 
 ### Features
 

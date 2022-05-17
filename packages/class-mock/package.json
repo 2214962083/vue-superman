@@ -1,6 +1,6 @@
 {
   "name": "class-mock",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Proper decorator-based to generate faker data from class constructors",
   "keywords": [
     "mock",
