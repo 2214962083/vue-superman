@@ -5,6 +5,8 @@ import {compileFile} from './compiler/transform'
 import {utoa, atou} from './utils/common'
 import {ImportMap, OutputModes} from './utils/types-helper'
 import {SFCScriptCompileOptions, SFCAsyncStyleCompileOptions, SFCTemplateCompileOptions} from 'vue/compiler-sfc'
+import {DEFAULT_VUE_RUNTIME_DOM_CDN, DEFAULT_VUE_COMPILER_SFC_CDN} from '../playground/constants'
+import type {PlaygroundPkgCdn} from '../playground/utils/types-helper'
 
 const defaultMainFile = 'App.vue'
 
@@ -65,32 +67,37 @@ export interface Store {
   initialOutputMode: OutputModes
 }
 
+interface ReplStoreOptions {
+  serializedState?: string
+  initFiles?: File[]
+  showOutput?: boolean
+  // loose type to allow getting from the URL without inducing a typing error
+  outputMode?: OutputModes | string
+  defaultVueRuntimeURL?: string
+  pkgCdn?: PlaygroundPkgCdn
+  initImportMap?: ImportMap
+}
+
 export class ReplStore implements Store {
   state: StoreState
   compiler = defaultCompiler
   options?: SFCOptions
   initialShowOutput: boolean
   initialOutputMode: OutputModes
+  pkgCdn?: PlaygroundPkgCdn
 
   private defaultVueRuntimeURL: string
   private pendingCompiler: Promise<any> | null = null
 
   constructor({
     serializedState = '',
-    defaultVueRuntimeURL = `https://cdn.jsdelivr.net/npm/@vue/runtime-dom@${version}/dist/runtime-dom.esm-browser.js`,
+    defaultVueRuntimeURL,
     showOutput = false,
     outputMode = 'preview',
     initFiles,
-    initImportMap
-  }: {
-    serializedState?: string
-    initFiles?: File[]
-    showOutput?: boolean
-    // loose type to allow getting from the URL without inducing a typing error
-    outputMode?: OutputModes | string
-    defaultVueRuntimeURL?: string
-    initImportMap?: ImportMap
-  } = {}) {
+    initImportMap,
+    pkgCdn
+  }: ReplStoreOptions = {}) {
     let files: StoreState['files'] = {}
 
     if (serializedState) {
@@ -108,9 +115,14 @@ export class ReplStore implements Store {
       }
     }
 
-    this.defaultVueRuntimeURL = defaultVueRuntimeURL
+    this.defaultVueRuntimeURL =
+      defaultVueRuntimeURL ||
+      pkgCdn?.['@vue/runtime-dom']?.(version, '/dist/runtime-dom.esm-browser.js') ||
+      DEFAULT_VUE_RUNTIME_DOM_CDN(version)
+
     this.initialShowOutput = showOutput
     this.initialOutputMode = outputMode as OutputModes
+    this.pkgCdn = pkgCdn
 
     let mainFile = defaultMainFile
     if (!files[mainFile]) {
@@ -228,8 +240,14 @@ export class ReplStore implements Store {
   }
 
   async setVueVersion(version: string) {
-    const compilerUrl = `https://cdn.jsdelivr.net/npm/@vue/compiler-sfc@${version}/dist/compiler-sfc.esm-browser.js`
-    const runtimeUrl = `https://cdn.jsdelivr.net/npm/@vue/runtime-dom@${version}/dist/runtime-dom.esm-browser.js`
+    const compilerUrl =
+      this.pkgCdn?.['@vue/compiler-sfc']?.(version, '/dist/compiler-sfc.esm-browser.js') ||
+      DEFAULT_VUE_COMPILER_SFC_CDN(version)
+
+    const runtimeUrl =
+      this.pkgCdn?.['@vue/runtime-dom']?.(version, '/dist/runtime-dom.esm-browser.js') ||
+      DEFAULT_VUE_RUNTIME_DOM_CDN(version)
+
     this.pendingCompiler = import(/* @vite-ignore */ compilerUrl)
     this.compiler = await this.pendingCompiler
     this.pendingCompiler = null

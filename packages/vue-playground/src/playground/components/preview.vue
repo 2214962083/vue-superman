@@ -19,13 +19,14 @@ import {
   unref
 } from 'vue'
 import {Preview} from '../../core/'
-import {CLEAR_CONSOLE_INJECT_KEY, STORE_INJECT_KEY, THEME_INJECT_KEY} from '../constants'
+import {CLEAR_CONSOLE_INJECT_KEY, PKG_CDN_INJECT_KEY, STORE_INJECT_KEY, THEME_INJECT_KEY} from '../constants'
 import {PreviewExpose} from '../utils/types-helper'
 
 const store = inject(STORE_INJECT_KEY)!
 const _clearConsole = inject(CLEAR_CONSOLE_INJECT_KEY, false)
 const clearConsole = computed(() => unref(_clearConsole))
 const theme = inject(THEME_INJECT_KEY)
+const pkgCdn = inject(PKG_CDN_INJECT_KEY, {})
 
 const containerRef = ref<HTMLElement>()
 const runtimeError = ref()
@@ -37,6 +38,7 @@ let stopUpdateWatcher: WatchStopHandle | undefined
 
 const preview = new Preview({
   store: store!,
+  pkgCdn: unref(pkgCdn),
   onBeforeDestroy() {
     stopUpdateWatcher?.()
   },

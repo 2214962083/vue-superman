@@ -32,6 +32,12 @@ export interface TsLib {
   filePath?: string
 }
 
+export interface PlaygroundPkgCdn {
+  '@vue/runtime-dom'?: (version: string, ending: string) => string
+  '@vue/compiler-sfc'?: (version: string, ending: string) => string
+  'es-module-shims'?: (version: string, ending: string) => string
+}
+
 export type PlaygroundOptions = Partial<PlaygroundProps>
 
 export interface PlaygroundLifeCycle {

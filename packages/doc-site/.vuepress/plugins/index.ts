@@ -8,8 +8,7 @@ import {isProd} from '../utils/common'
 import sandboxPlugin from 'vuepress-plugin-sandbox'
 
 const pathResolve = (..._path: string[]) => path.resolve(__dirname, ..._path)
-const getPkgUrl = (name: string, version = 'latest', ending = '') =>
-  `https://cdn.jsdelivr.net/npm/${name}@${version}${ending}`
+const getPkgUrl = (name: string, version = 'latest', ending = '') => `https://unpkg.com/${name}@${version}${ending}`
 
 const vuepressPlugins: PluginConfig = [
   // for doc search

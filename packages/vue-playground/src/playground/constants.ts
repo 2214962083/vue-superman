@@ -1,7 +1,7 @@
 import type {MaybeRef} from '@vueuse/core'
 import type {InjectionKey} from 'vue'
 import type {Store} from '../core'
-import type {PlaygroundTheme} from './utils/types-helper'
+import type {PlaygroundPkgCdn, PlaygroundTheme} from './utils/types-helper'
 
 export const DEFAULT_TITLE = 'Demo' as const
 export const PLAYGROUND_COMPONENT_NAME = 'Playground' as const
@@ -14,6 +14,7 @@ export const CLEAR_CONSOLE_INJECT_KEY = '__clear_console__' as unknown as Inject
 export const SHOW_IMPORT_MAP_INJECT_KEY = '__show_import_map__' as unknown as InjectionKey<MaybeRef<boolean>>
 export const THEME_INJECT_KEY = '__theme__' as unknown as InjectionKey<MaybeRef<PlaygroundTheme>>
 export const SHOW_DARK_MODE_INJECT_KEY = '__show_dark_mode__' as unknown as InjectionKey<MaybeRef<boolean>>
+export const PKG_CDN_INJECT_KEY = '__pkg_cdn__' as unknown as InjectionKey<MaybeRef<PlaygroundPkgCdn>>
 
 export const DEFAULT_THEME_COLOR = '#42b883'
 
@@ -78,3 +79,11 @@ export const GET_DARK_THEME = (theme?: PlaygroundTheme) => {
     ...theme
   } as PlaygroundTheme
 }
+
+export const DEFAULT_VUE_RUNTIME_DOM_CDN = (version: string) =>
+  `https://unpkg.com/@vue/runtime-dom@${version}/dist/runtime-dom.esm-browser.js`
+
+export const DEFAULT_VUE_COMPILER_SFC_CDN = (version: string) =>
+  `https://unpkg.com/@vue/compiler-sfc@${version}/dist/compiler-sfc.esm-browser.js`
+
+export const DEFAULT_ES_MODULE_SHIMS_CDN = 'https://unpkg.com/es-module-shims@0.10.1/dist/es-module-shims.min.js'

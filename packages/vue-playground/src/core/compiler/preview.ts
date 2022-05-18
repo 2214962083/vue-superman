@@ -3,8 +3,11 @@ import {Store} from '../store'
 import {PreviewProxy} from './preview-proxy'
 import PreviewIframe from './preview-iframe.html?raw'
 import {compileModulesForPreview} from './module-compiler'
+import {DEFAULT_ES_MODULE_SHIMS_CDN} from '../../playground/constants'
+import type {PlaygroundPkgCdn} from '../../playground/utils/types-helper'
 
 export interface PreviewOptions {
+  pkgCdn?: PlaygroundPkgCdn
   store: Store
   onBeforeDestroy?: () => void
   onBeforeLoad?: () => void
@@ -17,6 +20,7 @@ export class Preview {
   sandboxEl?: HTMLIFrameElement
   previewProxy?: PreviewProxy
   store!: Store
+  pkgCdn?: PlaygroundPkgCdn
   onBeforeDestroy?: () => void
   onBeforeLoad?: () => void
   onLoad?: () => void
@@ -25,7 +29,9 @@ export class Preview {
 
   constructor(options: PreviewOptions) {
     this.store = options.store
+    this.pkgCdn = options.pkgCdn
     this.onBeforeDestroy = options.onBeforeDestroy
+    this.onBeforeLoad = options.onBeforeLoad
     this.onLoad = options.onLoad
     this.onError = options.onError
   }
@@ -58,7 +64,12 @@ export class Preview {
     if (!importMap.imports) importMap.imports = {}
     if (!importMap.imports.vue) importMap.imports.vue = this.store.state.vueRuntimeURL
 
-    this.sandboxEl.srcdoc = PreviewIframe.replace(/<!--IMPORT_MAP-->/, JSON.stringify(importMap))
+    this.sandboxEl.srcdoc = PreviewIframe.replace(/<!--IMPORT_MAP-->/, JSON.stringify(importMap)) // inject import map
+      .replace(
+        /<!--ES_MODULE_SHIMS_CDN-->/,
+        this.pkgCdn?.['es-module-shims']?.('0.10.1', '/dist/es-module-shims.min.js') || DEFAULT_ES_MODULE_SHIMS_CDN
+      ) // inject es module shims
+
     container.appendChild(this.sandboxEl)
 
     this.previewProxy = new PreviewProxy({

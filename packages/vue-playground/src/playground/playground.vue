@@ -31,7 +31,8 @@ const editorRef = ref<EditorExpose>()
 
 const store = new ReplStore({
   initFiles: props.files,
-  initImportMap: props.importMap
+  initImportMap: props.importMap,
+  pkgCdn: props.pkgCdn
 })
 
 const showDarkMode = inject(SHOW_DARK_MODE_INJECT_KEY, undefined)
