@@ -145,6 +145,7 @@ defineExpose({
 .vue-playground-preview-iframe-container :deep(iframe) {
   width: 100%;
   height: 100%;
+  min-height: 300px;
   color: var(--preview-text-color);
   background-color: var(--preview-bg-color);
   border: none;

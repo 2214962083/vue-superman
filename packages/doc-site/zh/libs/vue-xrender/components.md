@@ -5,7 +5,8 @@
 ### 介绍
 
 用于在 `template` 渲染 `jsx` 的组件。
-`jsx` function 会接收一个 `props`，`props` 的属性 `children` 指向 `<XJsx></XJsx>` 的默认插槽
+
+`jsx` function 会接收一个 `props`，`props` 的属性 `children` 指向 `<XJsx></XJsx>` 的默认插槽。
 
 ### props
 
@@ -237,11 +238,11 @@ module.exports = {
 
 ### 介绍
 
-用于渲染动态 `template` 字符串的组件
+用于渲染动态 `template` 字符串的组件。
 
-`template` 字符串可在运行时随时拼接变更
+`template` 字符串可在运行时随时拼接变更。
 
-本组件不支持传递插槽
+本组件不支持传递插槽。
 
 ### props
 

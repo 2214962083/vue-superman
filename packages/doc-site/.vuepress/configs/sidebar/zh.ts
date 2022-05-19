@@ -1,4 +1,4 @@
-import type {SidebarConfig} from '@vuepress/theme-default'
+import type {SidebarConfig, SidebarGroupCollapsible} from '@vuepress/theme-default'
 
 export const zh: SidebarConfig = {
   '/zh/guide/': [
@@ -22,9 +22,15 @@ export const zh: SidebarConfig = {
       text: 'class-mock',
       children: [
         '/zh/libs/class-mock/README.md',
-        '/zh/libs/class-mock/property-config-decorators.md',
-        '/zh/libs/class-mock/property-faker-decorators.md',
         '/zh/libs/class-mock/class-decorators.md',
+        <SidebarGroupCollapsible>{
+          text: '属性装饰器',
+          collapsible: true,
+          children: [
+            '/zh/libs/class-mock/property-config-decorators.md',
+            '/zh/libs/class-mock/property-faker-decorators.md'
+          ]
+        },
         '/zh/libs/class-mock/utils.md'
       ]
     }
