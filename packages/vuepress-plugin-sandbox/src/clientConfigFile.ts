@@ -17,6 +17,10 @@ export default defineClientConfig({
       // set global css
       const styleEl = document.createElement('style')
       styleEl.innerHTML = `
+      .demo-container {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
       .demo-container + .demo-container {
         margin-top: 3rem;
       }

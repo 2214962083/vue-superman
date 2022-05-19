@@ -11,6 +11,11 @@ export default defineClientConfig({
       configLoadSandbox(preOptions => {
         return {
           ...preOptions,
+          pkgCdn: {
+            '@vue/runtime-dom'(version) {
+              return `https://unpkg.com/vue@${version}/dist/vue.esm-browser.js`
+            }
+          },
           lifeCycle: {
             // TODO: FIX types declaration
             loadTsLibs(_, defaultTsLibs) {

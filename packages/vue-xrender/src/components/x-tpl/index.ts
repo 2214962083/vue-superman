@@ -68,6 +68,14 @@ const vm = defineComponent({
     if (isVue2) {
       finalCtx.$slots = $slots
     } else {
+      if (finalCtx._) {
+        // $parent is vm, not setup sugar expose
+        const _vm = finalCtx._
+        finalCtx = {
+          ...vm.data,
+          ..._vm.setupState
+        }
+      }
       // vue3 cover $slots will throw error
       finalCtx = {
         ...finalCtx,
