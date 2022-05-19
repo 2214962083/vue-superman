@@ -1,4 +1,14 @@
-## 0.1.5 (2022-05-17)
+## 0.1.6 (2022-05-19)
+
+### Bug Fixes
+
+- **vue-xrender:** xTpl component throw warnning ([e12cef4](https://github.com/2214962083/vue-superman/commit/e12cef403121301cf57fcbd74d21e08519af8e95))
+
+### Features
+
+- **vue-playground:** add custom cdn supports ([4fb37e4](https://github.com/2214962083/vue-superman/commit/4fb37e44ac53cdb3af253f46044c7f90426acb26))
+
+## 0.1.6 (2022-05-17)
 
 ### Bug Fixes
 

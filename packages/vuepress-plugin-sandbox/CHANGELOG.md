@@ -1,4 +1,10 @@
-## 0.1.5 (2022-05-17)
+## 0.1.6 (2022-05-19)
+
+### Bug Fixes
+
+- **vue-xrender:** xTpl component throw warnning ([e12cef4](https://github.com/2214962083/vue-superman/commit/e12cef403121301cf57fcbd74d21e08519af8e95))
+
+## 0.1.6 (2022-05-17)
 
 ### Bug Fixes
 

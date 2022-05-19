@@ -1,6 +1,6 @@
 {
   "name": "vue-superman",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": true,
   "packageManager": "pnpm@6.32.3",
   "description": "vue useful lib collection, use vue like a superman",
