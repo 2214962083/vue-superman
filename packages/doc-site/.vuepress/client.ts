@@ -2,11 +2,14 @@ import {defineClientConfig} from '@vuepress/client'
 import {configLoadSandbox, SHOW_DARK_MODE_INJECT_KEY} from 'vuepress-plugin-sandbox/client'
 import {useMutationObserver} from '@vueuse/core'
 import {provide, ref} from 'vue'
+import pkg from '../package.json'
 import vueXrenderTypes from 'vue-xrender/dist/index.d.ts?raw'
 import classMockTypes from 'class-mock/dist/index.d.ts?raw'
 
 export default defineClientConfig({
-  async enhance() {
+  async enhance({app}) {
+    app.config.globalProperties.version = pkg.version
+
     if (!__VUEPRESS_SSR__) {
       configLoadSandbox(preOptions => {
         return {
