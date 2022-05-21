@@ -4,34 +4,34 @@
 
 ## useJsx
 
-### 介绍
+### Introduction
 
-一个可以自动注册 `jsx` 为 `component` 的 `hooks`。
+A `hooks` that can automatically register `jsx` as a `component`.
 
-可以像 `react` 一样组合 `jsx component` 使用。
+Can be combined with jsx components just like `react`.
 
-`jsx` function 会接收一个 `props`，`props` 的属性 `children` 指向 `jsx component` 的默认插槽。
+The `jsx` function will receive a `props` whose property `children` points to the default slot of the `jsx component`.
 
-可以和 `template` 混写。
+Can be mixed with `template`.
 
-### 参数
+### Parameters
 
 ```ts
 /**
- * @param jsxFn jsx 函数，函数接收一个 props，props.children 是默认插槽
- * @return vue component 构造器
+ * @param jsxFn jsx function, the function receives a props, props.children is the default slot
+ * @return vue component constructor
  */
 function useJsx(jsxFn: Function | Jsx.Element): Component
 
 /**
- * @param name 在当前页面以该 name 注册 jsx 为一个新组件
- * @param jsxFn jsx 函数，函数接收一个 props，props.children 是默认插槽
- * @return vue component 构造器
+ * @param name Register jsx as a new component with this name on the current page
+ * @param jsxFn jsx function, the function receives a props, props.children is the default slot
+ * @return vue component constructor
  */
 function useJsx(name: string, jsxFn: Function | Jsx.Element): Component
 ```
 
-### 用法
+### Usage
 
 :::: code-group
 ::: code-group-item setup function
@@ -39,7 +39,7 @@ function useJsx(name: string, jsxFn: Function | Jsx.Element): Component
 ```vue
 <template>
   <card>
-    <div>来自 template 的 Card 组件的 children</div>
+    <div>The children of the Card component from template</div>
   </card>
 </template>
 
@@ -55,21 +55,21 @@ export default defineComponent({
       time.value++
     }, 1000)
 
-    // 静态 jsx
-    const SubTitle = useJsx(<h3>子标题: 第一帧 time 值: {time.value}s</h3>)
+    // Static jsx
+    const SubTitle = useJsx(<h3>Subtitle: The time of first frame is: {time.value}s</h3>)
 
-    // 动态 jsx
+    // Dynamic jsx
     const Title = useJsx(props => (
       <div>
-        <h1>标题：动态 time 值: {time.value}s</h1>
+        <h1>Title: Dynamic time values: {time.value}s</h1>
         {props.children}
       </div>
     ))
 
-    // 当 useJsx 第一个参数为字符串时，默认为 component name 注册该 jsx 为 component
+    // When the first parameter of useJsx is a string, the default is the component name to register the jsx as a component
     useJsx('Card', props => (
       <div>
-        <h1>Card 组件，在 setup 中用 useJsx 创建，在模板中使用</h1>
+        <h1>Card component, created with useJsx in setup, used in template</h1>
         <Title>
           <SubTitle></SubTitle>
         </Title>
@@ -97,21 +97,21 @@ setInterval(() => {
   time.value++
 }, 1000)
 
-// 静态 jsx
-const SubTitle = useJsx(<h3>子标题: 第一帧 time 值: {time.value}s</h3>)
+// Static jsx
+const SubTitle = useJsx(<h3>Subtitle: The time of first frame is: {time.value}s</h3>)
 
-// 动态 jsx
+// Dynamic jsx
 const Title = useJsx(props => (
   <div>
-    <h1>标题：动态 time 值: {time.value}s</h1>
+    <h1>Title: Dynamic time values: {time.value}s</h1>
     {props.children}
   </div>
 ))
 
-// 当 useJsx 第一个参数为字符串时，默认为 component name 注册该 jsx 为 component
+// When the first parameter of useJsx is a string, the default is the component name to register the jsx as a component
 useJsx('Card', props => (
   <div>
-    <h1>Card 组件，在 setup 中用 useJsx 创建，在模板中使用</h1>
+    <h1>Card component, created with useJsx in setup, used in template</h1>
     <Title>
       <SubTitle></SubTitle>
     </Title>
@@ -121,7 +121,7 @@ useJsx('Card', props => (
 </script>
 <template>
   <card>
-    <div>来自 template 的 Card 组件的 children</div>
+    <div>The children of the Card component from template</div>
   </card>
 </template>
 ```
@@ -129,14 +129,14 @@ useJsx('Card', props => (
 :::
 ::::
 
-### 示例
+### Example
 
 ::: demo useJsx Demo
 
 ```vue App.vue
 <template>
   <card>
-    <div>来自 template 的 Card 组件的 children</div>
+    <div>The children of the Card component from template</div>
   </card>
 </template>
 
@@ -152,21 +152,21 @@ export default defineComponent({
       time.value++
     }, 1000)
 
-    // 静态 jsx
-    const SubTitle = useJsx(<h3>子标题: 第一帧 time 值: {time.value}s</h3>)
+    // Static jsx
+    const SubTitle = useJsx(<h3>Subtitle: The time of first frame is: {time.value}s</h3>)
 
-    // 动态 jsx
+    // Dynamic jsx
     const Title = useJsx(props => (
       <div>
-        <h1>标题：动态 time 值: {time.value}s</h1>
+        <h1>Title: Dynamic time values: {time.value}s</h1>
         {props.children}
       </div>
     ))
 
-    // 当 useJsx 第一个参数为字符串时，默认为 component name 注册该 jsx 为 component
+    // When the first parameter of useJsx is a string, the default is the component name to register the jsx as a component
     useJsx('Card', props => (
       <div>
-        <h1>Card 组件，在 setup 中用 useJsx 创建，在模板中使用</h1>
+        <h1>Card component, created with useJsx in setup, used in template</h1>
         <Title>
           <SubTitle></SubTitle>
         </Title>
@@ -182,6 +182,6 @@ export default defineComponent({
 
 :::
 
-### 注意
+### Notice
 
-[请查看 jsx 注意事项](components.md#注意)
+[Please see jsx notice](components.md#notice)

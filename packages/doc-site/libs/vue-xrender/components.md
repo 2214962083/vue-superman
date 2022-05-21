@@ -1,31 +1,31 @@
-# 组件
+# Components
 
 [[toc]]
 
 ## XJsx
 
-### 介绍
+### Introduction
 
-用于在 `template` 渲染 `jsx` 的组件。
+Component for rendering `jsx` in `template`.
 
-`jsx` function 会接收一个 `props`，`props` 的属性 `children` 指向 `<XJsx></XJsx>` 的默认插槽。
+The `jsx` function will receive a `props`, the `children` property of `props` points to the default slot of `<XJsx></XJsx>`.
 
-### props
+### Props
 
-| 参数 | 说明             | 类型                                                                                              | 是否必填 | 默认值 |
-| ---- | ---------------- | ------------------------------------------------------------------------------------------------- | -------- | ------ |
-| jsx  | 要动态渲染的 jsx | `FunctionComponent` \|<br/><br/> `VNode` \|<br/><br/>`(props: Object, h: CreateElement) => VNode` | 是       | -      |
+| prop | description               | type                                                                                              | required | default |
+| ---- | ------------------------- | ------------------------------------------------------------------------------------------------- | -------- | ------- |
+| jsx  | jsx to render dynamically | `FunctionComponent` \|<br/><br/> `VNode` \|<br/><br/>`(props: Object, h: CreateElement) => VNode` | true     | -       |
 
-### 用法
+### Usage
 
-#### composition-api 使用
+#### Use with composition-api
 
 :::: code-group
 ::: code-group-item setup function
 
 ```vue
 <template>
-  <x-jsx :jsx="CardJsx"> CardJsx 的 children 节点 </x-jsx>
+  <x-jsx :jsx="CardJsx"> The children node of CardJsx </x-jsx>
 </template>
 
 <script lang="tsx">
@@ -45,8 +45,8 @@ export default defineComponent({
 
     const CardJsx: JsxFn = props => (
       <div>
-        <h1>CardJsx 组件，在 setup jsx 函数中创建，在模板中使用</h1>
-        <h2>CardJsx 实时时间: {time.value}s</h2>
+        <h1>CardJsx component, created in setup jsx function, used in template</h1>
+        <h2>CardJsx real time: {time.value}s</h2>
         {props.children}
       </div>
     )
@@ -75,25 +75,25 @@ setInterval(() => {
 
 const CardJsx: JsxFn = props => (
   <div>
-    <h1>CardJsx 组件，在 setup jsx 函数中创建，在模板中使用</h1>
-    <h2>CardJsx 实时时间: {time.value}s</h2>
+    <h1>CardJsx component, created in setup jsx function, used in template</h1>
+    <h2>CardJsx real time: {time.value}s</h2>
     {props.children}
   </div>
 )
 </script>
 <template>
-  <x-jsx :jsx="CardJsx"> CardJsx 的 children 节点 </x-jsx>
+  <x-jsx :jsx="CardJsx"> The children node of CardJsx </x-jsx>
 </template>
 ```
 
 :::
 ::::
 
-#### options-api 使用
+#### Use with options-api
 
 ```vue
 <template>
-  <x-jsx :jsx="CardJsx"> CardJsx 的 children 节点 </x-jsx>
+  <x-jsx :jsx="CardJsx"> The children node of CardJsx </x-jsx>
 </template>
 
 <script lang="jsx">
@@ -112,8 +112,8 @@ export default {
     CardJsx() {
       return props => (
         <div>
-          <h1>CardJsx 组件，在 computed 中创建，在模板中使用</h1>
-          <h2>CardJsx 实时时间: {this.time}s</h2>
+          <h1>CardJsx component, created in computed, used in template</h1>
+          <h2>CardJsx real time: {this.time}s</h2>
           {props.children}
         </div>
       )
@@ -128,13 +128,13 @@ export default {
 </script>
 ```
 
-### 示例
+### Example
 
 ::: demo XJsx Demo
 
 ```vue App.vue
 <template>
-  <x-jsx :jsx="CardJsx"> CardJsx 的 children 节点 </x-jsx>
+  <x-jsx :jsx="CardJsx"> The children node of CardJsx </x-jsx>
 </template>
 
 <script lang="tsx">
@@ -154,8 +154,8 @@ export default defineComponent({
 
     const CardJsx: JsxFn = props => (
       <div>
-        <h1>CardJsx 组件，在 setup jsx 函数中创建，在模板中使用</h1>
-        <h2>CardJsx 实时时间: {time.value}s</h2>
+        <h1>CardJsx component, created in setup jsx function, used in template</h1>
+        <h2>CardJsx real time: {time.value}s</h2>
         {props.children}
       </div>
     )
@@ -170,15 +170,15 @@ export default defineComponent({
 
 :::
 
-### 注意
+### Notice
 
-项目要配置 Jsx 编译器，否则无法编译 Jsx 语法
+The project needs to configure the Jsx compiler, otherwise the Jsx syntax cannot be compiled
 
-- [vue3 babel jsx 插件](https://github.com/vuejs/babel-plugin-jsx#installation)
-- [vue2 babel jsx 插件](https://github.com/vuejs/jsx-vue2)
-- [vue3 vite jsx 插件](https://github.com/vitejs/vite/tree/main/packages/plugin-vue-jsx)
+- [Vue3 babel jsx plugin](https://github.com/vuejs/babel-plugin-jsx#installation)
+- [Vue2 babel jsx plugin](https://github.com/vuejs/jsx-vue2)
+- [Vue3 vite jsx plugin](https://github.com/vitejs/vite/tree/main/packages/plugin-vue-jsx)
 
-下面演示一下 vite jsx 配置
+Let's demonstrate the vite jsx configuration
 
 :::: code-group
 ::: code-group-item vue3
@@ -217,7 +217,7 @@ export default defineConfig({
 :::
 ::::
 
-如果你正在用 [`@typescript-eslint/parser`](https://github.com/typescript-eslint/typescript-eslint) 记得配置一下 `jsx` 为 `true`，否则会报错，比如
+If you are using [`@typescript-eslint/parser`](https://github.com/typescript-eslint/typescript-eslint) remember to configure `jsx` to `true`, otherwise an error will be reported, do this in `.eslintrc.js`
 
 ```js
 // .eslintrc.js
@@ -229,7 +229,7 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     sourceType: 'module',
     ecmaFeatures: {
-      jsx: true // 启用 jsx 语法解析
+      jsx: true // Enable jsx parsing
     }
   }
   // ....
@@ -238,24 +238,24 @@ module.exports = {
 
 ## XTpl
 
-### 介绍
+### Introduction
 
-用于渲染动态 `template` 字符串的组件。
+Component for rendering dynamic `template` strings.
 
-`template` 字符串可在运行时随时拼接变更。
+The `template` string can be changed at any time at runtime.
 
-本组件不支持传递插槽。
+This component does not support pass-through slots.
 
-### props
+### Props
 
-| 参数 | 说明                         | 类型   | 是否必填 | 默认值               |
-| ---- | ---------------------------- | ------ | -------- | -------------------- |
-| tpl  | 要动态编译的 template 字符串 | string | 是       | -                    |
-| ctx  | template 字符串的上下文      | Object | 否       | XTpl.$parent \|\| {} |
+| prop | description                                | type   | required | default              |
+| ---- | ------------------------------------------ | ------ | -------- | -------------------- |
+| tpl  | template string to be dynamically compiled | string | true     | -                    |
+| ctx  | the context of the template string         | Object | false    | XTpl.$parent \|\| {} |
 
-### 用法
+### Usage
 
-#### composition-api 使用
+#### Use with composition-api
 
 :::: code-group
 ::: code-group-item setup function
@@ -282,13 +282,13 @@ export default defineComponent({
 
     const CardTpl = `
       <div>
-        <h1>CardTpl 动态模板字符串，在模板中使用</h1>
-        <h2>CardTpl 实时时间: {{time}}s</h2>
+        <h1>CardTpl dynamic template string, used in template</h1>
+        <h2>CardTpl real time: {{time}}s</h2>
       </div>
     `
 
     return {
-      time, // 注意要在此处暴露 time，否则 vm 实例上会找不到 time 渲染
+      time, // Be careful to expose the time here, otherwise the time rendering will not be found on the vm instance
       CardTpl
     }
   }
@@ -312,13 +312,13 @@ setInterval(() => {
 
 const CardTpl = `
   <div>
-    <h1>CardTpl 动态模板字符串，在模板中使用</h1>
-    <h2>CardTpl 实时时间: {{time}}s</h2>
+    <h1>CardTpl dynamic template string, used in template</h1>
+    <h2>CardTpl real time: {{time}}s</h2>
   </div>
 `
 
 defineExpose({
-  time // 注意要在此处暴露 time，否则 vm 实例上会找不到 time 渲染
+  time // Be careful to expose the time here, otherwise the time rendering will not be found on the vm instance
 })
 </script>
 <template>
@@ -329,7 +329,7 @@ defineExpose({
 :::
 ::::
 
-#### options-api 使用
+#### Use with options-api
 
 ```vue
 <template>
@@ -348,8 +348,8 @@ export default {
       time: 0,
       CardTpl: `
         <div>
-          <h1>CardTpl 动态模板字符串，在模板中使用</h1>
-          <h2>CardTpl 实时时间: {{time}}s</h2>
+          <h1>CardTpl dynamic template string, used in template</h1>
+          <h2>CardTpl real time: {{time}}s</h2>
         </div>
       `
     }
@@ -363,7 +363,7 @@ export default {
 </script>
 ```
 
-### 示例
+### Example
 
 ::: demo XTpl Demo
 
@@ -389,13 +389,13 @@ export default defineComponent({
 
     const CardTpl = `
       <div>
-        <h1>CardTpl 动态模板字符串，在模板中使用</h1>
-        <h2>CardTpl 实时时间: {{time}}s</h2>
+        <h1>CardTpl dynamic template string, used in template</h1>
+        <h2>CardTpl real time: {{time}}s</h2>
       </div>
     `
 
     return {
-      time, // 注意要在此处暴露 time，否则 vm 实例上会找不到 time 渲染
+      time, // Be careful to expose the time here, otherwise the time rendering will not be found on the vm instance
       CardTpl
     }
   }
@@ -405,11 +405,11 @@ export default defineComponent({
 
 :::
 
-### 注意
+### Notice
 
-**该组件依赖于 vue 运行时 compiler**，请在打包器配置将别名（alias）指向 **vue 完整版**
+**This component depends on the vue runtime compiler**, please point the alias (alias) to the **vue full version**in the packager configuration
 
-#### vue3 配置完整版 vue
+#### Vue3 configure the full version of vue
 
 :::: code-group
 ::: code-group-item vite.config.js
@@ -462,7 +462,7 @@ module.exports = {
 :::
 ::::
 
-#### vue2 配置完整版 vue
+#### Vue2 configure the full version of vue
 
 :::: code-group
 ::: code-group-item vite.config.js

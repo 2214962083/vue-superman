@@ -1,10 +1,10 @@
-# 介绍
+# Introduction
 
-一个可以让你在 `template` 里渲染 `jsx` 或 `tsx` 组件的库，让你的 `ui` 渲染更灵活。
+A library that lets you render `jsx` or `tsx` components in a `template`, making your `ui` rendering more flexible.
 
-支持 `vue2` 和 `vue3`。
+`vue2` and `vue3` are supported.
 
-## 安装
+## Installation
 
 :::: code-group
 ::: code-group-item npm
@@ -30,7 +30,7 @@ pnpm add vue-xrender
 :::
 ::::
 
-## 浏览器(CDN)
+## Use in browser (CDN)
 
 ```html:no-v-pre
 <!-- Unpkg -->
@@ -40,7 +40,7 @@ pnpm add vue-xrender
 <script src="https://cdn.jsdelivr.net/npm/vue-xrender@{{version}}" />
 ```
 
-## 示例
+## Example
 
 ::: demo Vue Xrender Demo
 
@@ -54,21 +54,21 @@ setInterval(() => {
   time.value++
 }, 1000)
 
-// 静态 jsx
-const SubTitle = useJsx(<h3>子标题: 第一帧 time 值: {time.value}s</h3>)
+// Static jsx
+const SubTitle = useJsx(<h3>Subtitle: The time of first frame is: {time.value}s</h3>)
 
-// 动态 jsx
+// Dynamic jsx
 const Title = useJsx(props => (
   <div>
-    <h1>标题：动态 time 值: {time.value}s</h1>
+    <h1>Title: Dynamic time values: {time.value}s</h1>
     {props.children}
   </div>
 ))
 
-// 当 useJsx 第一个参数为字符串时，默认为 component name 注册该 jsx 为 component
+// When the first parameter of useJsx is a string, the default is the component name to register the jsx as a component
 useJsx('Card', props => (
   <div>
-    <h1>Card 组件，在 setup 中用 useJsx 创建，在模板中使用</h1>
+    <h1>Card component, created with useJsx in setup, used in template</h1>
     <Title>
       <SubTitle></SubTitle>
     </Title>
@@ -78,21 +78,21 @@ useJsx('Card', props => (
 
 const CardJsx: JsxFn = props => (
   <div>
-    <h1>CardJsx 组件，在 setup jsx 函数中创建，在模板中使用</h1>
-    <h2>CardJsx 实时时间: {time.value}s</h2>
+    <h1>CardJsx component, created in setup jsx function, used in template</h1>
+    <h2>CardJsx real time: {time.value}s</h2>
     {props.children}
   </div>
 )
 
 const CardTpl = `
   <div>
-    <h1>CardTpl 动态模板字符串，在模板中使用</h1>
-    <h2>CardTpl 实时时间: {{time}}s</h2>
+    <h1>CardTpl dynamic template string, used in template</h1>
+    <h2>CardTpl real time: {{time}}s</h2>
   </div>
 `
 
 defineExpose({
-  time // 注意要在此处暴露 time，否则 vm 实例上会找不到 time 渲染
+  time // Be careful to expose the time here, otherwise the time rendering will not be found on the vm instance
 })
 </script>
 
@@ -102,10 +102,10 @@ defineExpose({
     <br />
     <br />
     <card>
-      <div>来自 template 的 Card 组件的 children</div>
+      <div>The children of the Card component from template</div>
     </card>
 
-    <x-jsx :jsx="CardJsx"> CardJsx 的 children 节点 </x-jsx>
+    <x-jsx :jsx="CardJsx"> The children node of CardJsx </x-jsx>
     <x-tpl :tpl="CardTpl" />
   </div>
 </template>

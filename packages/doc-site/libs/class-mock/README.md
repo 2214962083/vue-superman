@@ -8,7 +8,7 @@ Finally, when `createMock(MockClass)` is executed, all metadata (configuration d
 
 Supports any `ts` project or [@babel/plugin-proposal-decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) (`legacy` is `true`) `js` project.
 
-## Install
+## Installation
 
 :::: code-group
 ::: code-group-item npm
