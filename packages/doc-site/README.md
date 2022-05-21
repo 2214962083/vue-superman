@@ -4,10 +4,10 @@ title: Home
 heroImage: /images/logo.png
 actions:
   - text: Get Started
-    link: /guide/getting-started.html
-    type: primary
-  - text: Introduction
     link: /guide/
+    type: primary
+  - text: Github
+    link: https://github.com/2214962083/vue-superman
     type: secondary
 features:
   - title: vue-xrender
