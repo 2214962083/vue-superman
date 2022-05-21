@@ -2,6 +2,10 @@
 
 一个可以让你用装饰器配合 class 生成假数据的 mock 库。基于 [@faker-js/faker](https://github.com/faker-js/faker)。
 
+`class-mock` 装饰器本质只是存储元数据（配置数据），并不会对类进行修改。
+
+最后在 `createMock(MockClass)` 执行时，会取出 `MockClass` 的所有元数据（配置数据），然后配合 `@faker-js/faker` 进行数据生成。
+
 支持任何 `ts` 项目或装了 [@babel/plugin-proposal-decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) (`legacy` 为 `true`) 的 `js` 项目。
 
 ## 安装

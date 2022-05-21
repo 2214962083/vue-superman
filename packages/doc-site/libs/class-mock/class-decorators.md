@@ -1,26 +1,26 @@
-# 类装饰器
+# Class Decorators
 
 [[toc]]
 
-## 类的元数据（配置数据）
+## Class Metadata (configuration)
 
-类的元数据（配置数据）结构如下:
+The metadata (configuration) structure of the class is as follows:
 
 ```ts
 interface ClassDecoratorConfig {
   /**
-   * 默认为 auto
-   * auto | null | undefined: 不干扰属性的存在与否
-   * include: 默认该 class 下拥有装饰器的属性必定会存在
-   * exclude: 默认该 class 下拥有装饰器的属性必定不会存在
-   * partial: 默认该 class 下拥有装饰器的属性有时会存在，有时不会存在
+   * @default 'auto'
+   * 'auto' | null | undefined: Does not interfere with the presence or absence of class properties.
+   * 'include': By default, the properties with decorators under the class must exist
+   * 'exclude': By default, the properties with decorators under the class must not exist
+   * 'partial': By default, the properties with decorators under the class sometimes it exists, sometimes it doesn't
    */
   partial?: 'auto' | 'include' | 'exclude' | 'partial' | undefined | null
 
   /**
-   * 默认为 true
-   * false: 默认该 class 下拥有装饰器的属性在同一个 js runtime 里复用第一次生成的随机值
-   * true: 默认该 class 下拥有装饰器的属性在同一个 js runtime 里每次都生成新的随机值
+   * @default true
+   * false: By default, the properties with decorators under the class reuse the first generated random value in the same js runtime
+   * true: By default, the properties with decorators under the class generate new random values every time in the same js runtime
    */
   alwaysRandom?: boolean
 }
@@ -28,33 +28,30 @@ interface ClassDecoratorConfig {
 
 ## @DefaultPartial
 
-设置类元数据（配置数据）的 `partial` 属性为 `partial`。
+Set the `partial` of class metadata (configuration) to `partial`.
 
-即设置默认该 class 下拥有装饰器的属性有时会存在，有时不会存在：
+That is, the properties with decorators under the class sometimes it exists, sometimes it doesn't：
 
 ```ts
 import {DefaultPartial, Random, IsInclude} from 'class-mock'
 
-/**
- * 默认该 class 下拥有装饰器的属性有时会存在，有时不会存在
- */
 @DefaultPartial()
 class Student {
   /**
-   * 本属性默认有时候会存在，有时候不会存在
+   * By default, this property sometimes exists, sometimes it does not exist
    */
   @Random.words(5)
   name?: string
 
   /**
-   * 强制本属性存在
+   * Force this property to exist
    */
   @IsInclude()
   @Random.number()
   age!: number
 
   /**
-   * 没有装饰器的属性不参与数据生成
+   * property without decorators do not participate in data generation
    */
   like?: string[]
 }
@@ -62,33 +59,30 @@ class Student {
 
 ## @DefaultInclude
 
-设置类元数据（配置数据）的 `partial` 属性为 `include`。
+Set the `partial` of class metadata (configuration) to `include`.
 
-即设置默认该 class 下拥有装饰器的属性必定会存在：
+That is, by default, the properties with decorators under the class must exist:
 
 ```ts
 import {DefaultInclude, Random, IsPartial} from 'class-mock'
 
-/**
- * 默认该 class 下拥有装饰器的属性必定会存在
- */
 @DefaultInclude()
 class Student {
   /**
-   * 本属性默认存在
+   * This property exists by default
    */
   @Random.words(5)
   name?: string
 
   /**
-   * 强制本属性有时候会存在，有时候不会存在
+   * Force this property sometimes exists, sometimes not
    */
   @IsPartial()
   @Random.number()
   age!: number
 
   /**
-   * 没有装饰器的属性不参与数据生成
+   * property without decorators do not participate in data generation
    */
   like?: string[]
 }

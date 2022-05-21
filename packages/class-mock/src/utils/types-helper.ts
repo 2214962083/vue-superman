@@ -19,12 +19,12 @@ export interface ArrayConfig {
   /**
    * min length of array, if max is defined, min will default be 0
    */
-  max?: number | Nil
+  min?: number | Nil
 
   /**
    * max length of array, if min is defined, max will default be 50
    */
-  min?: number | Nil
+  max?: number | Nil
 }
 
 export interface BasePropertyConfig extends ArrayConfig {

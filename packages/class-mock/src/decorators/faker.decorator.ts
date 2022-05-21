@@ -45,7 +45,6 @@ export const Music = createFakeProxy('music')
 export const Name = createFakeProxy('name')
 export const Phone = createFakeProxy('phone')
 export const System = createFakeProxy('system')
-export const Time = createFakeProxy('time')
 export const Vehicle = createFakeProxy('vehicle')
 export const Word = createFakeProxy('word')
 

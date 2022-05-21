@@ -10,6 +10,7 @@ export {
   IsNotAlwaysRandom,
   IsArray,
   IsNotArray,
+  Groups,
   // entity decorator
   Entity,
   // faker decorators
@@ -34,7 +35,6 @@ export {
   Name,
   Phone,
   System,
-  Time,
   Vehicle,
   Word,
   // class decorators

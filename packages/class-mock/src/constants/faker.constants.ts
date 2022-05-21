@@ -19,7 +19,6 @@ export const fakeProps = [
   'name',
   'phone',
   'system',
-  'time',
   'vehicle',
   'word'
 ] as const

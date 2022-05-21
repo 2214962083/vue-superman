@@ -31,6 +31,8 @@ export const zh: SidebarConfig = {
             '/zh/libs/class-mock/property-faker-decorators.md'
           ]
         },
+        '/zh/libs/class-mock/property-entity-decorators.md',
+        '/zh/libs/class-mock/property-custom-decorators.md',
         '/zh/libs/class-mock/utils.md'
       ]
     }

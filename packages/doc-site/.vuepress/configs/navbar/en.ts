@@ -11,11 +11,11 @@ export const en: NavbarConfig = [
     children: [
       {
         text: 'vue-xrender',
-        children: ['/libs/vue-xrender/README.md']
+        link: '/libs/vue-xrender/README.md'
       },
       {
         text: 'class-mock',
-        children: ['/libs/class-mock/README.md']
+        link: '/libs/class-mock/README.md'
       }
     ]
   },
