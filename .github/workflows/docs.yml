@@ -35,19 +35,38 @@ jobs:
       - name: Install Dependencies and build all packages
         run: pnpm bootstrap
 
+      # - name: deploy docs to vercel
+      #   uses: BetaHuhn/deploy-to-vercel-action@v1
+      #   # see: https://github.com/BetaHuhn/deploy-to-vercel-action
+      #   with:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      #     VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      #     VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_DOC_SITE }}
+      #     # for team settings
+      #     VERCEL_SCOPE: ${{ secrets.VERCEL_ORG_ID }}
+      #     # the docs build dist folder
+      #     WORKING_DIRECTORY: ./packages/doc-site/.vuepress/dist
+      #     # bind domains
+      #     # ALIAS_DOMAINS: |
+      #     #   docs.vue-superman.com
+      #     #   docs.vue-superman.cn
+
       - name: deploy docs to vercel
-        uses: BetaHuhn/deploy-to-vercel-action@v1
-        # see: https://github.com/BetaHuhn/deploy-to-vercel-action
+        uses: amondnet/vercel-action@v20
+        # see: https://github.com/amondnet/vercel-action
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_DOC_SITE }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_DOC_SITE }}
           # for team settings
-          VERCEL_SCOPE: ${{ secrets.VERCEL_ORG_ID }}
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+          # just like npx vercel --prod
+          vercel-args: '--prod'
           # the docs build dist folder
-          WORKING_DIRECTORY: ./packages/doc-site/.vuepress/dist
+          working-directory: ./packages/doc-site/.vuepress/dist
           # bind domains
-          # ALIAS_DOMAINS: |
+          # alias-domains: |
           #   docs.vue-superman.com
           #   docs.vue-superman.cn
