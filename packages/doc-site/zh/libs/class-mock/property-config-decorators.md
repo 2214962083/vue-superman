@@ -14,7 +14,6 @@ interface BasePropertyConfig {
    * 'partial' | true: 强制从 mock 结果中随机删除该属性
    * 'include' | false: 强制从 mock 结果中包含该属性
    * 'exclude': 强制从 mock 结果中删除该属性
-   * @default 无
    */
   partial?: 'auto' | 'include' | 'exclude' | 'partial' | boolean | undefined | null
 

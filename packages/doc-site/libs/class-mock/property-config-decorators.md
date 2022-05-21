@@ -1,48 +1,47 @@
-# 配置装饰器
+# Configure decorators
 
 [[toc]]
 
-## 属性的元数据（配置数据）
+## Metadata for properties (configuration)
 
-属性的元数据（配置数据）结构如下:
+The metadata (configuration) structure of properties is as follows:
 
 ```ts
 interface BasePropertyConfig {
   /**
-   * 默认为 'auto'
-   * 'auto' | undefined | null: 不干扰该属性的存在与否，但 class 的元数据 partial 可以覆盖它
-   * 'partial' | true: 强制从 mock 结果中随机删除该属性
-   * 'include' | false: 强制从 mock 结果中包含该属性
-   * 'exclude': 强制从 mock 结果中删除该属性
-   * @default 无
+   * @default 'auto'
+   * 'auto' | undefined | null: Does not interfere with the presence or absence of this attribute, but the class metadata partial can override it
+   * 'partial' | true: force the property to be randomly removed from the mock result
+   * 'include' | false: Force this property to be included from the mock result
+   * 'exclude': Force the property to be removed from the mock result
    */
   partial?: 'auto' | 'include' | 'exclude' | 'partial' | boolean | undefined | null
 
   /**
-   * 默认为 true
-   * false: 强制该属性复用第一次生成的随机值
-   * true: 强制该属性每次都生成新的随机值
+   * @default true
+   * false: Force this property to reuse the random value generated the first time
+   * true: Force this property to generate a new random value every time
    */
   alwaysRandom?: boolean
 
   /**
-   * 默认为 undefined
-   * 该属性仅在这些组中生成，组将由 createMock 提供
+   * @default undefined
+   * The property is only generated in these groups, the groups will be provided by createMock
    */
   groups?: string[] | undefined | null
 
   /**
-   * 默认为 false
-   * true: 该属性是一个数组
-   * false: 该属性是一个非数组值
+   * @default false
+   * true: The property is an array
+   * false: The property is a non-array value
    */
   array?: boolean
 
   /**
-   * 默认为 10
-   * 数组长度
-   * 在 array 为 true 时生效
-   * 若 min 或 max 存在，则本属性无效
+   * @default 10
+   * array length
+   * Takes effect when array is true
+   * If min or max exist, this property has no effect
    */
   length?: number | undefined | null
 

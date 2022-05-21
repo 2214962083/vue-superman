@@ -90,33 +90,30 @@ class Student {
 
 ## @DefaultExclude
 
-设置类元数据（配置数据）的 `partial` 属性为 `exclude`。
+Set the `partial` of class metadata (configuration) to `exclude`.
 
-即设置默认该 class 下拥有装饰器的属性必定不会存在：
+By default, the properties with decorators under the class must not exist:
 
 ```ts
 import {DefaultExclude, Random, IsInclude} from 'class-mock'
 
-/**
- * 默认该 class 下拥有装饰器的属性必定不会存在
- */
 @DefaultExclude()
 class Student {
   /**
-   * 本属性默认不存在
+   * This property does not exist by default
    */
   @Random.words(5)
   name?: string
 
   /**
-   * 强制本属性存在
+   * Force this property to exist
    */
   @IsInclude()
   @Random.number()
   age!: number
 
   /**
-   * 没有装饰器的属性不参与数据生成
+   * property without decorators do not participate in data generation
    */
   like?: string[]
 }
@@ -124,33 +121,30 @@ class Student {
 
 ## @DefaultAlwaysRandom
 
-设置类元数据（配置数据）的 `alwaysRandom` 属性为 `true`。
+Set the `alwaysRandom` of class metadata (configuration) to `true`.
 
-即设置默认该 class 下拥有装饰器的属性在同一个 js runtime 里每次都生成新的随机值：
+By default, the properties with decorators under the class generate new random values every time in the same js runtime：
 
 ```ts
 import {DefaultAlwaysRandom, Random, IsNotAlwaysRandom} from 'class-mock'
 
-/**
- * 默认该 class 下拥有装饰器的属性在同一个 js runtime 里每次都生成新的随机值
- */
 @DefaultAlwaysRandom()
 class Student {
   /**
-   * 本属性默认在同一个 js runtime 里每次都生成新的随机值
+   * This property generates a new random value every time in the same js runtime by default
    */
   @Random.words(5)
   name?: string
 
   /**
-   * 强制本属性在同一个 js runtime 里每次都复用第一次生成的随机值
+   * Force this property to reuse the first generated random value every time in the same js runtime
    */
   @IsNotAlwaysRandom()
   @Random.number()
   age!: number
 
   /**
-   * 没有装饰器的属性不参与数据生成
+   * property without decorators do not participate in data generation
    */
   like?: string[]
 }
@@ -158,39 +152,36 @@ class Student {
 
 ## @DefaultNotAlwaysRandom
 
-设置类元数据（配置数据）的 `alwaysRandom` 属性为 `false`。
+Set the `alwaysRandom` of class metadata (configuration) to `true`.
 
-即设置默认该 class 下拥有装饰器的属性在同一个 js runtime 里复用第一次生成的随机值：
+By default, the properties with decorators under the class reuse the first generated random value in the same js runtime：
 
 ```ts
 import {DefaultNotAlwaysRandom, Random, IsAlwaysRandom} from 'class-mock'
 
-/**
- * 默认该 class 下拥有装饰器的属性在同一个 js runtime 里复用第一次生成的随机值
- */
 @DefaultNotAlwaysRandom()
 class Student {
   /**
-   * 本属性默认在同一个 js runtime 里每次都复用第一次生成的随机值
+   * By default, this property reuses the random value generated for the first time every time in the same js runtime.
    */
   @Random.words(5)
   name?: string
 
   /**
-   * 强制本属性在同一个 js runtime 里每次都生成新的随机值
+   * Force this property to generate a new random value every time in the same js runtime
    */
   @IsAlwaysRandom()
   @Random.number()
   age!: number
 
   /**
-   * 没有装饰器的属性不参与数据生成
+   * property without decorators do not participate in data generation
    */
   like?: string[]
 }
 ```
 
-## 示例
+## Example
 
 ::: demo Class Mock Demo
 
@@ -219,10 +210,12 @@ class Student {
   @Fake('Hi, my name is {{name.firstName}} {{name.lastName}}!')
   introduction!: string
 
-  @IsExclude() // 排除字段，不写也可以
+  @IsExclude() // Exclude fields, you can also not write them
   privateKey!: string
 
-  // 没有数据装饰器，不参与生成
+  /**
+   * property without decorators do not participate in data generation
+   */
   like?: string[]
 }
 
