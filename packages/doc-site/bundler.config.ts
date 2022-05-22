@@ -17,6 +17,7 @@ export const bundlerConfig = {
       ]
     },
     build: {
+      chunkSizeWarningLimit: Infinity,
       rollupOptions: {
         output: {
           inlineDynamicImports: false,
