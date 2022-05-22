@@ -12,6 +12,7 @@ jobs:
       TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       TURBO_TEAM: ${{ secrets.VERCEL_TEAM }}
       TURBO_CACHE_KEY: ubuntu-latest-16 # reuse cache key from ci workflow
+      NODE_OPTIONS: '--max_old_space_size=4096'
 
     steps:
       - uses: actions/checkout@v2
