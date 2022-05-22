@@ -42,6 +42,6 @@ pnpm add vue-playground monaco-editor
 
 ## 注意
 
-本组件因为依赖于 [monaco-editor](https://github.com/microsoft/monaco-editor) ，它是 `vscode` 的一部分，所以本组件会比较大 (大概是 `6M`)。
+本组件因为依赖于 [monaco-editor](https://github.com/microsoft/monaco-editor) ，它是 `vscode` 的一部分，所以打包后会比较大。
 
 推荐用于 lowcode 项目。或者文档写 demo 。
