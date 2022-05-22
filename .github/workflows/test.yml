@@ -1,19 +1,19 @@
 name: Test
 
 on:
-  # push:
-  #   branches:
-  #     - main
-  #     - master
+  push:
+    branches:
+      - main
+      - master
 
-  # pull_request:
-  #   branches:
-  #     - main
-  #     - master
-  workflow_run:
-    workflows: ['Lint']
-    types:
-      - completed
+  pull_request:
+    branches:
+      - main
+      - master
+  # workflow_run:
+  #   workflows: ['Lint']
+  #   types:
+  #     - completed
 
 jobs:
   build:

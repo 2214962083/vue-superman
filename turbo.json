@@ -24,7 +24,7 @@
     },
     "doc-site#build": {
       "dependsOn": ["^build"],
-      "inputs": ["./**"],
+      "inputs": ["guide/**", "libs/**", "zh/**"],
       "outputs": ["./.vuepress/dist/**"]
     },
     "playground-vue2": {

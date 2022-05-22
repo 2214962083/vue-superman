@@ -1,6 +1,6 @@
 # 介绍
 
-`vuepress-plugin-sandbox` 是一个基于 [vue-playground](../vue-playground/) 的 `vuepress v2.0` 插件。
+`vuepress-plugin-sandbox` 是一个基于 [vue-playground](../vue-playground/) 的 `vuepress v2` 插件。
 
 它是一个支持实时编辑、实时编译、实时预览的 demo 插件。类似小型的 [codesandbox](https://codesandbox.io/)。
 
