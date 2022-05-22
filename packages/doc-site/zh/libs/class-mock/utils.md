@@ -1,5 +1,7 @@
 # 工具函数
 
+[[toc]]
+
 ## createMock
 
 用于生成 mock 结果的工具函数

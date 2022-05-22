@@ -1,16 +1,16 @@
-# 自定义装饰器
+# Custom decorator
 
 [[toc]]
 
 ## @MockDecorator
 
-用于自定义装饰器
+For custom decorators
 
 ```ts
 function MockDecorator<T extends Function>(mockFn: T, ...mockParams: Parameters<T>): PropertyDecorator
 ```
 
-示例
+Example:
 
 ```ts
 import {MockDecorator} from 'class-mock'

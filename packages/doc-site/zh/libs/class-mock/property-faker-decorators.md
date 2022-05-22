@@ -8,7 +8,7 @@
 
 请参考 [faker.address](https://fakerjs.dev/api/address.html)
 
-示例
+示例:
 
 ```ts
 import {Address} from 'class-mock'
@@ -25,7 +25,7 @@ class Student {
 
 请参考 [faker.animal](https://fakerjs.dev/api/animal.html)
 
-示例
+示例:
 
 ```ts
 import {Animal} from 'class-mock'
@@ -42,7 +42,7 @@ class Student {
 
 请参考 [faker.commerce](https://fakerjs.dev/api/commerce.html)
 
-示例
+示例:
 
 ```ts
 import {Commerce} from 'class-mock'
@@ -62,7 +62,7 @@ class Product {
 
 请参考 [faker.company](https://fakerjs.dev/api/company.html)
 
-示例
+示例:
 
 ```ts
 import {Company} from 'class-mock'
@@ -82,7 +82,7 @@ class MyCompany {
 
 请参考 [faker.database](https://fakerjs.dev/api/database.html)
 
-示例
+示例:
 
 ```ts
 import {Database} from 'class-mock'
@@ -102,7 +102,7 @@ class MyDatabase {
 
 请参考 [faker.datatype](https://fakerjs.dev/api/datatype.html)
 
-示例
+示例:
 
 ```ts
 import {Datatype} from 'class-mock'
@@ -119,7 +119,7 @@ class Student {
 
 请参考 [faker.date](https://fakerjs.dev/api/date.html)
 
-示例
+示例:
 
 ```ts
 import {Date} from 'class-mock'
@@ -136,7 +136,7 @@ class Student {
 
 请参考 [faker.fake](https://fakerjs.dev/api/fake.html)
 
-示例
+示例:
 
 ```ts
 import {Fake} from 'class-mock'
@@ -153,7 +153,7 @@ class Student {
 
 请参考 [faker.finance](https://fakerjs.dev/api/finance.html)
 
-示例
+示例:
 
 ```ts
 import {Finance} from 'class-mock'
@@ -173,7 +173,7 @@ class Student {
 
 请参考 [faker.git](https://fakerjs.dev/api/git.html)
 
-示例
+示例:
 
 ```ts
 import {Git} from 'class-mock'
@@ -193,7 +193,7 @@ class MyRepo {
 
 请参考 [faker.hacker](https://fakerjs.dev/api/hacker.html)
 
-示例
+示例:
 
 ```ts
 import {Hacker} from 'class-mock'
@@ -213,7 +213,7 @@ class TheHacker {
 
 请参考 [faker.helpers](https://fakerjs.dev/api/helpers.html)
 
-示例
+示例:
 
 ```ts
 import {Helpers} from 'class-mock'
@@ -230,7 +230,7 @@ class Student {
 
 请参考 [faker.image](https://fakerjs.dev/api/image.html)
 
-示例
+示例:
 
 ```ts
 import {Image} from 'class-mock'
@@ -247,7 +247,7 @@ class Student {
 
 请参考 [faker.internet](https://fakerjs.dev/api/internet.html)
 
-示例
+示例:
 
 ```ts
 import {Internet} from 'class-mock'
@@ -267,7 +267,7 @@ class Student {
 
 请参考 [faker.lorem](https://fakerjs.dev/api/lorem.html)
 
-示例
+示例:
 
 ```ts
 import {Lorem} from 'class-mock'
@@ -290,7 +290,7 @@ class Paper {
 
 请参考 [faker.mersenne](https://fakerjs.dev/api/mersenne.html)
 
-示例
+示例:
 
 ```ts
 import {Mersenne} from 'class-mock'
@@ -307,7 +307,7 @@ class Student {
 
 请参考 [faker.music](https://fakerjs.dev/api/music.html)
 
-示例
+示例:
 
 ```ts
 import {Music} from 'class-mock'
@@ -324,7 +324,7 @@ class Song {
 
 请参考 [faker.name](https://fakerjs.dev/api/name.html)
 
-示例
+示例:
 
 ```ts
 import {Name} from 'class-mock'
@@ -344,7 +344,7 @@ class Student {
 
 请参考 [faker.phone](https://fakerjs.dev/api/phone.html)
 
-示例
+示例:
 
 ```ts
 import {Phone} from 'class-mock'
@@ -364,7 +364,7 @@ class Student {
 
 请参考 [faker.random](https://fakerjs.dev/api/random.html)
 
-示例
+示例:
 
 ```ts
 import {Random} from 'class-mock'
@@ -384,7 +384,7 @@ class Student {
 
 请参考 [faker.system](https://fakerjs.dev/api/system.html)
 
-示例
+示例:
 
 ```ts
 import {System} from 'class-mock'
@@ -407,7 +407,7 @@ class MyFile {
 
 请参考 [faker.vehicle](https://fakerjs.dev/api/vehicle.html)
 
-示例
+示例:
 
 ```ts
 import {Vehicle} from 'class-mock'
@@ -427,7 +427,7 @@ class MyCar {
 
 请参考 [faker.word](https://fakerjs.dev/api/word.html)
 
-示例
+示例:
 
 ```ts
 import {Word} from 'class-mock'

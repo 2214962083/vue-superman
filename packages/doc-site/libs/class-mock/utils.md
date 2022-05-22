@@ -1,53 +1,55 @@
-# 工具函数
+# Utils
+
+[[toc]]
 
 ## createMock
 
-用于生成 mock 结果的工具函数
+Utility function for generating mock results
 
 ```ts
 interface CreateMockOptions {
   /**
-   * 默认为 undefined
-   * 是否复用 js runtime 第一次生成的随机值
-   * 级别最低的默认值
+   * @default undefined
+   * Whether to reuse the first random value of js runtime
+   * lowest level default
    */
   alwaysRandom?: boolean | undefined
 
   /**
-   * 默认为 undefined
-   * 若属性设置了 groups，则属性的 groups 和此处的 groups 存在交集时，才生成该属性
+   * @default undefined
+   * If the property is set to groups, the property is generated only when the groups of the property and the groups here have an intersection.
    */
   groups?: string[] | undefined | null
   /**
-   * 默认为 false
-   * true: 创建多个 mock class 实例
-   * false: 创建一个 mock class 实例
+   * @default false
+   * true: Create multiple mock class instances
+   * false: Create a mock class instance
    */
   array?: boolean
   /**
-   * 默认为 10
-   * 数组长度
-   * 在 array 为 true 时生效
-   * 若 min 或 max 存在，则本属性无效
+   * @default 10
+   * array length
+   * Takes effect when array is true
+   * If min or max exist, this attribute has no effect
    */
   length?: number | undefined | null
 
   /**
-   * 默认为 undefined
-   * 数组的最小长度，如果定义了 max ，则 min 默认为 0
-   * 在 array 为 true 时生效
+   * @default undefined
+   * The minimum length of the array, if max is defined, min defaults to 0
+   * Takes effect when array is true
    */
   min?: number | undefined | null
 
   /**
-   * 默认为 undefined
-   * 数组的最大长度，如果定义了 min ，则 max 默认为 50
-   * 在 array 为 true 时生效
+   * @default undefined
+   * The maximum length of the array, if min is defined, max defaults to 50
+   * Takes effect when array is true
    */
   max?: number | undefined | null
 
   /**
-   * 用于总是生成相同随机值的 faker seed
+   * Faker seed used to always generate the same random value
    */
   seed?: number | number[]
 }
@@ -57,7 +59,7 @@ function createMock<T>(Entity: T, options?: CreateMockOptions): T
 
 ## setLocale
 
-设置生成语言，需要注意 fakerJs 对中文适配比较少
+To set the generated language
 
 ```ts
 type KnownLocale =
@@ -122,4 +124,4 @@ type KnownLocale =
 function setLocale(locale: KnownLocale): void
 ```
 
-请参考 [faker.setLocale](https://fakerjs.dev/api/localization.html#localization)
+Please refer to [faker.setLocale](https://fakerjs.dev/api/localization.html#localization)

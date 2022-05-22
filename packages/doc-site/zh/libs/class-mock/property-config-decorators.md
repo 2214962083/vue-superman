@@ -69,8 +69,7 @@ interface BasePropertyConfig {
 function Config(config: BasePropertyConfig): PropertyDecorator
 ```
 
-<br/>
-使用示例：
+示例：
 
 ```ts
 import {Config, Random} from 'class-mock'

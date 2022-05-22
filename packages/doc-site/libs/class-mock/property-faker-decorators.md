@@ -1,14 +1,14 @@
-# fakerJs 装饰器
+# FakerJs decorators
 
 [[toc]]
 
 ## @Address
 
-生成地址和位置的装饰器模块。
+Decorator module to generate addresses and locations.
 
-请参考 [faker.address](https://fakerjs.dev/api/address.html)
+Please refer to [faker.address](https://fakerjs.dev/api/address.html)
 
-示例
+Example:
 
 ```ts
 import {Address} from 'class-mock'
@@ -21,11 +21,11 @@ class Student {
 
 ## @Animal
 
-生成动物相关条目的装饰器模块。
+Decorator module to generate animal related entries.
 
-请参考 [faker.animal](https://fakerjs.dev/api/animal.html)
+Please refer to [faker.animal](https://fakerjs.dev/api/animal.html)
 
-示例
+Example:
 
 ```ts
 import {Animal} from 'class-mock'
@@ -38,11 +38,11 @@ class Student {
 
 ## @Commerce
 
-生成商业和产品相关条目的装饰器模块。
+Decorator module to generate commerce and product related entries.
 
-请参考 [faker.commerce](https://fakerjs.dev/api/commerce.html)
+Please refer to [faker.commerce](https://fakerjs.dev/api/commerce.html)
 
-示例
+Example:
 
 ```ts
 import {Commerce} from 'class-mock'
@@ -58,11 +58,11 @@ class Product {
 
 ## @Company
 
-生成公司相关条目的装饰器模块。
+Decorator module to generate company related entries.
 
-请参考 [faker.company](https://fakerjs.dev/api/company.html)
+Please refer to [faker.company](https://fakerjs.dev/api/company.html)
 
-示例
+Example:
 
 ```ts
 import {Company} from 'class-mock'
@@ -78,11 +78,11 @@ class MyCompany {
 
 ## @Database
 
-生成数据库相关条目的装饰器模块。
+Decorator module to generate database related entries.
 
-请参考 [faker.database](https://fakerjs.dev/api/database.html)
+Please refer to [faker.database](https://fakerjs.dev/api/database.html)
 
-示例
+Example:
 
 ```ts
 import {Database} from 'class-mock'
@@ -98,11 +98,11 @@ class MyDatabase {
 
 ## @Datatype
 
-生成各种原始值和数据类型的装饰器模块。
+Decorator module to generate various primitive values and data types.
 
-请参考 [faker.datatype](https://fakerjs.dev/api/datatype.html)
+Please refer to [faker.datatype](https://fakerjs.dev/api/datatype.html)
 
-示例
+Example:
 
 ```ts
 import {Datatype} from 'class-mock'
@@ -115,11 +115,11 @@ class Student {
 
 ## @Date
 
-生成日期的装饰器模块。
+Decorator module to generate dates.
 
-请参考 [faker.date](https://fakerjs.dev/api/date.html)
+Please refer to [faker.date](https://fakerjs.dev/api/date.html)
 
-示例
+Example:
 
 ```ts
 import {Date} from 'class-mock'
@@ -132,11 +132,11 @@ class Student {
 
 ## @Fake
 
-用于组合基于静态字符串输入的伪造方法的生成器。
+A decorator for generated combining faker methods based on a static string input.
 
-请参考 [faker.fake](https://fakerjs.dev/api/fake.html)
+Please refer to [faker.fake](https://fakerjs.dev/api/fake.html)
 
-示例
+Example:
 
 ```ts
 import {Fake} from 'class-mock'
@@ -149,11 +149,11 @@ class Student {
 
 ## @Finance
 
-生成财务相关条目的装饰器模块。
+Decorator module to generate finance related entries.
 
-请参考 [faker.finance](https://fakerjs.dev/api/finance.html)
+Please refer to [faker.finance](https://fakerjs.dev/api/finance.html)
 
-示例
+Example:
 
 ```ts
 import {Finance} from 'class-mock'
@@ -169,11 +169,11 @@ class Student {
 
 ## @Git
 
-生成 git 相关条目的装饰器模块。
+Decorator module to generate git related entries.
 
-请参考 [faker.git](https://fakerjs.dev/api/git.html)
+Please refer to [faker.git](https://fakerjs.dev/api/git.html)
 
-示例
+Example:
 
 ```ts
 import {Git} from 'class-mock'
@@ -189,11 +189,11 @@ class MyRepo {
 
 ## @Hacker
 
-生成黑客/IT 单词和短语的装饰器模块。
+Decorator module to generate hacker/IT words and phrases.
 
-请参考 [faker.hacker](https://fakerjs.dev/api/hacker.html)
+Please refer to [faker.hacker](https://fakerjs.dev/api/hacker.html)
 
-示例
+Example:
 
 ```ts
 import {Hacker} from 'class-mock'
@@ -209,11 +209,11 @@ class TheHacker {
 
 ## @Helpers
 
-具有各种帮助方法的装饰器模块。
+Decorator module with various helper methods。
 
-请参考 [faker.helpers](https://fakerjs.dev/api/helpers.html)
+Please refer to [faker.helpers](https://fakerjs.dev/api/helpers.html)
 
-示例
+Example:
 
 ```ts
 import {Helpers} from 'class-mock'
@@ -226,11 +226,11 @@ class Student {
 
 ## @Image
 
-生成占位符图像的装饰器模块。
+Decorator module to generate placeholder images.
 
-请参考 [faker.image](https://fakerjs.dev/api/image.html)
+Please refer to [faker.image](https://fakerjs.dev/api/image.html)
 
-示例
+Example:
 
 ```ts
 import {Image} from 'class-mock'
@@ -243,11 +243,11 @@ class Student {
 
 ## @Internet
 
-生成互联网相关条目的装饰器模块。
+Decorator module to generate internet related entries.
 
-请参考 [faker.internet](https://fakerjs.dev/api/internet.html)
+Please refer to [faker.internet](https://fakerjs.dev/api/internet.html)
 
-示例
+Example:
 
 ```ts
 import {Internet} from 'class-mock'
@@ -263,11 +263,11 @@ class Student {
 
 ## @Lorem
 
-生成随机文本和单词的装饰器模块。
+Decorator module to generate random texts and words.
 
-请参考 [faker.lorem](https://fakerjs.dev/api/lorem.html)
+Please refer to [faker.lorem](https://fakerjs.dev/api/lorem.html)
 
-示例
+Example:
 
 ```ts
 import {Lorem} from 'class-mock'
@@ -286,11 +286,11 @@ class Paper {
 
 ## @Mersenne
 
-生成基于 seed 的随机数的装饰器模块。
+Decorator module to generate seed based random numbers.
 
-请参考 [faker.mersenne](https://fakerjs.dev/api/mersenne.html)
+Please refer to [faker.mersenne](https://fakerjs.dev/api/mersenne.html)
 
-示例
+Example:
 
 ```ts
 import {Mersenne} from 'class-mock'
@@ -303,11 +303,11 @@ class Student {
 
 ## @Music
 
-生成音乐相关条目的装饰器模块。
+Decorator module to generate music related entries.
 
-请参考 [faker.music](https://fakerjs.dev/api/music.html)
+Please refer to [faker.music](https://fakerjs.dev/api/music.html)
 
-示例
+Example:
 
 ```ts
 import {Music} from 'class-mock'
@@ -320,11 +320,11 @@ class Song {
 
 ## @Name
 
-生成人名和头衔的装饰器模块。
+Decorator module to generate people's names and titles.
 
-请参考 [faker.name](https://fakerjs.dev/api/name.html)
+Please refer to [faker.name](https://fakerjs.dev/api/name.html)
 
-示例
+Example:
 
 ```ts
 import {Name} from 'class-mock'
@@ -340,11 +340,11 @@ class Student {
 
 ## @Phone
 
-生成电话相关数据的装饰器模块。
+Decorator module to generate phone-related data.
 
-请参考 [faker.phone](https://fakerjs.dev/api/phone.html)
+Please refer to [faker.phone](https://fakerjs.dev/api/phone.html)
 
-示例
+Example:
 
 ```ts
 import {Phone} from 'class-mock'
@@ -360,11 +360,11 @@ class Student {
 
 ## @Random
 
-生成不同种类的随机值。
+Decorator module to generates random values of different kinds.
 
-请参考 [faker.random](https://fakerjs.dev/api/random.html)
+Please refer to [faker.random](https://fakerjs.dev/api/random.html)
 
-示例
+Example:
 
 ```ts
 import {Random} from 'class-mock'
@@ -380,11 +380,11 @@ class Student {
 
 ## @System
 
-为许多计算机系统属性生成虚假数据。
+Decorator module to generates fake data for many computer systems properties.
 
-请参考 [faker.system](https://fakerjs.dev/api/system.html)
+Please refer to [faker.system](https://fakerjs.dev/api/system.html)
 
-示例
+Example:
 
 ```ts
 import {System} from 'class-mock'
@@ -403,11 +403,11 @@ class MyFile {
 
 ## @Vehicle
 
-生成车辆相关条目的装饰器模块。
+Decorator module to generate vehicle related entries.
 
-请参考 [faker.vehicle](https://fakerjs.dev/api/vehicle.html)
+Please refer to [faker.vehicle](https://fakerjs.dev/api/vehicle.html)
 
-示例
+Example:
 
 ```ts
 import {Vehicle} from 'class-mock'
@@ -423,11 +423,11 @@ class MyCar {
 
 ## @Word
 
-返回各种类型的单词的装饰器模块。
+Decorator module to return various types of words.
 
-请参考 [faker.word](https://fakerjs.dev/api/word.html)
+Please refer to [faker.word](https://fakerjs.dev/api/word.html)
 
-示例
+Example:
 
 ```ts
 import {Word} from 'class-mock'

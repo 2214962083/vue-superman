@@ -6,6 +6,7 @@ import {shikiPlugin} from '@vuepress/plugin-shiki'
 import {path} from '@vuepress/utils'
 import {isProd} from '../utils/common'
 import sandboxPlugin from 'vuepress-plugin-sandbox'
+import pkg from '../../package.json'
 
 const pathResolve = (..._path: string[]) => path.resolve(__dirname, ..._path)
 const getPkgUrl = (name: string, version = 'latest', ending = '') => `https://unpkg.com/${name}@${version}${ending}`
@@ -75,8 +76,8 @@ const vuepressPlugins: PluginConfig = [
   sandboxPlugin({
     importMap: {
       imports: {
-        'vue-xrender': getPkgUrl('vue-xrender', 'latest', '/dist/index.mjs'),
-        'class-mock': getPkgUrl('class-mock', 'latest', '/dist/index.mjs'),
+        'vue-xrender': getPkgUrl('vue-xrender', pkg.version, '/dist/index.mjs'),
+        'class-mock': getPkgUrl('class-mock', pkg.version, '/dist/index.mjs'),
         'vue-demi': getPkgUrl('vue-demi', 'latest', '/lib/v3/index.mjs'),
         '@faker-js/faker': getPkgUrl('@faker-js/faker', 'latest', '/dist/esm/index.mjs')
       }

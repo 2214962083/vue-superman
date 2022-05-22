@@ -10,7 +10,7 @@
 function MockDecorator<T extends Function>(mockFn: T, ...mockParams: Parameters<T>): PropertyDecorator
 ```
 
-示例
+示例:
 
 ```ts
 import {MockDecorator} from 'class-mock'

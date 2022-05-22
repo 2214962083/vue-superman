@@ -46,16 +46,16 @@ interface BasePropertyConfig {
   length?: number | undefined | null
 
   /**
-   * 默认为 undefined
-   * 数组的最小长度，如果定义了 max ，则 min 默认为 0
-   * 在 array 为 true 时生效
+   * @default undefined
+   * The minimum length of the array, if max is defined, min defaults to 0
+   * Takes effect when array is true
    */
   min?: number | undefined | null
 
   /**
-   * 默认为 undefined
-   * 数组的最大长度，如果定义了 min ，则 max 默认为 50
-   * 在 array 为 true 时生效
+   * @default undefined
+   * The maximum length of the array, if min is defined, max defaults to 50
+   * Takes effect when array is true
    */
   max?: number | undefined | null
 }
@@ -63,14 +63,13 @@ interface BasePropertyConfig {
 
 ## @Config
 
-设置属性元数据（配置数据）
+Set property metadata (configuration)
 
 ```ts
 function Config(config: BasePropertyConfig): PropertyDecorator
 ```
 
-<br/>
-使用示例：
+Example:
 
 ```ts
 import {Config, Random} from 'class-mock'
@@ -105,27 +104,27 @@ createMock(Student) // { name: 'xxx', like: ['xxx', 'xxx', 'xxx'] }
 
 ## @IsPartial
 
-设置属性的元数据（配置数据）的 `partial` 属性为 `partial`。
+Set the `partial` of the property's metadata (configuration) to `partial`.
 
 ## @IsInclude
 
-设置属性的元数据（配置数据）的 `partial` 属性为 `include`。
+Set the `partial` of the property's metadata (configuration) to `include`.
 
 ## @IsExclude
 
-设置属性的元数据（配置数据）的 `partial` 属性为 `exclude`。
+Set the `partial` of the property's metadata (configuration) to `exclude`.
 
 ## @IsAlwaysRandom
 
-设置属性的元数据（配置数据）的 `alwaysRandom` 属性为 `true`。
+Set the `alwaysRandom` of the property's metadata (configuration) to `true`.
 
 ## @IsNotAlwaysRandom
 
-设置属性的元数据（配置数据）的 `alwaysRandom` 属性为 `false`。
+Set the `alwaysRandom` of the property's metadata (configuration) to `false`.
 
 ## @IsArray
 
-设置属性的元数据（配置数据）的 `array` 属性为 `true`。
+Set the `array` of the property's metadata (configuration) to `true`.
 
 ```ts
 interface ArrayConfig {
@@ -140,19 +139,19 @@ function IsArray(arrayConfig?: ArrayConfig): PropertyDecorator
 
 ## @IsNotArray
 
-设置属性的元数据（配置数据）的 `array` 属性为 `false`。
+Set the `array` of the property's metadata (configuration) to `false`.
 
 ## @Groups
 
-设置属性的元数据（配置数据）的 `groups` 属性。
+Set the `groups` of the property's metadata (configuration).
 
 ```ts
 function Groups(groups: string[] | undefined | null): PropertyDecorator
 ```
 
-## 链式调用
+## Chain call
 
-每个属性装饰器都支持链式调用，以下四个 `Student` 是等效的：
+Each property decorator supports chaining call, the following four `Student` are equivalent:
 
 ```ts
 import {IsAlwaysRandom, IsPartial, IsNotArray, Groups, Config, Random} from 'class-mock'

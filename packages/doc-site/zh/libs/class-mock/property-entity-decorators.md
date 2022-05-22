@@ -10,7 +10,7 @@
 function Entity<T>(getEntity: () => T): PropertyDecorator
 ```
 
-示例
+示例:
 
 ```ts
 import {Entity, Random, IsArray} from 'class-mock'

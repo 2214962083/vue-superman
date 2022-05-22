@@ -1,16 +1,16 @@
-# 实体装饰器
+# Entity decorator
 
 [[toc]]
 
 ## @Entity
 
-当你的 `mock class` 下某个属性也是 `mock class`，那就要用到 `@Entity`
+When a property under your `mock class` is also a `mock class`, then should use `@Entity`
 
 ```ts
 function Entity<T>(getEntity: () => T): PropertyDecorator
 ```
 
-示例
+Example:
 
 ```ts
 import {Entity, Random, IsArray} from 'class-mock'
@@ -20,7 +20,7 @@ class User {
   name!: string
 
   @IsArray()
-  @Entity(() => Post) // 因为这个属性也是 mock class，所以要用到 `@Entity`
+  @Entity(() => Post) // Because this property is also a mock class, use `@Entity`
   posts?: Post[]
 }
 

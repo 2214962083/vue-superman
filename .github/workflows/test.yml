@@ -10,6 +10,10 @@ on:
     branches:
       - main
       - master
+  workflow_run:
+    workflows: ['Docs']
+    types:
+      - completed
 
 jobs:
   build:

@@ -36,5 +36,21 @@ export const zh: SidebarConfig = {
         '/zh/libs/class-mock/utils.md'
       ]
     }
+  ],
+  '/zh/libs/vue-playground/': [
+    {
+      text: 'vue-playground',
+      children: [
+        '/zh/libs/vue-playground/README.md',
+        '/zh/libs/vue-playground/configuration.md',
+        '/zh/libs/vue-playground/example.md'
+      ]
+    }
+  ],
+  '/zh/libs/vuepress-plugin-sandbox/': [
+    {
+      text: 'vuepress-plugin-sandbox',
+      children: ['/zh/libs/vuepress-plugin-sandbox/README.md', '/zh/libs/vuepress-plugin-sandbox/configuration.md']
+    }
   ]
 }
