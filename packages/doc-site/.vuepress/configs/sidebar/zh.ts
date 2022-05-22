@@ -50,7 +50,7 @@ export const zh: SidebarConfig = {
   '/zh/libs/vuepress-plugin-sandbox/': [
     {
       text: 'vuepress-plugin-sandbox',
-      children: ['/zh/libs/vuepress-plugin-sandbox/README.md', '/zh/libs/vuepress-plugin-sandbox/configuration.md']
+      children: ['/zh/libs/vuepress-plugin-sandbox/README.md', '/zh/libs/vuepress-plugin-sandbox/usage.md']
     }
   ]
 }

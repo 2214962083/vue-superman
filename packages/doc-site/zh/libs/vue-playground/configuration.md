@@ -428,9 +428,11 @@ interface ImportMap {
 示例:
 
 ```ts
+import {ImportMap} from 'vue-playground'
+
 const getPkgUrl = (name: string, version = 'latest', ending = '') => `https://unpkg.com/${name}@${version}${ending}`
 
-const importMap = {
+const importMap: ImportMap = {
   imports: {
     'vue-xrender': getPkgUrl('vue-xrender', pkg.version, '/dist/index.mjs'),
     'class-mock': getPkgUrl('class-mock', pkg.version, '/dist/index.mjs')

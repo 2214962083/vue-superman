@@ -1,7 +1,5 @@
 import {defineClientConfig} from '@vuepress/client'
-import {configLoadSandbox, SHOW_DARK_MODE_INJECT_KEY} from 'vuepress-plugin-sandbox/client'
-import {useMutationObserver} from '@vueuse/core'
-import {provide, ref} from 'vue'
+import {configLoadSandbox} from 'vuepress-plugin-sandbox/client'
 import pkg from '../package.json'
 import vueXrenderTypes from 'vue-xrender/dist/index.d.ts?raw'
 import classMockTypes from 'class-mock/dist/index.d.ts?raw'
@@ -74,28 +72,6 @@ export default defineClientConfig({
           }
         }
       }, self)
-    }
-  },
-  setup() {
-    if (!__VUEPRESS_SSR__) {
-      const html = document.documentElement
-      const sandboxDark = ref(false)
-
-      // watch vuepress dark mode
-      useMutationObserver(
-        html,
-        mutations => {
-          if (mutations.every(m => m.attributeName !== 'class')) return
-          const isVuepressDark = Boolean(html.classList.contains('dark'))
-          sandboxDark.value = isVuepressDark
-        },
-        {
-          attributes: true
-        }
-      )
-
-      // set all sandbox dark mode
-      provide(SHOW_DARK_MODE_INJECT_KEY, sandboxDark)
     }
   }
 })

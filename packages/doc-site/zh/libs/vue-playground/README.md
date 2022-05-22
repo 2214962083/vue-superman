@@ -1,6 +1,10 @@
 # 介绍
 
-一个实时编辑、实时编译、实时预览的 `vue3` 组件。类似小型的 [codesandbox](https://codesandbox.io/)。
+`vue-playground` 是一个基于 [monaco-editor](https://github.com/microsoft/monaco-editor) 的 `vue3` 组件。
+
+它支持实时编辑、实时编译、实时预览。类似小型的 [codesandbox](https://codesandbox.io/)。
+
+它拥有以下功能:
 
 - 实时编辑，实时编译 `(vue3、js、ts、jsx、tsx、css)` ，实时运行，实时预览
 - 支持自定义 `import` 映射
