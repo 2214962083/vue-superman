@@ -9,7 +9,8 @@ import sandboxPlugin from 'vuepress-plugin-sandbox'
 import pkg from '../../package.json'
 
 const pathResolve = (..._path: string[]) => path.resolve(__dirname, ..._path)
-const getPkgUrl = (name: string, version = 'latest', ending = '') => `https://unpkg.com/${name}@${version}${ending}`
+const getUnpkgUrl = (name: string, version = 'latest', ending = '') => `https://unpkg.com/${name}@${version}${ending}`
+const getEsmUrl = (name: string, version = 'latest', ending = '') => `https://esm.sh/${name}@${version}`
 
 const vuepressPlugins: PluginConfig = [
   // for doc search
@@ -76,10 +77,10 @@ const vuepressPlugins: PluginConfig = [
   sandboxPlugin({
     importMap: {
       imports: {
-        'vue-xrender': getPkgUrl('vue-xrender', pkg.version, '/dist/index.mjs'),
-        'class-mock': getPkgUrl('class-mock', pkg.version, '/dist/index.mjs'),
-        'vue-demi': getPkgUrl('vue-demi', 'latest', '/lib/v3/index.mjs'),
-        '@faker-js/faker': getPkgUrl('@faker-js/faker', 'latest', '/dist/esm/index.mjs')
+        'vue-xrender': getUnpkgUrl('vue-xrender', pkg.version, '/dist/index.mjs'),
+        'class-mock': getUnpkgUrl('class-mock', pkg.version, '/dist/index.mjs'),
+        'vue-demi': getUnpkgUrl('vue-demi', 'latest', '/lib/v3/index.mjs'),
+        '@faker-js/faker': getEsmUrl('@faker-js/faker', 'latest', '/dist/esm/index.mjs')
       }
     }
   })
