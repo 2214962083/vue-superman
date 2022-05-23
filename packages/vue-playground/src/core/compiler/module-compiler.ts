@@ -1,14 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {File, Store} from '../store'
-import {
-  babelParse,
-  MagicString,
-  walk,
-  walkIdentifiers,
-  extractIdentifiers,
-  isInDestructureAssignment,
-  isStaticProperty
-} from 'vue/compiler-sfc'
 import {ExportSpecifier, Identifier, Node} from '@babel/types'
 
 export function compileModulesForPreview(store: Store) {
@@ -62,9 +53,9 @@ function processFile(store: Store, file: File, processed: string[], seen: Set<Fi
 }
 
 function processModule(store: Store, src: string, filename: string): [string, Set<string>] {
-  const s = new MagicString(src)
+  const s = new store.compiler.MagicString(src)
 
-  const ast = babelParse(src, {
+  const ast = store.compiler.babelParse(src, {
     sourceFilename: filename,
     sourceType: 'module'
   }).program.body
@@ -131,7 +122,7 @@ function processModule(store: Store, src: string, filename: string): [string, Se
         } else if (node.declaration.type === 'VariableDeclaration') {
           // export const foo = 1, bar = 2
           for (const decl of node.declaration.declarations) {
-            for (const id of extractIdentifiers(decl.id)) {
+            for (const id of store.compiler.extractIdentifiers(decl.id)) {
               defineExport(id.name)
             }
           }
@@ -185,16 +176,16 @@ function processModule(store: Store, src: string, filename: string): [string, Se
   // 3. convert references to import bindings
   for (const node of ast) {
     if (node.type === 'ImportDeclaration') continue
-    walkIdentifiers(node, (id, parent, parentStack) => {
+    store.compiler.walkIdentifiers(node, (id, parent, parentStack) => {
       const binding = idToImportMap.get(id.name)
       if (!binding) {
         return
       }
-      if (isStaticProperty(parent) && parent.shorthand) {
+      if (store.compiler.isStaticProperty(parent) && parent.shorthand) {
         // let binding used in a property shorthand
         // { foo } -> { foo: __import_x__.foo }
         // skip for destructure patterns
-        if (!(parent as any).inPattern || isInDestructureAssignment(parent, parentStack)) {
+        if (!(parent as any).inPattern || store.compiler.isInDestructureAssignment(parent, parentStack)) {
           s.appendLeft(id.end!, `: ${binding}`)
         }
       } else if (parent.type === 'ClassDeclaration' && id === parent.superClass) {
@@ -211,7 +202,7 @@ function processModule(store: Store, src: string, filename: string): [string, Se
   }
 
   // 4. convert dynamic imports
-  ;(walk as any)(ast, {
+  ;(store.compiler.walk as any)(ast, {
     enter(node: Node, parent: Node) {
       if (node.type === 'Import' && parent.type === 'CallExpression') {
         const arg = parent.arguments[0]

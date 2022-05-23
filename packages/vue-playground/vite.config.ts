@@ -34,7 +34,8 @@ const createViteConfig = (options: CreateViteConfigOptions = {}): UserConfig => 
     dedupe: ['monaco-editor'],
     externalMap: {
       vue: 'Vue',
-      'monaco-editor': 'monaco-editor'
+      'monaco-editor': 'monaco-editor',
+      '@vue/compiler-sfc': '@vue/compiler-sfc'
     }
   })
 }

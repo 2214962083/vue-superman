@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {Store, File} from '../store'
-import {SFCDescriptor, BindingMetadata, shouldTransformRef, transformRef, CompilerOptions} from 'vue/compiler-sfc'
+import type {SFCDescriptor, BindingMetadata, CompilerOptions} from '@vue/compiler-sfc'
 import {babelTransformTsJsx} from '../utils/babel'
 
 export const COMP_IDENTIFIER = `__sfc__`
@@ -30,8 +30,8 @@ export async function compileFile(store: Store, {filename, code, compiled}: File
   }
 
   if (/\.(jsx?|tsx?)$/.test(filename)) {
-    if (shouldTransformRef(code)) {
-      code = transformRef(code, {filename}).code
+    if (store.compiler.shouldTransformRef(code)) {
+      code = store.compiler.transformRef(code, {filename}).code
     }
     if (/\.(jsx|tsx?)$/.test(filename)) {
       code = await transformTsJsx(code)

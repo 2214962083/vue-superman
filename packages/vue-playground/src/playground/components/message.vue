@@ -5,7 +5,7 @@ export default defineComponent({
 </script>
 <script setup lang="ts">
 import {defineComponent, ref, watch} from 'vue'
-import {CompilerError} from 'vue/compiler-sfc'
+import type {CompilerError} from '@vue/compiler-sfc'
 
 const props = defineProps({
   err: null,

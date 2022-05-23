@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {version, reactive, watchEffect} from 'vue'
-import * as defaultCompiler from 'vue/compiler-sfc'
+import * as defaultCompiler from '@vue/compiler-sfc'
 import {compileFile} from './compiler/transform'
 import {utoa, atou} from './utils/common'
 import {ImportMap, OutputModes} from './utils/types-helper'
-import {SFCScriptCompileOptions, SFCAsyncStyleCompileOptions, SFCTemplateCompileOptions} from 'vue/compiler-sfc'
+import type {SFCScriptCompileOptions, SFCAsyncStyleCompileOptions, SFCTemplateCompileOptions} from '@vue/compiler-sfc'
 import {DEFAULT_VUE_RUNTIME_DOM_CDN, DEFAULT_VUE_COMPILER_SFC_CDN} from '../playground/constants'
 import type {PlaygroundPkgCdn} from '../playground/utils/types-helper'
 
