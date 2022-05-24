@@ -17,6 +17,7 @@
     "@vueuse/core": "^8.4.1",
     "class-mock": "workspace:*",
     "monaco-editor": "^0.33.0",
+    "vue-playground": "workspace:*",
     "vue-router": "^4.0.15",
     "vue-xrender": "workspace:*",
     "vuepress-plugin-sandbox": "workspace:*"

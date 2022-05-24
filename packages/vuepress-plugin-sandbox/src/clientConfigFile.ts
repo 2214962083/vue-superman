@@ -29,6 +29,10 @@ export default defineClientConfig({
     `
       document.head.appendChild(styleEl)
     }
+    if (Playground) {
+      app.component(Playground.name, Playground)
+    }
+
     // wrap the component with default options
     app.component(SANDBOX_COMPONENT_NAME, defaultProps => {
       if (!Playground) return null

@@ -46,4 +46,4 @@ pnpm add vuepress-plugin-sandbox monaco-editor
 
 目前支持 `vuepress@2.0.0-beta.40` 及以上版本。
 
-因为 `vuepress-plugin-sandbox` 基于 [vue-playground](../vue-playground/)， 而 [vue-playground](../vue-playground/) 又依赖于 [monaco-editor](https://github.com/microsoft/monaco-editor) ，它是 `vscode` 的一部分，所以打包后会比较大。
+因为 `vuepress-plugin-sandbox` 基于 [vue-playground](../vue-playground/)， 而 [vue-playground](../vue-playground/) 又依赖于 [monaco-editor](https://github.com/microsoft/monaco-editor) 和 [@babel/standalone](https://babeljs.io/docs/en/babel-standalone)，所以打包后会比较大。

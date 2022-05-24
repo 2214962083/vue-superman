@@ -1,1 +1,1 @@
-export const SANDBOX_COMPONENT_NAME = 'playground'
+export const SANDBOX_COMPONENT_NAME = 'sandbox'

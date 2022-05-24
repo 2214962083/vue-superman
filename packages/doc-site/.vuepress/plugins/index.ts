@@ -10,6 +10,7 @@ import pkg from '../../package.json'
 
 const pathResolve = (..._path: string[]) => path.resolve(__dirname, ..._path)
 const getUnpkgUrl = (name: string, version = 'latest', ending = '') => `https://unpkg.com/${name}@${version}${ending}`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getEsmUrl = (name: string, version = 'latest', ending = '') => `https://esm.sh/${name}@${version}`
 
 const vuepressPlugins: PluginConfig = [

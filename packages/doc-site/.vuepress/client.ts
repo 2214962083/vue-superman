@@ -17,6 +17,14 @@ export default defineClientConfig({
               return `https://unpkg.com/vue@${version}/dist/vue.esm-browser.js`
             }
           },
+          themes: {
+            light: {
+              '--theme-color': '#ff3d00'
+            },
+            dark: {
+              '--theme-color': '#ff774e'
+            }
+          },
           lifeCycle: {
             // TODO: FIX types declaration
             loadTsLibs(_, defaultTsLibs) {

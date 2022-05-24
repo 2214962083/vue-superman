@@ -54,10 +54,10 @@ export const sandboxPlugin = (options: SandboxOptions = {}): Plugin => {
     const options: PlaygroundOptions = {title: des, files, themes, importMap}
     const optionsBase64 = base64.encode(JSON.stringify(options))
 
-    return `<div class="demo-container ${demoCodeMark}"><playground v-bind="JSON.parse(base64.decode('${optionsBase64}'))">\n`
+    return `<div class="demo-container ${demoCodeMark}"><sandbox v-bind="JSON.parse(base64.decode('${optionsBase64}'))">\n`
   }
 
-  const renderAfter: RenderPlaceFunction = () => '</playground></div>\n'
+  const renderAfter: RenderPlaceFunction = () => '</sandbox></div>\n'
 
   const descriptionsStack: string[] = []
   const render: MarkdownItRenderFn = (tokens, index, opts, env) => {

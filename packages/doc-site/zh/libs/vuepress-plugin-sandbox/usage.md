@@ -94,13 +94,13 @@ const sandboxPlugin = (options?: SandboxOptions) => VuepressPlugin
 export default sandboxPlugin
 ```
 
-### ImportMap
+### 包映射
 
-请参考 [vue-playground 的 ImportMap](../vue-playground/configuration.html#importmap-包映射)
+`importMap` 请参考 [vue-playground 的包映射](../vue-playground/configuration.html#包映射)
 
-### PlaygroundThemes
+### 主题定制
 
-请参考 [vue-playground 的 PlaygroundThemes](../vue-playground/configuration.html#playgroundthemes-主题定制)
+`themes` 请参考 [vue-playground 的主题定制](../vue-playground/configuration.html#主题定制)
 
 ### 示例
 
@@ -147,7 +147,7 @@ export type LoadSandbox = (preOptions: PlaygroundOptions) => PlaygroundOptions
 export function configLoadSandbox(loadSandbox: LoadSandbox, _window: Window = self): void
 ```
 
-### PlaygroundOptions
+### Props
 
 请参考 [vue-playground 的 props](../vue-playground/configuration.html#props)
 

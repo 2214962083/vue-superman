@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {Nil, ArrayConfig, BasePropertyConfig, MetadataTarget} from './types-helper'
 import {DEFAULT_ARRAY_LENGTH, DEFAULT_ARRAY_MAX, DEFAULT_ARRAY_MIN} from '@/constants/meta.constants'
-import faker, {UsableLocale} from '@faker-js/faker'
+import {faker, UsableLocale} from '@faker-js/faker'
 
 export function getTarget(target: any): MetadataTarget {
   return target instanceof Function ? target : target.constructor

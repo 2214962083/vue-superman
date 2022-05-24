@@ -54,7 +54,7 @@ const options: PlaygroundOptions = {
 </template>
 ```
 
-## File 文件类
+## 文件类
 
 ```ts
 /**
@@ -100,7 +100,7 @@ import {File} from 'vue-playground'
 const file = new File('test.ts', 'console.log("aaa")')
 ```
 
-## PlaygroundLifeCycle 生命周期钩子
+## 生命周期钩子
 
 ```ts
 interface PlaygroundLifeCycle {
@@ -253,7 +253,7 @@ const lifeCycle: PlaygroundLifeCycle = {
 }
 ```
 
-## PlaygroundThemes 主题定制
+## 主题定制
 
 ```ts
 interface PlaygroundTheme {
@@ -417,7 +417,7 @@ const themes: PlaygroundThemes = {
 }
 ```
 
-## ImportMap 包映射
+## 包映射
 
 ```ts
 interface ImportMap {
@@ -440,7 +440,7 @@ const importMap: ImportMap = {
 }
 ```
 
-## PlaygroundPkgCdn 内置包的 cdn 覆盖
+## 内置包的 cdn 覆盖
 
 ```ts
 interface PlaygroundPkgCdn {

@@ -1,7 +1,17 @@
 :root {
+  // brand colors
+  --c-brand: #ff3d00;
+  --c-brand-light: #b32e00;
+
   scroll-behavior: smooth;
 }
 
 .sidebar-item.collapsible {
   cursor: pointer;
+}
+
+html.dark {
+  // brand colors
+  --c-brand: #ff9270;
+  --c-brand-light: #ff774e;
 }

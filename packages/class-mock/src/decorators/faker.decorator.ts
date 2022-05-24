@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {fakeProps} from '@/constants/faker.constants'
 import {Fn, MockPropertyDecorator, MockPropertyDecoratorConfig} from '@/utils/types-helper'
-import faker, {Faker} from '@faker-js/faker'
+import {Faker, faker} from '@faker-js/faker'
 import {MockDecorator} from './mock.decorator'
 
 export type FakeProp = typeof fakeProps[number]

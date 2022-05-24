@@ -63,6 +63,6 @@
     "vitest": "^0.9.3"
   },
   "dependencies": {
-    "@faker-js/faker": "^6.2.0"
+    "@faker-js/faker": "^7.0.1"
   }
 }
