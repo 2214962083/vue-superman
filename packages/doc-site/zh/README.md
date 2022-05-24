@@ -11,7 +11,7 @@ actions:
     type: secondary
 features:
   - title: vue-xrender
-    details: 在 template 中渲染 jsx 或在 jsx 中渲染 template 字符串，自由渲染由你做主。支持 vue2 和 vue3
+    details: 一个可以让你在 vue template 中渲染 jsx 或在 jsx 中渲染 template 字符串，自由渲染由你做主。支持 vue2 和 vue3。
     link: '/zh/libs/vue-xrender/README.md'
 
   - title: class-mock

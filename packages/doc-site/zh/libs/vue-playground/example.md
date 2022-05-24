@@ -128,4 +128,6 @@ const playgroundProps: PlaygroundOptions = {
 }
 </script>
 
-<playground v-bind="playgroundProps"></playground>
+<ClientOnly>
+  <playground v-bind="playgroundProps"></playground>
+</ClientOnly>
