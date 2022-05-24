@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-sandbox",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "a codesandbox playground for vuepress",
   "keywords": [
     "vuepress-plugin-sandbox",
