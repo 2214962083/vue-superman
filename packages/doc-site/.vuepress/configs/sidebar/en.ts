@@ -29,5 +29,21 @@ export const en: SidebarConfig = {
         '/libs/class-mock/utils.md'
       ]
     }
+  ],
+  '/libs/vue-playground/': [
+    {
+      text: 'vue-playground',
+      children: [
+        '/libs/vue-playground/README.md',
+        '/libs/vue-playground/configuration.md',
+        '/libs/vue-playground/example.md'
+      ]
+    }
+  ],
+  '/libs/vuepress-plugin-sandbox/': [
+    {
+      text: 'vuepress-plugin-sandbox',
+      children: ['/libs/vuepress-plugin-sandbox/README.md', '/libs/vuepress-plugin-sandbox/usage.md']
+    }
   ]
 }

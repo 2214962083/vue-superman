@@ -1,51 +1,51 @@
-# 配置
+# Configuration
 
 ## Props
 
 ```ts
 /**
- * 这是 props 类型
+ * This is the props type
  */
 interface PlaygroundOptions {
   /**
-   * 标题
+   * Title for toolbar
    */
   title?: string
 
   /**
-   * 文件列表
+   * Files for editor
    */
   files?: File[]
 
   /**
-   * 生命周期钩子
+   * Lifecycle hooks
    */
   lifeCycle?: PlaygroundLifeCycle
 
   /**
-   * 主题列表
+   * Themes configs list (light theme and dark theme)
    */
   themes?: PlaygroundThemes
 
   /**
-   * import 映射
+   * Import map
    */
   importMap?: ImportMap
 
   /**
-   * 修改内置包的 cdn
+   * Modify the cdn of the built-in package
    */
   pkgCdn?: PlaygroundPkgCdn
 }
 ```
 
-示例:
+Example:
 
 ```vue
 <script setup lang="ts">
 import {PlaygroundOptions} from 'vue-playground'
 const options: PlaygroundOptions = {
-  title: '我的 demo',
+  title: 'My demo',
   files: []
 }
 </script>
@@ -54,30 +54,30 @@ const options: PlaygroundOptions = {
 </template>
 ```
 
-## 文件类
+## File
 
 ```ts
 /**
- * 文件类
+ * File class for editor
  */
 class File {
   /**
-   * 文件名
+   * File name
    */
   filename: string
 
   /**
-   * 文件内容
+   * File content
    */
   code: string
 
   /**
-   * 是否隐藏
+   * Whether to hide
    */
   hidden: boolean
 
   /**
-   * 储存编译结果
+   * Save compilation result
    */
   compiled = {
     js: '',
@@ -93,107 +93,107 @@ class File {
 }
 ```
 
-示例:
+Example:
 
 ```ts
 import {File} from 'vue-playground'
 const file = new File('test.ts', 'console.log("aaa")')
 ```
 
-## 生命周期钩子
+## Lifecycle hooks
 
 ```ts
 interface PlaygroundLifeCycle {
   /**
-   * monaco 加载之前会执这个函数
+   * This function will be executed before monaco is loaded
    */
   beforeLoadMonaco?: () => MaybePromise<void>
 
   /**
-   * monaco 加载之后会执这个函数
-   * @param monaco monaco 对象
+   * This function will be executed after monaco is loaded
+   * @param monaco monaco object
    */
   afterLoadMonaco?: (monaco: Monaco) => MaybePromise<void>
 
   /**
-   * 拦截加载 tsconfig
-   * @param monaco monaco 对象
-   * @param defaultTsconfig 默认 tsconfig
-   * @returns 需要返回一个 tsconfig
+   * Intercept loading of tsconfig
+   * @param monaco monaco object
+   * @param defaultTsconfig default tsconfig
+   * @returns need to return a tsconfig
    */
   loadTsconfig?: (monaco: Monaco, defaultTsconfig: Tsconfig) => MaybePromise<Tsconfig>
 
   /**
-   * 拦截加载 dts 文件列表
-   * @param monaco monaco 对象
-   * @param defaultDtsFiles 默认 dts 文件列表
-   * @returns 需要返回一个 dts 文件列表
+   * Intercept the list of loaded dts files
+   * @param monaco monaco object
+   * @param defaultDtsFiles default dts file list
+   * @returns need to return a list of dts files
    */
   loadTsLibs?: (monaco: Monaco, defaultTsLibs: TsLib[]) => MaybePromise<TsLib[]>
 
   /**
-   * 在 monaco 设置完 language 之后会执行这个函数
-   * @param monaco monaco 对象
+   * This function will be executed after monaco has set the language
+   * @param monaco monaco object
    */
   afterSetLanguage?: (monaco: Monaco) => MaybePromise<void>
 
   /**
-   * 拦截加载 monaco worker（需要在这里面自己手动加载 worker）
-   * @param monaco monaco 对象
-   * @param self monaco 所处的 window
+   * Intercept the loading of monaco worker (you need to manually load the worker here)
+   * @param monaco monaco object
+   * @param self window where monaco is located
    */
   loadWorkers?: (monaco: Monaco, self: Window) => MaybePromise<void>
 
   /**
-   * 在 monaco editor 实例化之前会执行这个函数
-   * @param monaco monaco 对象
+   * This function is executed before the monaco editor is instantiated
+   * @param monaco monaco object
    */
   beforeCreateEditor?: (monaco: Monaco) => MaybePromise<void>
 
   /**
-   * 拦截加载 monaco editor 实例化构造参数
-   * @param monaco monaco 对象
-   * @param defaultOptions 默认 monaco editor 构造参数
-   * @returns 需要返回 monaco editor 构造参数
+   * Intercept loading monaco editor instantiation construction parameters
+   * @param monaco monaco object
+   * @param defaultOptions default monaco editor constructor parameters
+   * @returns need to return monaco editor constructor parameter
    */
   loadEditorOption?: (monaco: Monaco, defaultOptions: CreateEditorOptions) => MaybePromise<CreateEditorOptions>
 
   /**
-   * 在 monaco editor 实例化之后会执行这个函数
-   * @param monaco monaco 对象
-   * @param editor monaco editor 实例化对象
+   * This function is executed after the monaco editor is instantiated
+   * @param monaco monaco object
+   * @param editor monaco editor instance
    */
   afterCreateEditor?: (monaco: Monaco, editor: IStandaloneCodeEditor) => MaybePromise<void>
 
   /**
-   * 文件代码编辑后会执行这个函数
-   * @param event.activeFile 当前编辑的文件对象
-   * @param event.newCode 当前编辑的文件代码
+   * This function will be executed after the file code is changed
+   * @param event.activeFile the currently edited file instance
+   * @param event.newCode the currently edited file code
    */
   onCodeChange?: (event: {activeFile: File; newCode: string}) => MaybePromise<void>
 
   /**
-   * monaco editor 销毁之前会执行这个函数
-   * @param monaco monaco 对象
-   * @param editor monaco editor 实例化对象
+   * This function will be executed before the monaco editor is destroyed
+   * @param monaco monaco object
+   * @param editor monaco editor instance
    */
   beforeDestroyEditor?: (monaco: Monaco, editor: IStandaloneCodeEditor) => MaybePromise<void>
 
   /**
-   * monaco editor 销毁之后会执行这个函数
-   * @param monaco monaco 对象
+   * This function will be executed after the monaco editor is destroyed
+   * @param monaco monaco object
    */
   afterDestroyEditor?: (monaco: Monaco) => MaybePromise<void>
 
   /**
-   * 暗黑模式变更时会执行这个函数
-   * @param darkMode 当前 monaco editor 是否为暗黑模式
+   * This function will be executed when the dark mode is changed
+   * @param darkMode whether the current monaco editor is in dark mode
    */
   onDarkModeChange?: (darkMode: boolean) => MaybePromise<void>
 }
 ```
 
-示例:
+Example:
 
 ```ts
 import {PlaygroundLifeCycle} from 'vue-playground'
@@ -253,154 +253,154 @@ const lifeCycle: PlaygroundLifeCycle = {
 }
 ```
 
-## 主题定制
+## Theme
 
 ```ts
 interface PlaygroundTheme {
   /**
-   * monaco editor 主题名字，内置几个
-   * 'vitesse-light': 默认白色主题
-   * 'vitesse-dark': 默认黑色主题
-   * 'vs': vscode 白色主题
-   * 'vs-dark': vscode 暗黑主题
+   * monaco editor theme name, several built-in
+   * 'vitesse-light': default light theme
+   * 'vitesse-dark': default dark theme
+   * 'vs': vscode light theme
+   * 'vs-dark': vscode dark theme
    */
   '--editor-theme-name'?: string
 
   /**
-   * 主题颜色
+   * theme color
    */
   '--theme-color'?: string
 
   /**
-   * 边框颜色
+   * border color
    */
   '--border-color'?: string
 
   /**
-   * 背景颜色
+   * background color
    */
   '--bg-color'?: string
 
   /**
-   * 工具栏标题颜色
+   * toolbar title color
    */
   '--toolbar-title-color'?: string
 
   /**
-   * 工具栏背景颜色
+   * toolbar background color
    */
   '--toolbar-bg-color'?: string
 
   /**
-   * 工具栏文字颜色
+   * toolbar text color
    */
   '--toolbar-text-color'?: string
 
   /**
-   * 工具栏 icon 背景颜色
+   * toolbar icon background color
    */
   '--toolbar-icon-bg-color'?: string
 
   /**
-   * 工具栏 icon 颜色
+   * toolbar icon color
    */
   '--toolbar-icon-color'?: string
 
   /**
-   * 工具栏 icon 聚焦时的颜色
+   * the color of the toolbar icon when it is active
    */
   '--toolbar-icon-active-color'?: string
 
   /**
-   * 预览区域背景颜色
+   * preview area background color
    */
   '--preview-bg-color'?: string
 
   /**
-   * 预览区域文字颜色
+   * preview area text color
    */
   '--preview-text-color'?: string
 
   /**
-   * 文件管理条背景颜色
+   * file management bar background color
    */
   '--file-manager-bg-color'?: string
 
   /**
-   * 文件管理条文字颜色
+   * file management bar text color
    */
   '--file-manager-text-color'?: string
 
   /**
-   * 文件管理条聚焦的文件的背景颜色
+   * the background color of the active file in the file management bar
    */
   '--file-manager-active-bg-color'?: string
 
   /**
-   * 文件管理条聚焦的文件的文字颜色
+   * the text color of the active file in the file management bar
    */
   '--file-manager-active-text-color'?: string
 
   /**
-   * 文件管理条右边 import map 的背景
+   * the background of the import map on the right side of the file management bar
    */
   '--file-manager-right-float-bg'?: string
 
   /**
-   * 编译警告信息文字颜色
+   * warning message text color
    */
   '--message-warn-text-color'?: string
 
   /**
-   * 编译警告信息背景颜色
+   * warning message background color
    */
   '--message-warn-bg-color'?: string
 
   /**
-   * 编译警告信息边框颜色
+   * warning message border color
    */
   '--message-warn-border-color'?: string
 
   /**
-   * 编译错误信息文字颜色
+   * error message text color
    */
   '--message-error-text-color'?: string
 
   /**
-   * 编译错误信息背景颜色
+   * error message background color
    */
   '--message-error-bg-color'?: string
 
   /**
-   * 编译错误信息边框颜色
+   * error message border color
    */
   '--message-error-border-color'?: string
 
   /**
-   * 编译警告错误信息的 close 按钮颜色
+   * close button text color for messages
    */
   '--message-dismiss-text-color'?: string
 
   /**
-   * 编译警告错误信息的 close 按钮背景颜色
+   * close button background color for messages
    */
   '--message-dismiss-bg-color'?: string
 }
 
 interface PlaygroundThemes {
   /**
-   * 白色主题
+   * light theme
    */
   light?: PlaygroundTheme
 
   /**
-   * 黑色主题
+   * dark theme
    */
   dark?: PlaygroundTheme
 }
 ```
 
-示例:
+Example:
 
 ```ts
 import {PlaygroundThemes} from 'vue-playground'
@@ -417,7 +417,7 @@ const themes: PlaygroundThemes = {
 }
 ```
 
-## 包映射
+## Import map
 
 ```ts
 interface ImportMap {
@@ -425,7 +425,7 @@ interface ImportMap {
 }
 ```
 
-示例:
+Example:
 
 ```ts
 import {ImportMap} from 'vue-playground'
@@ -440,7 +440,7 @@ const importMap: ImportMap = {
 }
 ```
 
-## 内置包的 cdn 覆盖
+## Cdn overlay for builtin packages
 
 ```ts
 interface PlaygroundPkgCdn {
@@ -450,7 +450,7 @@ interface PlaygroundPkgCdn {
 }
 ```
 
-示例:
+Example:
 
 ```ts
 import {PlaygroundPkgCdn} from 'vue-playground'

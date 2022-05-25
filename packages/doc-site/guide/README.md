@@ -8,8 +8,16 @@ Although it's called Vue Superman, the library provided is not limited to Vue. I
 
 - [vue-xrender](/libs/vue-xrender/)
 
-Render jsx in template or render template string in jsx, free rendering is up to you.
+A library that allows you to render jsx in vue template or render template string in jsx, free rendering is up to you. Support vue2 and vue3.
 
 - [class-mock](/libs/class-mock/)
 
-Use decorator to generate mock data, based on `@faker-js/faker` library, from now on you can replace interface with class, and you can generate mock data.
+A mock library that allows you use decorators with classes to generate fake data. Based on faker.js library.
+
+- [vue-playground](/libs/vue-playground/)
+
+A code editor runner, real-time editing, real-time compilation, real-time preview.
+
+- [vuepress-plugin-sandbox](/libs/vuepress-plugin-sandbox/)
+
+It is a vuepress plugin based on vue-playground, which supports rapid writing of demos of real-time editing, real-time compilation, and real-time preview.

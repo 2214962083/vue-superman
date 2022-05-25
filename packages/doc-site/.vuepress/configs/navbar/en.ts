@@ -16,6 +16,14 @@ export const en: NavbarConfig = [
       {
         text: 'class-mock',
         link: '/libs/class-mock/README.md'
+      },
+      {
+        text: 'vue-playground',
+        link: '/libs/vue-playground/README.md'
+      },
+      {
+        text: 'vuepress-plugin-sandbox',
+        link: '/libs/vuepress-plugin-sandbox/README.md'
       }
     ]
   },

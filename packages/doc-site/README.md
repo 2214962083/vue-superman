@@ -11,10 +11,25 @@ actions:
     type: secondary
 features:
   - title: vue-xrender
-    details: Use jsx in template or use template in jsx, do what you want in vue free render.
+    details: A library that allows you to render jsx in vue template or render template string in jsx, free rendering is up to you. Support vue2 and vue3.
+    link: '/libs/vue-xrender/README.md'
+
   - title: class-mock
-    details: Proper decorator-based to generate faker data from class constructors.
-  - title: more
-    details: More libraries will be added to vue-superman in the future, so stay tuned.
+    details: A mock library that allows you use decorators with classes to generate fake data. Based on faker.js library.
+    link: '/libs/class-mock/README.md'
+
+  - title: vue-playground
+    details: A code editor runner, real-time editing, real-time compilation, real-time preview.
+    link: '/libs/vue-playground/README.md'
+
+  - title: vuepress-plugin-sandbox
+    details: It is a vuepress plugin based on vue-playground, which supports rapid writing of demos of real-time editing, real-time compilation, and real-time preview.
+    link: '/libs/vuepress-plugin-sandbox/README.md'
+
+  - title: More
+    details: In the future, vue-superman will add more libraries, so stay tuned.
+
+  - title:
+    details:
 footer: MIT Licensed | Copyright © 2022-present YangJinMing
 ---

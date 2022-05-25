@@ -1,7 +1,7 @@
 {
   "name": "class-mock",
   "version": "0.1.9",
-  "description": "Proper decorator-based to generate faker data from class constructors",
+  "description": "A mock library that allows you use decorators with classes to generate fake data. Based on faker.js library",
   "keywords": [
     "mock",
     "faker",

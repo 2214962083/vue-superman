@@ -1,7 +1,7 @@
 {
   "name": "vue-xrender",
   "version": "0.1.9",
-  "description": "use jsx in template or use template in jsx, do what you want in vue free render",
+  "description": "A library that allows you to render jsx in vue template or render template string in jsx, free rendering is up to you. Support vue2 and vue3",
   "keywords": [
     "vue",
     "vue-xrender",
