@@ -4,15 +4,15 @@
 
 It is a demo plugin that supports real-time editing, real-time compilation, and real-time preview. Similar to the small [codesandbox](https://codesandbox.io/).
 
-It has the following functions:
+Features:
 
--Real-time editing, real-time compilation `(vue3, js, ts, jsx, tsx, css)`, real-time running, real-time preview
--Support for custom `import` mapping
--Support to create new files, delete files, support
--Editor supports `ts` type hinting (`.ts` files only)
--Support switching layout, support full screen
--Support dark mode
--Support custom theme color
+- Real-time editing, real-time compilation `(vue3, js, ts, jsx, tsx, css)`, real-time running, real-time preview
+- Support for custom `import` mapping
+- Support to create new files, delete files, support
+- Editor supports `ts` type hinting (`.ts` files only)
+- Support switching layout, support full screen
+- Support dark mode
+- Support custom theme color
 
 ## Installation
 

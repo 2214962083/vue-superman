@@ -3,9 +3,9 @@
     <img src="https://vue-superman.vercel.app/images/logo.svg" width="150">
   </a>
   <h1>vue-xrender</h1>
-  <p>A library that allows you to render jsx in vue template or render template string in jsx, free rendering is up to you. Support vue2 and vue3.</p>
+  <p>一个可以让你在 vue template 中渲染 jsx 或在 jsx 中渲染 template 字符串的库，自由渲染由你做主。支持 vue2 和 vue3。</p>
   <p>
-    <span>English</span>&emsp;|&emsp;<a href="./README_zh-CN.md">简体中文</a>
+    <a href="./">English</a>&emsp;|&emsp;<span>简体中文</span>
   </p>
   <p>
     <img src="https://img.shields.io/npm/v/vue-xrender?style=flat-square" alt="version">
@@ -16,13 +16,13 @@
   </p>
 </div>
 
-## Introduction
+## 介绍
 
-A library that lets you render `jsx` or `tsx` components in a `template`, making your `ui` rendering more flexible.
+一个可以让你在 `template` 里渲染 `jsx` 或 `tsx` 组件的库，让你的 `ui` 渲染更灵活。
 
-`vue2` and `vue3` are supported.
+支持 `vue2` 和 `vue3`。
 
-## Installation
+## 安装
 
 for npm
 
@@ -42,7 +42,7 @@ for pnpm
 pnpm add vue-xrender
 ```
 
-## Browser
+## 浏览器
 
 ```html
 <!-- Unpkg -->
@@ -52,9 +52,9 @@ pnpm add vue-xrender
 <script src="https://cdn.jsdelivr.net/npm/vue-xrender@latest" />
 ```
 
-## Usage
+## 使用
 
-The usage is documented in the [documentation](https://vue-superman.vercel.app/libs/vue-xrender/).
+点击查看[使用文档](https://vue-superman.vercel.app/libs/vue-xrender/).
 
 ## Contributing
 

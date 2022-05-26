@@ -8,18 +8,15 @@ const pathResolveUnix = (..._path: string[]) => pathResolve(..._path).replace(/\
 
 const packagesGlobPaths = pathResolveUnix('../packages/*/')
 const packagesPaths = globby.sync(packagesGlobPaths, {onlyFiles: false, onlyDirectories: true})
-const rootReadme = pathResolve('../', 'README.md')
 const rootLicense = pathResolve('../', 'LICENSE')
 
 export function copyFiles() {
   packagesPaths.map(packagePath => {
     const pkgJson = pathResolve(packagePath, 'package.json')
-    const readme = pathResolve(packagePath, 'README.md')
     const license = pathResolve(packagePath, 'LICENSE')
 
     const pkg = JSON.parse(readFileSync(pkgJson, 'utf8')) || {}
     if (pkg.private) return
-    if (!existsSync(readme)) copyFileSync(rootReadme, readme)
     if (!existsSync(license)) copyFileSync(rootLicense, license)
   })
 }

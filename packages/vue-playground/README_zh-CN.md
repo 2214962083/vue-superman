@@ -3,9 +3,9 @@
     <img src="https://vue-superman.vercel.app/images/logo.svg" width="150">
   </a>
   <h1>vue-playground</h1>
-  <p>A code editor runner, real-time editing, real-time compilation, real-time preview.</p>
+  <p>一个代码编辑运行器，实时编辑、实时编译、实时预览。</p>
   <p>
-    <span>English</span>&emsp;|&emsp;<a href="./README_zh-CN.md">简体中文</a>
+    <a href="./">English</a>&emsp;|&emsp;<span>简体中文</span>
   </p>
   <p>
     <img src="https://img.shields.io/npm/v/vue-playground?style=flat-square" alt="version">
@@ -18,23 +18,23 @@
   </p>
 </div>
 
-## Introduction
+## 介绍
 
-`vue-playground` is a `vue3` component based on [monaco-editor](https://github.com/microsoft/monaco-editor).
+`vue-playground` 是一个基于 [monaco-editor](https://github.com/microsoft/monaco-editor) 的 `vue3` 组件。
 
-It supports real-time editing, real-time compilation, and real-time preview. Similar to the small [codesandbox](https://codesandbox.io/).
+它支持实时编辑、实时编译、实时预览。类似小型的 [codesandbox](https://codesandbox.io/)。
 
-## Features
+## 功能
 
-- Real-time editing, real-time compilation `(vue3, js, ts, jsx, tsx, css)`, real-time running, real-time preview.
-- Support for custom `import` mapping.
-- Support to create new files, delete files, support.
-- Editor supports `ts` type hinting (`.ts` files only).
-- Support switching layout, support full screen.
-- Support dark mode.
-- Support custom theme color.
+- 实时编辑，实时编译 `(vue3、js、ts、jsx、tsx、css)` ，实时运行，实时预览
+- 支持自定义 `import` 映射
+- 支持新建文件，删除文件，支持
+- 编辑器支持 `ts` 类型提示（仅限 `.ts` 文件）
+- 支持切换布局，支持全屏
+- 支持暗黑模式
+- 支持自定义主题色
 
-## Installation
+## 安装
 
 for npm
 
@@ -54,17 +54,17 @@ for pnpm
 pnpm add vue-playground monaco-editor
 ```
 
-## Usage
+## 使用
 
-The usage is documented in the [documentation](https://vue-superman.vercel.app/libs/vue-playground/).
+点击查看[使用文档](https://vue-superman.vercel.app/libs/vue-playground/)。
 
-## Notice
+## 注意
 
-This component depends on [monaco-editor](https://github.com/microsoft/monaco-editor) and [@babel/standalone](https://babeljs.io/docs/en/babel-standalone), So it will be bigger after packing.
+本组件因为依赖于 [monaco-editor](https://github.com/microsoft/monaco-editor) 和 [@babel/standalone](https://babeljs.io/docs/en/babel-standalone)，所以打包后会比较大。
 
-Recommended for lowcode projects. Or documentation to write demo .
+推荐用于 lowcode 项目。或者文档写 demo 。
 
-## Acknowledgement
+## 致谢
 
 - [vuejs/repl](https://github.com/vuejs/repl)
 - [code-kitchen](https://github.com/freewheel/code-kitchen)

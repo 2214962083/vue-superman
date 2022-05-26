@@ -3,9 +3,9 @@
     <img src="https://vue-superman.vercel.app/images/logo.svg" width="150">
   </a>
   <h1>class-mock</h1>
-  <p>A mock library that lets you use decorators with classes to generate fake data.</p>
+  <p>一个可以让你用装饰器配合 class 生成假数据的 mock 库。基于 faker.js 库。</p>
   <p>
-    <span>English</span>&emsp;|&emsp;<a href="./README_zh-CN.md">简体中文</a>
+    <a href="./">English</a>&emsp;|&emsp;<span>简体中文</span>
   </p>
   <p>
     <img src="https://img.shields.io/npm/v/class-mock?style=flat-square" alt="version">
@@ -17,17 +17,17 @@
   </p>
 </div>
 
-## Introduction
+## 介绍
 
-A mock library that lets you use decorators with classes to generate fake data. Based on [@faker-js/faker](https://github.com/faker-js/faker)。
+一个可以让你用装饰器配合 class 生成假数据的 mock 库。基于 [@faker-js/faker](https://github.com/faker-js/faker)。
 
-`class-mock` decorators essentially just stores metadata (configuration data) and does not modify the class.
+`class-mock` 装饰器本质只是存储元数据（配置数据），并不会对类进行修改。
 
-Finally, when `createMock(MockClass)` is executed, all metadata (configuration data) of `MockClass` will be taken out, and then data generation will be performed with `@faker-js/faker`.
+最后在 `createMock(MockClass)` 执行时，会取出 `MockClass` 的所有元数据（配置数据），然后配合 `@faker-js/faker` 进行数据生成。
 
-Supports any `ts` project or [@babel/plugin-proposal-decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) (`legacy` is `true`) `js` project.
+支持任何 `ts` 项目或装了 [@babel/plugin-proposal-decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) (`legacy` 为 `true`) 的 `js` 项目。
 
-## Installation
+## 安装
 
 for npm
 
@@ -47,13 +47,13 @@ for pnpm
 pnpm add class-mock @faker-js/faker
 ```
 
-## Usage
+## 使用
 
-The usage is documented in the [documentation](https://vue-superman.vercel.app/libs/class-mock/).
+点击查看[使用文档](https://vue-superman.vercel.app/libs/class-mock/)。
 
-## Notice
+## 注意
 
-`ts` project needs to be configured in `tsconfig.json`:
+`ts` 项目需要在 `tsconfig.json` 配置
 
 ```json
 {
@@ -64,7 +64,7 @@ The usage is documented in the [documentation](https://vue-superman.vercel.app/l
 }
 ```
 
-## Acknowledgement
+## 致谢
 
 - [class-transformer](https://github.com/typestack/class-transformer)
 - [class-validator](https://github.com/typestack/class-validator)

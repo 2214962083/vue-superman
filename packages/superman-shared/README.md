@@ -1,3 +1,3 @@
-# Vue Superman
+# Superman-shared
 
-vue useful lib collection, use vue like a superman
+A shared package of internal utility functions, including build and test functions.
