@@ -1,7 +1,7 @@
 {
   "name": "superman-shared",
   "version": "0.1.9",
-  "description": "the build and test utils share for vue-superman packages",
+  "description": "A shared package of internal utility functions, including build and test functions.",
   "keywords": [
     "superman-shared",
     "vue-superman",

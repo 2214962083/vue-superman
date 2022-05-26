@@ -1,7 +1,7 @@
 {
   "name": "vue-playground",
   "version": "0.1.9",
-  "description": "A code editor runner, real-time editing, real-time compilation, real-time preview",
+  "description": "A code editor runner, real-time editing, real-time compilation, real-time preview.",
   "keywords": [
     "vue",
     "vue-playground",
