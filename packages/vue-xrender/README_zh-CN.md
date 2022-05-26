@@ -54,7 +54,7 @@ pnpm add vue-xrender
 
 ## 使用
 
-点击查看[使用文档](https://vue-superman.vercel.app/libs/vue-xrender/).
+点击查看[使用文档](https://vue-superman.vercel.app/zh/libs/vue-xrender/).
 
 ## Contributing
 

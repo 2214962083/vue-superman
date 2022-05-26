@@ -20,7 +20,7 @@
 
 ## 介绍
 
-`vuepress-plugin-sandbox` 是一个基于 [vue-playground](../vue-playground/) 的 `vuepress v2` 插件。
+`vuepress-plugin-sandbox` 是一个基于 [vue-playground](../vue-playground/README_zh-CN.md) 的 `vuepress v2` 插件。
 
 它是一个支持实时编辑、实时编译、实时预览的 demo 插件。类似小型的 [codesandbox](https://codesandbox.io/)。
 
@@ -56,7 +56,7 @@ pnpm add vuepress-plugin-sandbox monaco-editor
 
 ## 使用
 
-点击查看[使用文档](https://vue-superman.vercel.app/libs/vuepress-plugin-sandbox/).
+点击查看[使用文档](https://vue-superman.vercel.app/zh/libs/vuepress-plugin-sandbox/).
 
 ## 注意
 
@@ -64,7 +64,7 @@ pnpm add vuepress-plugin-sandbox monaco-editor
 
 目前支持 `vuepress@2.0.0-beta.40` 及以上版本。
 
-因为 `vuepress-plugin-sandbox` 基于 [vue-playground](../vue-playground/)， 而 [vue-playground](../vue-playground/) 又依赖于 [monaco-editor](https://github.com/microsoft/monaco-editor) 和 [@babel/standalone](https://babeljs.io/docs/en/babel-standalone)，所以打包后会比较大。
+因为 `vuepress-plugin-sandbox` 基于 [vue-playground](../vue-playground/README_zh-CN.md)， 而 [vue-playground](../vue-playground/README_zh-CN.md) 又依赖于 [monaco-editor](https://github.com/microsoft/monaco-editor) 和 [@babel/standalone](https://babeljs.io/docs/en/babel-standalone)，所以打包后会比较大。
 
 ## Acknowledgement
 

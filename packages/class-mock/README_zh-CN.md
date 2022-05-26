@@ -49,7 +49,7 @@ pnpm add class-mock @faker-js/faker
 
 ## 使用
 
-点击查看[使用文档](https://vue-superman.vercel.app/libs/class-mock/)。
+点击查看[使用文档](https://vue-superman.vercel.app/zh/libs/class-mock/)。
 
 ## 注意
 

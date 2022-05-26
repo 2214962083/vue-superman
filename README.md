@@ -22,25 +22,15 @@ Although it's called Vue Superman, the library provided is not limited to Vue. I
 
 ## Document
 
-[View documentation](https://vue-superman.vercel.app/zh/)
+[View documentation](https://vue-superman.vercel.app/)
 
 ## Libs List
 
-- [vue-xrender](./vue-xrender/)
-
-A library that allows you to render jsx in vue template or render template string in jsx, free rendering is up to you. Support vue2 and vue3.
-
-- [class-mock](./class-mock/)
-
-A mock library that allows you use decorators with classes to generate fake data. Based on faker.js library.
-
-- [vue-playground](./vue-playground/)
-
-A code editor runner, real-time editing, real-time compilation, real-time preview.
-
-- [vuepress-plugin-sandbox](./vuepress-plugin-sandbox/)
-
-It is a vuepress plugin based on vue-playground, which supports rapid writing of demos of real-time editing, real-time compilation, and real-time preview.
+| [vue-xrender](./packages/vue-xrender/)                         | A library that allows you to render jsx in vue template or render template string in jsx, free rendering is up to you. Support vue2 and vue3.              |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [class-mock](./packages/class-mock/)                           | A mock library that allows you use decorators with classes to generate fake data. Based on faker.js library.                                               |
+| [vue-playground](./packages/vue-playground/)                   | A code editor runner, real-time editing, real-time compilation, real-time preview.                                                                         |
+| [vuepress-plugin-sandbox](./packages/vuepress-plugin-sandbox/) | It is a vuepress plugin based on vue-playground, which supports rapid writing of demos of real-time editing, real-time compilation, and real-time preview. |
 
 ## Contributing
 

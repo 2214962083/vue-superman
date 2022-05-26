@@ -56,7 +56,7 @@ pnpm add vue-playground monaco-editor
 
 ## 使用
 
-点击查看[使用文档](https://vue-superman.vercel.app/libs/vue-playground/)。
+点击查看[使用文档](https://vue-superman.vercel.app/zh/libs/vue-playground/)。
 
 ## 注意
 
