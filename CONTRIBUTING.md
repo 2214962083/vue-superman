@@ -6,10 +6,18 @@ Thanks for being interested in contributing to this project!
 
 ### Setup
 
+This project depends on node v14+ and pnpm 6.x
+
+If you don't have pnpm installed, you should execute:
+
+```bash
+npm i -g pnpm@6.32.17
+```
+
 Clone this repo to your local machine and install the dependencies.
 
 ```bash
-pnpm install
+pnpm bootstrap
 ```
 
 We use VuePress for rapid development and documenting. You can start it locally by
