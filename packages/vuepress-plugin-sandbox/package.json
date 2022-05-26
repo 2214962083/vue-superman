@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-sandbox",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "It is a vuepress plugin based on vue-playground, which supports rapid writing of demos of real-time editing, real-time compilation, and real-time preview.",
   "keywords": [
     "vuepress-plugin-sandbox",

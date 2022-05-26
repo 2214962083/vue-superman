@@ -1,6 +1,6 @@
 {
   "name": "doc-site",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "private": true,
   "description": "the libs docs website",
   "scripts": {

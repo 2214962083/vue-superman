@@ -1,6 +1,6 @@
 {
   "name": "superman-shared",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "A shared package of internal utility functions, including build and test functions.",
   "keywords": [
     "superman-shared",
