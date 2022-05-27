@@ -69,6 +69,7 @@ class Student {
   @Phone.phoneNumber('188########')
   tel!: number
 
+  @IsArray({max: 5, min: 1})
   @Entity(() => Skill)
   skills!: Skill[]
 
