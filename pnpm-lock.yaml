@@ -274,6 +274,8 @@ importers:
       typescript: 4.6.3
       vite: ^2.9.5
       vitest: ^0.9.3
+      vscode-oniguruma: ^1.6.2
+      vscode-textmate: ^7.0.1
       vue: ^3.2.31
       vue-demi: 0.12.5
       vue-tsc: ^0.34.7
@@ -290,6 +292,8 @@ importers:
       emmet-monaco-es: 5.1.0_monaco-editor@0.33.0
       js-base64: 3.7.2
       theme-vitesse: 0.4.9
+      vscode-oniguruma: 1.6.2
+      vscode-textmate: 7.0.1
       vue-demi: 0.12.5_vue@3.2.33
     devDependencies:
       '@types/node': 17.0.31
@@ -11204,11 +11208,14 @@ packages:
 
   /vscode-oniguruma/1.6.2:
     resolution: {integrity: sha512-KH8+KKov5eS/9WhofZR8M8dMHWN2gTxjMsG4jd04YhpbPR91fUj7rYQ2/XjeHCJWbg7X++ApRIU9NUwM2vTvLA==}
-    dev: true
 
   /vscode-textmate/5.2.0:
     resolution: {integrity: sha512-Uw5ooOQxRASHgu6C7GVvUxisKXfSgW4oFlO+aa+PAkgmH89O3CXxEEzNRNtHSqtXFTl0nAC1uYj0GMSH27uwtQ==}
     dev: true
+
+  /vscode-textmate/7.0.1:
+    resolution: {integrity: sha512-zQ5U/nuXAAMsh691FtV0wPz89nSkHbs+IQV8FDk+wew9BlSDhf4UmWGlWJfTR2Ti6xZv87Tj5fENzKf6Qk7aLw==}
+    dev: false
 
   /vue-demi/0.12.5_505930eeccac62aede77684611a57c84:
     resolution: {integrity: sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==}

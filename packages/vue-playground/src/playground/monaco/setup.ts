@@ -2,6 +2,7 @@
 import {createSingletonPromise, SingletonPromiseReturn} from '../utils/common'
 import {Monaco, PlaygroundLifeCycle} from '../utils/types-helper'
 import {setLanguage} from './language'
+// import {setCustomLanguage} from './set-custom-language'
 import {loadWorkers} from './worker'
 
 export const loadMonacoImport = createSingletonPromise(async () => {
@@ -15,6 +16,7 @@ export const setupMonaco = createSingletonPromise(async (lifeCycle?: PlaygroundL
 
   await setLanguage(monaco, lifeCycle)
   await loadWorkers(monaco, lifeCycle)
+  // await setCustomLanguage(monaco, lifeCycle)
 
   return {monaco}
 })

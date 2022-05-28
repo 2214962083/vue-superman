@@ -70,6 +70,8 @@
     "emmet-monaco-es": "^5.1.0",
     "js-base64": "^3.7.2",
     "theme-vitesse": "^0.4.9",
+    "vscode-oniguruma": "^1.6.2",
+    "vscode-textmate": "^7.0.1",
     "vue-demi": "*"
   },
   "devDependencies": {

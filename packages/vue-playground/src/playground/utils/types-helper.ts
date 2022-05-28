@@ -2,6 +2,7 @@
 import type {CSSProperties, Ref} from 'vue'
 import type {File, ReplStore} from '../../core'
 import type {PlaygroundProps} from '../playground.type'
+import type * as monaco from 'monaco-editor'
 
 export type {editor as MonacoEditor} from 'monaco-editor'
 
@@ -11,7 +12,17 @@ export type CreateEditorOptions = monaco.editor.IStandaloneEditorConstructionOpt
 
 export type IStandaloneCodeEditor = monaco.editor.IStandaloneCodeEditor
 
+export type ILanguageExtensionPoint = monaco.languages.ILanguageExtensionPoint
+
+export type LanguageConfiguration = monaco.languages.LanguageConfiguration
+
+export type EncodedTokensProvider = monaco.languages.EncodedTokensProvider
+
 export type MaybePromise<T> = T | Promise<T>
+
+export type Writeable<T> = {
+  -readonly [P in keyof T]: T[P]
+}
 
 export type PromiseFnReturnType<Fn extends (...args: any[]) => Promise<any>, R = ReturnType<Fn>> = R extends Promise<
   infer U
@@ -32,10 +43,21 @@ export interface TsLib {
   filePath?: string
 }
 
+export interface CustomMonacoLanguage {
+  id: string
+  sourceName: string
+  lang: Omit<ILanguageExtensionPoint, 'id'>
+  tmLanguagePath: string
+  grammarType: 'json' | 'plist'
+  loadGrammar: () => MaybePromise<any>
+  loadConfiguration: () => MaybePromise<any>
+}
+
 export interface PlaygroundPkgCdn {
   '@vue/runtime-dom'?: (version: string, ending: string) => string
   '@vue/compiler-sfc'?: (version: string, ending: string) => string
   'es-module-shims'?: (version: string, ending: string) => string
+  'vscode-oniguruma'?: (version: string, ending: string) => string
 }
 
 export type PlaygroundOptions = Partial<PlaygroundProps>
@@ -47,6 +69,7 @@ export interface PlaygroundLifeCycle {
   loadTsLibs?: (monaco: Monaco, defaultTsLibs: TsLib[]) => MaybePromise<TsLib[]>
   afterSetLanguage?: (monaco: Monaco) => MaybePromise<void>
   loadWorkers?: (monaco: Monaco, self: Window) => MaybePromise<void>
+  loadCustomLanguages?: (monaco: Monaco, defaultLangs: CustomMonacoLanguage[]) => MaybePromise<CustomMonacoLanguage[]>
   beforeCreateEditor?: (monaco: Monaco) => MaybePromise<void>
   loadEditorOption?: (monaco: Monaco, defaultOptions: CreateEditorOptions) => MaybePromise<CreateEditorOptions>
   afterCreateEditor?: (monaco: Monaco, editor: IStandaloneCodeEditor) => MaybePromise<void>

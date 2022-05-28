@@ -80,10 +80,15 @@ export const GET_DARK_THEME = (theme?: PlaygroundTheme) => {
   } as PlaygroundTheme
 }
 
+export const getExplicitVersion = (version: string) => version.replace(/[\^~]/g, '')
+
 export const DEFAULT_VUE_RUNTIME_DOM_CDN = (version: string) =>
-  `https://unpkg.com/@vue/runtime-dom@${version}/dist/runtime-dom.esm-browser.js`
+  `https://unpkg.com/@vue/runtime-dom@${getExplicitVersion(version)}/dist/runtime-dom.esm-browser.js`
 
 export const DEFAULT_VUE_COMPILER_SFC_CDN = (version: string) =>
-  `https://unpkg.com/@vue/compiler-sfc@${version}/dist/compiler-sfc.esm-browser.js`
+  `https://unpkg.com/@vue/compiler-sfc@${getExplicitVersion(version)}/dist/compiler-sfc.esm-browser.js`
 
 export const DEFAULT_ES_MODULE_SHIMS_CDN = 'https://unpkg.com/es-module-shims@0.10.1/dist/es-module-shims.min.js'
+
+export const DEFAULT_ONIGURUMA_WASM_CDN = (version: string) =>
+  `https://unpkg.com/vscode-oniguruma@${getExplicitVersion(version)}/release/onig.wasm`
