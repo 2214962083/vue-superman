@@ -50,7 +50,7 @@ export interface CustomMonacoLanguage {
   tmLanguagePath: string
   grammarType: 'json' | 'plist'
   loadGrammar: () => MaybePromise<any>
-  loadConfiguration: () => MaybePromise<any>
+  loadConfiguration?: () => MaybePromise<any>
 }
 
 export interface PlaygroundPkgCdn {

@@ -78,6 +78,7 @@ export async function setLanguage(monaco: Monaco, lifeCycle?: PlaygroundLifeCycl
   const tsLibs = (await lifeCycle?.loadTsLibs?.(monaco, defaultTsLibs)) || defaultTsLibs
 
   tsLibs.forEach(lib => {
+    monaco.languages.typescript.javascriptDefaults.addExtraLib(lib.content, lib.filePath)
     monaco.languages.typescript.typescriptDefaults.addExtraLib(lib.content, lib.filePath)
   })
 

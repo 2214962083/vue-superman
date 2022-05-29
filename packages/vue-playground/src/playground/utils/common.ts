@@ -21,12 +21,12 @@ export const getFileLanguage = (file: File) => {
     case 'ts':
     case 'tsx':
       return 'typescript'
-    case 'vue':
-      return 'html'
+    // case 'vue':
+    //   return 'html'
     case 'css':
       return 'css'
     default:
-      return 'plaintext'
+      return ext
   }
 }
 

@@ -69,9 +69,10 @@
     "@vueuse/core": "^8.4.1",
     "emmet-monaco-es": "^5.1.0",
     "js-base64": "^3.7.2",
+    "monaco-editor-textmate": "^3.0.0",
+    "monaco-textmate": "^3.0.1",
+    "onigasm": "^2.2.5",
     "theme-vitesse": "^0.4.9",
-    "vscode-oniguruma": "^1.6.2",
-    "vscode-textmate": "^7.0.1",
     "vue-demi": "*"
   },
   "devDependencies": {

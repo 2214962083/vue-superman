@@ -11,7 +11,7 @@ const changeConfigFn: buildUtils.ChangeConfigFn = (config, options) => {
   if (!config.build.rollupOptions) config.build.rollupOptions = {}
 
   const oldOutput = config.build.rollupOptions.output
-  if (!Array.isArray(oldOutput)) {
+  if (!Array.isArray(oldOutput) && !options.watch) {
     const newOutput: OutputOptions = {
       ...oldOutput,
       inlineDynamicImports: false,

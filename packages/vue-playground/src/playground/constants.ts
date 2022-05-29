@@ -91,4 +91,4 @@ export const DEFAULT_VUE_COMPILER_SFC_CDN = (version: string) =>
 export const DEFAULT_ES_MODULE_SHIMS_CDN = 'https://unpkg.com/es-module-shims@0.10.1/dist/es-module-shims.min.js'
 
 export const DEFAULT_ONIGURUMA_WASM_CDN = (version: string) =>
-  `https://unpkg.com/vscode-oniguruma@${getExplicitVersion(version)}/release/onig.wasm`
+  `https://unpkg.com/onigasm@${getExplicitVersion(version)}/lib/onigasm.wasm`
