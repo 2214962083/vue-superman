@@ -52,14 +52,19 @@ export default defineClientConfig({
     if (!__VUEPRESS_SSR__) {
       const html = document.documentElement
       const sandboxDark = ref(false)
+      const autoSetDark = () => {
+        const isVuepressDark = Boolean(html.classList.contains('dark'))
+        sandboxDark.value = isVuepressDark
+      }
+
+      autoSetDark() // first time set
 
       // watch vuepress dark mode
       useMutationObserver(
         html,
         mutations => {
           if (mutations.every(m => m.attributeName !== 'class')) return
-          const isVuepressDark = Boolean(html.classList.contains('dark'))
-          sandboxDark.value = isVuepressDark
+          autoSetDark()
         },
         {
           attributes: true
