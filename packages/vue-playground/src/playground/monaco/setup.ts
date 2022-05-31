@@ -14,9 +14,9 @@ export const setupMonaco = createSingletonPromise(async (lifeCycle?: PlaygroundL
   const monaco = await loadMonacoImport()
   if (!monaco) return {monaco: null}
 
-  await setLanguage(monaco, lifeCycle)
   await loadWorkers(monaco, lifeCycle)
   await setCustomLanguage(monaco, lifeCycle)
+  await setLanguage(monaco, lifeCycle)
 
   return {monaco}
 })

@@ -53,8 +53,8 @@
   },
   "homepage": "https://github.com/2214962083/vue-superman#readme",
   "peerDependencies": {
-    "monaco-editor": ">=0.30.0",
     "@vue/compiler-sfc": ">=3.0.0",
+    "monaco-editor": ">=0.30.0",
     "vue": ">=3.0.0"
   },
   "dependencies": {

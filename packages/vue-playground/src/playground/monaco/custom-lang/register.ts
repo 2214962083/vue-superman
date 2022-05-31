@@ -26,16 +26,21 @@ export async function registerLanguagesForMonaco(options: {
     getGrammarDefinition: async (scopeName): Promise<IGrammarDefinition> => {
       let targetLang = customLangs.find(item => isSameSource(item.sourceName, scopeName))
 
-      console.log('fetchGrammar targetLang', scopeName, targetLang)
-
       if (!targetLang) {
         targetLang = customLangs.find(item => isSameSource(item.sourceName, 'source.tsx'))!
       }
 
-      const grammar = await targetLang.loadGrammar()
+      const remoteGrammar = await targetLang.loadGrammar()
+      const grammar = {
+        ...JSON.parse(JSON.stringify(remoteGrammar)), // Prevent incoming objects from being frozen
+        name: targetLang.id,
+        scopeName
+      }
+
+      // console.log('fetchGrammar grammar', scopeName, grammar, targetLang)
       const textMateGrammar: IGrammarDefinition = {
         format: targetLang.grammarType,
-        content: JSON.stringify(grammar)
+        content: grammar
       }
 
       return textMateGrammar
@@ -52,10 +57,12 @@ export async function registerLanguagesForMonaco(options: {
     })
 
     const configuration = await item.loadConfiguration?.()
+    // console.log('loadConfiguration', item.id, configuration)
     if (configuration) {
-      monaco.languages.setLanguageConfiguration(item.id, {
-        ...configuration
-      })
+      monaco.languages.setLanguageConfiguration(
+        item.id,
+        JSON.parse(JSON.stringify(configuration)) // Prevent incoming objects from being frozen
+      )
     }
   })
 

@@ -12,10 +12,10 @@ export const defaultCustomLangs: CustomMonacoLanguage[] = [
     tmLanguagePath: 'vue.tmLanguage.json',
     grammarType: 'json',
     async loadGrammar() {
-      return import('./langs/vue.tmLanguage.json')
+      return (await import('./langs/vue.tmLanguage.json')).default
     },
     async loadConfiguration() {
-      return import('./langs/vue-language-configuration.json')
+      return (await import('./langs/vue-language-configuration.json')).default
     }
   },
   {
@@ -28,7 +28,23 @@ export const defaultCustomLangs: CustomMonacoLanguage[] = [
     tmLanguagePath: 'html.tmLanguage.json',
     grammarType: 'json',
     async loadGrammar() {
-      return import('./langs/html.tmLanguage.json')
+      return (await import('./langs/html.tmLanguage.json')).default
+    }
+  },
+  {
+    id: 'vue-html',
+    sourceName: 'text.html.vue-html',
+    lang: {
+      extensions: ['.vue-html'],
+      aliases: ['vue-html']
+    },
+    tmLanguagePath: 'vue-html.tmLanguage.json',
+    grammarType: 'json',
+    async loadGrammar() {
+      return (await import('./langs/vue-html.tmLanguage.json')).default
+    },
+    async loadConfiguration() {
+      return (await import('./langs/vue-html-language-configuration.json')).default
     }
   },
   {
@@ -41,7 +57,7 @@ export const defaultCustomLangs: CustomMonacoLanguage[] = [
     tmLanguagePath: 'css.tmLanguage.json',
     grammarType: 'json',
     async loadGrammar() {
-      return import('./langs/css.tmLanguage.json')
+      return (await import('./langs/css.tmLanguage.json')).default
     }
   },
   {
@@ -54,7 +70,7 @@ export const defaultCustomLangs: CustomMonacoLanguage[] = [
     tmLanguagePath: 'typescript.tmLanguage.json',
     grammarType: 'json',
     async loadGrammar() {
-      return import('./langs/typescript.tmLanguage.json')
+      return (await import('./langs/typescript.tmLanguage.json')).default
     }
   },
   {
@@ -67,7 +83,7 @@ export const defaultCustomLangs: CustomMonacoLanguage[] = [
     tmLanguagePath: 'tsx.tmLanguage.json',
     grammarType: 'json',
     async loadGrammar() {
-      return import('./langs/tsx.tmLanguage.json')
+      return (await import('./langs/tsx.tmLanguage.json')).default
     }
   },
   {
@@ -80,7 +96,7 @@ export const defaultCustomLangs: CustomMonacoLanguage[] = [
     tmLanguagePath: 'typescript.tmLanguage.json',
     grammarType: 'json',
     async loadGrammar() {
-      return import('./langs/typescript.tmLanguage.json')
+      return (await import('./langs/typescript.tmLanguage.json')).default
     }
   },
   {
@@ -93,7 +109,7 @@ export const defaultCustomLangs: CustomMonacoLanguage[] = [
     tmLanguagePath: 'tsx.tmLanguage.json',
     grammarType: 'json',
     async loadGrammar() {
-      return import('./langs/tsx.tmLanguage.json')
+      return (await import('./langs/tsx.tmLanguage.json')).default
     }
   }
 ]
