@@ -40,6 +40,95 @@ pnpm add vue-xrender
 <script src="https://cdn.jsdelivr.net/npm/vue-xrender@{{version}}" />
 ```
 
+## 为什么
+
+思考一下，假如你要做一个这样的组件：
+
+```vue
+<template>
+  <Modal v-if="isWrapModal">
+    <article>
+      <h1>{{ title }}</h1>
+      <p>{{ content }}</p>
+    </article>
+  </Modal>
+  <article v-else>
+    <h1>{{ title }}</h1>
+    <p>{{ content }}</p>
+  </article>
+</template>
+<script>
+import {defineComponent} from 'vue'
+import Modal from 'xxx-ui'
+
+export default defineComponent({
+  components: {
+    Modal
+  },
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    content: {
+      type: String,
+      default: ''
+    },
+    isWrapModal: {
+      type: Boolean,
+      default: false
+    }
+  }
+})
+</script>
+```
+
+现在，你有了 `vue-xrender`，你可以：
+
+```vue
+<template>
+  <Modal v-if="isWrapModal">
+    <Article />
+  </Modal>
+  <Article v-else />
+</template>
+<script lang="jsx">
+import {defineComponent} from 'vue'
+import Modal from 'xxx-ui'
+import {useJsx} from 'vue-xrender'
+
+export default defineComponent({
+  components: {
+    Modal
+  },
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    content: {
+      type: String,
+      default: ''
+    },
+    isWrapModal: {
+      type: Boolean,
+      default: false
+    }
+  },
+  setup(props) {
+    useJsx('Article', () => (
+      <article>
+        <h1>{props.title}</h1>
+        <p>{props.content}</p>
+      </article>
+    ))
+
+    return {}
+  }
+})
+</script>
+```
+
 ## 示例
 
 ::: demo Vue Xrender Demo
