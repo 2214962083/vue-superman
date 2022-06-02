@@ -26,12 +26,12 @@ Vue Superman 不是一个具体的 npm 包，它是我把工作中可复用部�
 
 ## 库列表
 
-| 库名                                                                          | 描述                                                                                                              |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| [vue-xrender](./packages/vue-xrender/README_zh-CN.md)                         | 一个可以让你在 vue template 中渲染 jsx 或在 jsx 中渲染 template 字符串的库，自由渲染由你做主。支持 vue2 和 vue3。 |
-| [class-mock](./packages/class-mock/README_zh-CN.md)                           | 一个可以让你用装饰器配合 class 生成假数据的 mock 库。基于 faker.js 库。                                           |
-| [vue-playground](./packages/vue-playground/README_zh-CN.md)                   | 一个代码编辑运行器，实时编辑、实时编译、实时预览。                                                                |
-| [vuepress-plugin-sandbox](./packages/vuepress-plugin-sandbox/README_zh-CN.md) | 它是一个基于 vue-playground 的 vuepress 插件，支持快速书写实时编辑、实时编译、实时预览的 demo                     |
+| 库名                                                                          | 文档                                                                     | 版本                                                                                             | 描述                                                                                                              |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| [vue-xrender](./packages/vue-xrender/README_zh-CN.md)                         | [链接](https://vue-superman.vercel.app/zh/libs/vue-xrender/)             | <img src="https://img.shields.io/npm/v/vue-xrender?style=flat-square" alt="version">             | 一个可以让你在 vue template 中渲染 jsx 或在 jsx 中渲染 template 字符串的库，自由渲染由你做主。支持 vue2 和 vue3。 |
+| [class-mock](./packages/class-mock/README_zh-CN.md)                           | [链接](https://vue-superman.vercel.app/zh/libs/class-mock/)              | <img src="https://img.shields.io/npm/v/class-mock?style=flat-square" alt="version">              | 一个可以让你用装饰器配合 class 生成假数据的 mock 库。基于 faker.js 库。                                           |
+| [vue-playground](./packages/vue-playground/README_zh-CN.md)                   | [链接](https://vue-superman.vercel.app/zh/libs/vue-playground/)          | <img src="https://img.shields.io/npm/v/vue-playground?style=flat-square" alt="version">          | 一个代码编辑运行器，实时编辑、实时编译、实时预览。                                                                |
+| [vuepress-plugin-sandbox](./packages/vuepress-plugin-sandbox/README_zh-CN.md) | [链接](https://vue-superman.vercel.app/zh/libs/vuepress-plugin-sandbox/) | <img src="https://img.shields.io/npm/v/vuepress-plugin-sandbox?style=flat-square" alt="version"> | 它是一个基于 vue-playground 的 vuepress 插件，支持快速书写实时编辑、实时编译、实时预览的 demo                     |
 
 ## Contributing
 
