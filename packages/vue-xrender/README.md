@@ -5,7 +5,7 @@
   <h1>vue-xrender</h1>
   <p>A library that allows you to render jsx in vue template or render template string in jsx, free rendering is up to you. Support vue2 and vue3.</p>
   <p>
-    <span>English</span>&emsp;|&emsp;<a href="./README_zh-CN.md">简体中文</a>
+    <h3><span>English</span>&emsp;|&emsp;<a href="./README_zh-CN.md">简体中文</a></h3>
   </p>
   <p>
     <img src="https://img.shields.io/npm/v/vue-xrender?style=flat-square" alt="version">

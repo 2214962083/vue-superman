@@ -5,7 +5,7 @@
   <h1>Vue Superman</h1>
   <p>Vue useful lib collection, use vue like a superman, but not only vue.</p>
   <p>
-    <span>English</span>&emsp;|&emsp;<a href="./README_zh-CN.md">简体中文</a>
+    <h3><span>English</span>&emsp;|&emsp;<a href="./README_zh-CN.md">简体中文</a></h3>
   </p>
   <p>
     <img src="https://img.shields.io/github/package-json/v/2214962083/vue-superman" alt="version">

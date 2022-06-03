@@ -5,7 +5,7 @@
   <h1>class-mock</h1>
   <p>A mock library that lets you use decorators with classes to generate fake data.</p>
   <p>
-    <span>English</span>&emsp;|&emsp;<a href="./README_zh-CN.md">简体中文</a>
+    <h3><span>English</span>&emsp;|&emsp;<a href="./README_zh-CN.md">简体中文</a></h3>
   </p>
   <p>
     <img src="https://img.shields.io/npm/v/class-mock?style=flat-square" alt="version">

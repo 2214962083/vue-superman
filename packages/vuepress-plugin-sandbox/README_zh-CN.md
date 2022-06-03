@@ -5,7 +5,7 @@
   <h1>vuepress-plugin-sandbox</h1>
   <p>它是一个基于 vue-playground 的 vuepress 插件，支持快速书写实时编辑、实时编译、实时预览的 demo</p>
   <p>
-    <a href="./">English</a>&emsp;|&emsp;<span>简体中文</span>
+    <h3><a href="./">English</a>&emsp;|&emsp;<span>简体中文</span></h3>
   </p>
   <p>
     <img src="https://img.shields.io/npm/v/vuepress-plugin-sandbox?style=flat-square" alt="version">

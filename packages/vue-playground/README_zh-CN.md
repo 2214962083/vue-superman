@@ -5,7 +5,7 @@
   <h1>vue-playground</h1>
   <p>一个代码编辑运行器，实时编辑、实时编译、实时预览。</p>
   <p>
-    <a href="./">English</a>&emsp;|&emsp;<span>简体中文</span>
+    <h3><a href="./">English</a>&emsp;|&emsp;<span>简体中文</span></h3>
   </p>
   <p>
     <img src="https://img.shields.io/npm/v/vue-playground?style=flat-square" alt="version">

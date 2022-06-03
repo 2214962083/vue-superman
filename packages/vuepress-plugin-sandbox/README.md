@@ -5,7 +5,7 @@
   <h1>vuepress-plugin-sandbox</h1>
   <p>It is a vuepress plugin based on vue-playground, which supports rapid writing of demos of real-time editing, real-time compilation, and real-time preview.</p>
   <p>
-    <span>English</span>&emsp;|&emsp;<a href="./README_zh-CN.md">简体中文</a>
+    <h3><span>English</span>&emsp;|&emsp;<a href="./README_zh-CN.md">简体中文</a></h3>
   </p>
   <p>
     <img src="https://img.shields.io/npm/v/vuepress-plugin-sandbox?style=flat-square" alt="version">

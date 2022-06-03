@@ -5,7 +5,7 @@
   <h1>vue-xrender</h1>
   <p>一个可以让你在 vue template 中渲染 jsx 或在 jsx 中渲染 template 字符串的库，自由渲染由你做主。支持 vue2 和 vue3。</p>
   <p>
-    <a href="./">English</a>&emsp;|&emsp;<span>简体中文</span>
+    <h3><a href="./">English</a>&emsp;|&emsp;<span>简体中文</span></h3>
   </p>
   <p>
     <img src="https://img.shields.io/npm/v/vue-xrender?style=flat-square" alt="version">

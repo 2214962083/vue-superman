@@ -5,7 +5,7 @@
   <h1>Vue Superman</h1>
   <p>Vue 有用的 lib 合集，像超人一样使用 vue ，但不仅仅限于 vue 。</p>
   <p>
-    <a href="./">English</a>&emsp;|&emsp;<span>简体中文</span>
+    <h3><a href="./">English</a>&emsp;|&emsp;<span>简体中文</span></h3>
   </p>
   <p>
     <img src="https://img.shields.io/github/package-json/v/2214962083/vue-superman" alt="version">

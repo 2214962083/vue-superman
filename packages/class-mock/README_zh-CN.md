@@ -5,7 +5,7 @@
   <h1>class-mock</h1>
   <p>一个可以让你用装饰器配合 class 生成假数据的 mock 库。基于 faker.js 库。</p>
   <p>
-    <a href="./">English</a>&emsp;|&emsp;<span>简体中文</span>
+    <h3><a href="./">English</a>&emsp;|&emsp;<span>简体中文</span></h3>
   </p>
   <p>
     <img src="https://img.shields.io/npm/v/class-mock?style=flat-square" alt="version">
