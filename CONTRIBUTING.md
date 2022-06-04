@@ -29,8 +29,6 @@ pnpm dev
 
 ## Contributing
 
-todo...
-
 ## Code Style
 
 Don't worry about the code style as long as you install the dev dependencies. Git hooks will format and fix them for you on committing.
