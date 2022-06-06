@@ -8,7 +8,19 @@ To improve our development process, we've provide a playground, you can use any 
 
 ### Setup
 
-This project depends on node v14+ and pnpm 6.x
+The following steps will get you up and running to contribute to Vue Superman:
+
+1. Fork the repo (click the <kbd>Fork</kbd> button at the top right of
+   [this page](https://github.com/2214962083/vue-superman))
+
+2. Clone your fork locally
+
+```sh
+git clone https://github.com/<your_github_username>/vue-superman.git
+cd vue-superman
+```
+
+3. Install Dependencies. This project depends on node v14+ and pnpm 6.x
 
 If you don't have pnpm installed, you should execute:
 
@@ -16,7 +28,7 @@ If you don't have pnpm installed, you should execute:
 npm i -g pnpm@6.32.17
 ```
 
-Clone this repo to your local machine and install the dependencies.
+Install the dependencies:
 
 ```bash
 pnpm bootstrap
@@ -60,7 +72,19 @@ https://www.conventionalcommits.org/ or check out the
 
 ### Steps to PR
 
-todo...
+1. Fork of the vue-superman repository and clone your fork
+
+2. Create a new branch out of the `master` branch. We follow the convention
+   `[type/scope]`. For example `fix/class-mock` or `docs/vue-xrender`. `type`
+   can be either `docs`, `fix`, `feat`, `build`, or any other conventional
+   commit type. `scope` is just a short id that describes the scope of work.
+
+3. Make and commit your changes following the
+   [commit convention](https://github.com/2214962083/vue-superman/blob/master/CONTRIBUTING.md#commit-convention).
+   As you develop, you can run `pnpm build --filter <module>` and
+   `pnpm test --filter <module>` to make sure everything works as expected. Please
+   note that you might have to run `pnpm bootstrap` first in order to build all
+   dependencies.
 
 ## Code Style
 
@@ -69,3 +93,8 @@ Don't worry about the code style as long as you install the dev dependencies. Gi
 ## Thanks
 
 Thank you again for being interested in this project! You are awesome!
+
+## License
+
+By contributing your code to the vue-superman GitHub repository, you agree to
+license your contribution under the MIT license.
