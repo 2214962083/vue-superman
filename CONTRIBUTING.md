@@ -6,7 +6,7 @@ Thanks for being interested in contributing to this project!
 
 To improve our development process, we've provide a playground, you can use any package in playground. Vue Superman uses a monorepo structure and packages/package can be consumed in isolation.
 
-### Setup
+## Setup
 
 The following steps will get you up and running to contribute to Vue Superman:
 
